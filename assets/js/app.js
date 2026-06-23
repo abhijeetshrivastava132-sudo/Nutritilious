@@ -14,7 +14,7 @@ root.innerHTML=`
     <button class="profile-btn" id="profileBtn"><span class="profile-icon"></span></button>
   </div>
   <div class="search-row">
-    <div class="search-box"><span class="search-icon"></span><input id="searchInput" type="text" placeholder="Search homemade food"><span class="divider"></span><button class="mic-btn" id="micBtn" type="button"><span class="mic-icon"><span class="mic-head"></span><span class="mic-arc"></span><span class="mic-line"></span><span class="mic-base"></span></span></button></div>
+    <div class="search-box"><span class="search-icon"></span><input id="searchInput" type="text" placeholder="Search, order and eat"><span class="divider"></span><button class="mic-btn" id="micBtn" type="button"><span class="mic-icon"><span class="mic-head"></span><span class="mic-arc"></span><span class="mic-line"></span><span class="mic-base"></span></span></button></div>
     <div class="veg-box active" id="vegBox"><div class="veg-text">VEG</div><button class="veg-toggle" type="button"><span class="veg-toggle-knob"></span></button></div>
   </div>
 </header>
