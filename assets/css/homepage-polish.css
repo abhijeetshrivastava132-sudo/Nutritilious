@@ -52,15 +52,20 @@
   text-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
+.toggle-area{
+  padding-bottom:12px!important;
+}
+
 .filter-row{
   display:flex;
   align-items:center;
   gap:12px;
   overflow-x:auto;
   white-space:nowrap;
-  padding:0 16px 20px;
-  margin-top:-2px;
+  padding:0 16px 18px;
+  margin-top:0;
   scrollbar-width:none;
+  background:#fff;
 }
 
 .filter-row::-webkit-scrollbar{
@@ -94,27 +99,58 @@
   box-shadow:0 6px 16px rgba(163,21,33,.12);
 }
 
-.slider-icon{
+.filter-icon{
   width:21px;
-  height:16px;
+  height:18px;
   position:relative;
   flex-shrink:0;
-  background:
-    linear-gradient(currentColor,currentColor) 0 2px/21px 2px no-repeat,
-    linear-gradient(currentColor,currentColor) 0 7px/21px 2px no-repeat,
-    linear-gradient(currentColor,currentColor) 0 12px/21px 2px no-repeat;
+  display:inline-block;
 }
 
-.slider-icon::before{
+.filter-icon::before,
+.filter-icon::after,
+.filter-icon span{
   content:"";
   position:absolute;
-  left:4px;
-  top:0;
-  width:5px;
-  height:5px;
-  border-radius:50%;
+  left:0;
+  width:21px;
+  height:2px;
   background:currentColor;
-  box-shadow:8px 5px 0 currentColor,-1px 10px 0 currentColor;
+  border-radius:999px;
+}
+
+.filter-icon::before{
+  top:3px;
+}
+
+.filter-icon span{
+  top:8px;
+}
+
+.filter-icon::after{
+  top:13px;
+}
+
+.filter-icon span::before,
+.filter-icon span::after{
+  content:"";
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:#fff;
+  border:2px solid currentColor;
+  border-radius:50%;
+  top:-2px;
+}
+
+.filter-icon span::before{
+  left:3px;
+  box-shadow:9px -5px 0 -2px #fff,9px -5px 0 0 currentColor;
+}
+
+.filter-icon span::after{
+  right:2px;
+  box-shadow:-9px 5px 0 -2px #fff,-9px 5px 0 0 currentColor;
 }
 
 .filter-chevron{
@@ -135,39 +171,12 @@
   clip-path:polygon(44% 0,100% 0,66% 40%,94% 40%,35% 100%,48% 55%,14% 55%);
 }
 
-.heart-icon{
-  width:18px;
-  height:16px;
+.star-icon{
+  width:17px;
+  height:17px;
   flex-shrink:0;
-  position:relative;
-  transform:rotate(-45deg);
-  border-left:3px solid #b97850;
-  border-bottom:3px solid #b97850;
-  border-radius:0 0 0 5px;
-}
-
-.heart-icon::before,
-.heart-icon::after{
-  content:"";
-  position:absolute;
-  width:10px;
-  height:10px;
-  border:3px solid #b97850;
-  border-radius:50%;
-}
-
-.heart-icon::before{
-  left:-4px;
-  top:-8px;
-  border-right:0;
-  border-bottom:0;
-}
-
-.heart-icon::after{
-  right:-8px;
-  bottom:-4px;
-  border-left:0;
-  border-top:0;
+  background:#d38a2e;
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 56%,79% 91%,50% 70%,21% 91%,32% 56%,2% 35%,39% 35%);
 }
 
 .empty-state{
@@ -189,7 +198,7 @@
 
   .filter-row{
     gap:9px;
-    padding-bottom:18px;
+    padding-bottom:16px;
   }
 
   .filter-chip{
