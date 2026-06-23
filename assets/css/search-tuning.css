@@ -27,6 +27,16 @@
   transform-origin:center;
 }
 
+.genre-title{
+  background:#fff;
+  color:#111;
+  font-size:18px;
+  font-weight:950;
+  letter-spacing:-.35px;
+  padding:15px 16px 12px;
+}
+
+.genre-title.hidden,
 .genre-row.hidden,
 .filter-row.hidden{
   display:none!important;
