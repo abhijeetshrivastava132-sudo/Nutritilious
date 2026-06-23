@@ -5,6 +5,9 @@ const root=document.getElementById('root');
 root.innerHTML=`
 <div class="app">
 <header class="top-area" id="home">
+  <div class="pot-silhouette pot-decor pot-one" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
+  <div class="pot-silhouette pot-decor pot-two" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
+  <div class="pot-silhouette pot-decor pot-three" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
   <div class="location-row">
     <div class="location-icon">➤</div>
     <div class="location-text" id="locationBtn">
@@ -12,6 +15,13 @@ root.innerHTML=`
       <div class="location-subtitle">Lajpat Nagar, Ring Road, New Delhi</div>
     </div>
     <button class="profile-btn" id="profileBtn"><span class="profile-icon"></span></button>
+  </div>
+  <div class="greeting-card">
+    <div>
+      <p class="greeting-text" id="greetingText">Good evening, Abhi</p>
+      <h1>Fresh homemade meals are waiting near you</h1>
+    </div>
+    <div class="pot-silhouette greeting-pot" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
   </div>
   <div class="search-row">
     <div class="search-box"><span class="search-icon"></span><input id="searchInput" type="text" placeholder="Search, order and eat"><span class="divider"></span><button class="mic-btn" id="micBtn" type="button"><span class="mic-icon"><span class="mic-head"></span><span class="mic-arc"></span><span class="mic-line"></span><span class="mic-base"></span></span></button></div>
@@ -29,6 +39,7 @@ root.innerHTML=`
 <div class="toast" id="toast"></div>`;
 
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function setGreeting(){const h=new Date().getHours();const msg=h<12?'Good morning':h<17?'Good afternoon':'Good evening';const el=document.getElementById('greetingText');if(el)el.textContent=msg+', Abhi'}
 function renderGenres(){document.getElementById('genreRow').innerHTML=genres.map(g=>`<button class="genre-card ${g.id===selectedGenre?'active':''}" data-genre="${g.id}"><div class="genre-img"><img src="${g.img}" alt="${g.label}"></div><span>${g.label}</span></button>`).join('')}
 function renderFoods(list=foods.filter(f=>f.genre===selectedGenre)){document.getElementById('foodGrid').innerHTML=list.map(f=>`<article class="food-card" data-name="${f.name}"><div class="food-photo"><span class="healthy-tag">${f.tag}</span><img src="${f.img}" alt="${f.name}"></div><div class="food-info"><h3>${f.name}</h3><p>by ${f.cook}</p><div class="food-meta"><span class="price">${f.price}</span><span class="time">${f.delivery}</span></div></div></article>`).join('');document.querySelectorAll('.food-card').forEach(c=>c.onclick=()=>openFoodModal(c.dataset.name))}
 function renderTiffin(){document.getElementById('tiffinList').innerHTML=tiffinPlans.map(p=>`<div class="plan-card"><div class="plan-icon"><img src="${p.img}" alt="${p.name}"></div><div class="plan-info"><h3>${p.name}</h3><p>${p.desc}</p><div class="food-meta"><span class="price">${p.price}</span><span class="time">${p.time}</span></div></div></div>`).join('')}
@@ -41,4 +52,4 @@ closeModal.onclick=closeModal;addToCart.onclick=()=>{closeModal();showToast(sele
 locationBtn.onclick=()=>showToast('Location selector will open in next demo version');dropBtn.onclick=e=>{e.stopPropagation();showToast('Location selector will open in next demo version')};profileBtn.onclick=()=>showToast('Profile page will open in next demo version');micBtn.onclick=()=>showToast('Voice search will open in next demo version');
 document.querySelectorAll('.service-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.service-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const tab=b.dataset.tab;foodSection.classList.toggle('hidden',tab!=='food');tiffinSection.classList.toggle('hidden',tab==='food');showToast(tab==='food'?'Showing homemade food':'Showing tiffin services')});
 document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));b.classList.add('active');const nav=b.dataset.nav;if(nav==='home')home.scrollIntoView({behavior:'smooth'});else if(nav==='genre')genreRow.scrollIntoView({behavior:'smooth'});else showToast(nav+' page will open in next demo version')});
-renderGenres();renderFoods();renderTiffin();bindGenres();
+setGreeting();renderGenres();renderFoods();renderTiffin();bindGenres();
