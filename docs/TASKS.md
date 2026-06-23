@@ -15,6 +15,10 @@ Use this file to avoid random changes and keep development clean.
   - [x] Manual location input
   - [x] Save selected location in localStorage
   - [x] Update header location title/subtitle
+- [x] Add reverse geocoding for detected GPS location
+  - [x] Convert latitude/longitude into readable area/address
+  - [x] Save readable address in localStorage
+  - [x] Fallback to GPS coordinates if address lookup fails
 
 ## Next priority tasks
 
@@ -24,9 +28,9 @@ Use this file to avoid random changes and keep development clean.
    - Improve filters.
 
 2. **Location system**
-   - Add reverse geocoding so GPS coordinates become readable area names.
    - Add nearby provider filtering using latitude/longitude.
    - Add delivery radius and unavailable-area UI.
+   - Add production-safe geocoding backend/API key later.
 
 3. **Provider detail page**
    - Show menu by day and time.

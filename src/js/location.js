@@ -10,6 +10,8 @@ const locationSub = document.getElementById('locationSub');
 const locationStatus = document.getElementById('locationStatus');
 
 const STORAGE_KEY = 'nutritiliousLocation';
+const REVERSE_GEOCODE_URL = 'https://nominatim.openstreetmap.org/reverse';
+
 const defaultLocation = {
   title: 'Lajpat Nagar Metro Station',
   sub: 'Lajpat Nagar, Ring Road, New Delhi',
@@ -57,6 +59,71 @@ function closeLocationSheet() {
   locationSheet.setAttribute('aria-hidden', 'true');
 }
 
+function getReadableAddressParts(address = {}) {
+  const title =
+    address.neighbourhood ||
+    address.suburb ||
+    address.quarter ||
+    address.road ||
+    address.village ||
+    address.town ||
+    address.city ||
+    address.county ||
+    'Current Location';
+
+  const city = address.city || address.town || address.village || address.county || '';
+  const state = address.state || '';
+  const country = address.country || '';
+  const sub = [address.road, city, state, country]
+    .filter(Boolean)
+    .filter((item, index, array) => array.indexOf(item) === index)
+    .join(', ');
+
+  return {
+    title,
+    sub: sub || 'Detected from GPS'
+  };
+}
+
+async function reverseGeocode(latitude, longitude) {
+  const params = new URLSearchParams({
+    format: 'jsonv2',
+    lat: latitude,
+    lon: longitude,
+    zoom: '18',
+    addressdetails: '1',
+    'accept-language': 'en'
+  });
+
+  const response = await fetch(`${REVERSE_GEOCODE_URL}?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error('Reverse geocoding failed');
+  }
+
+  const result = await response.json();
+  if (!result || (!result.address && !result.display_name)) {
+    throw new Error('No readable address found');
+  }
+
+  const readable = getReadableAddressParts(result.address || {});
+
+  return {
+    title: readable.title,
+    sub: readable.sub || result.display_name,
+    fullAddress: result.display_name || readable.sub
+  };
+}
+
+function createGpsFallbackLocation(latitude, longitude) {
+  return {
+    title: 'Current Location',
+    sub: `Lat ${latitude}, Long ${longitude}`,
+    source: 'gps',
+    latitude,
+    longitude
+  };
+}
+
 function applyManualLocation(event) {
   event.preventDefault();
 
@@ -79,21 +146,33 @@ function applyManualLocation(event) {
   setTimeout(closeLocationSheet, 450);
 }
 
-function applyDetectedLocation(position) {
-  const latitude = position.coords.latitude.toFixed(4);
-  const longitude = position.coords.longitude.toFixed(4);
-  const location = {
-    title: 'Current Location',
-    sub: `Lat ${latitude}, Long ${longitude}`,
-    source: 'gps',
-    latitude,
-    longitude
-  };
+async function applyDetectedLocation(position) {
+  const latitude = position.coords.latitude.toFixed(6);
+  const longitude = position.coords.longitude.toFixed(6);
+  const fallbackLocation = createGpsFallbackLocation(latitude, longitude);
 
-  updateHeaderLocation(location);
-  saveLocation(location);
-  setStatus('Current location saved.', 'success');
-  setTimeout(closeLocationSheet, 450);
+  updateHeaderLocation(fallbackLocation);
+  setStatus('Converting GPS into readable address...');
+
+  try {
+    const readableAddress = await reverseGeocode(latitude, longitude);
+    const location = {
+      ...fallbackLocation,
+      title: readableAddress.title,
+      sub: readableAddress.sub,
+      fullAddress: readableAddress.fullAddress,
+      source: 'gps-reverse-geocoded'
+    };
+
+    updateHeaderLocation(location);
+    saveLocation(location);
+    setStatus('Current location saved with readable address.', 'success');
+  } catch (error) {
+    saveLocation(fallbackLocation);
+    setStatus('Address conversion failed. GPS coordinates saved instead.', 'error');
+  }
+
+  setTimeout(closeLocationSheet, 700);
 }
 
 function detectCurrentLocation() {
@@ -106,9 +185,9 @@ function detectCurrentLocation() {
   detectLocationBtn.disabled = true;
 
   navigator.geolocation.getCurrentPosition(
-    (position) => {
+    async (position) => {
+      await applyDetectedLocation(position);
       detectLocationBtn.disabled = false;
-      applyDetectedLocation(position);
     },
     () => {
       detectLocationBtn.disabled = false;
