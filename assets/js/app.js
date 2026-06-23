@@ -8,6 +8,8 @@ root.innerHTML=`
   <div class="pot-silhouette pot-decor pot-one" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
   <div class="pot-silhouette pot-decor pot-two" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
   <div class="pot-silhouette pot-decor pot-three" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
+  <div class="pot-silhouette pot-decor pot-four" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
+  <div class="pot-silhouette pot-decor pot-five" aria-hidden="true"><span class="pot-lid"></span><span class="pot-body"></span></div>
   <div class="location-row">
     <div class="location-icon">➤</div>
     <div class="location-text" id="locationBtn">
