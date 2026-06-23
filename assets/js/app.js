@@ -23,11 +23,10 @@ root.innerHTML=`
     <div class="veg-box active" id="vegBox"><div class="veg-text">VEG</div><button class="veg-toggle" type="button"><span class="veg-toggle-knob"></span></button></div>
   </div>
 </header>
-<div class="genre-title" id="genreTitle">Menu of the Day</div>
+<div class="genre-title" id="genreTitle">What's on your mind?</div>
 <div class="genre-row" id="genreRow"></div>
-<div class="filter-row" id="filterRow"><button class="filter-chip" data-filter="filters" type="button"><span class="filter-icon"><span></span></span>Filters<span class="filter-chevron"></span></button><button class="filter-chip" data-filter="near-fast" type="button"><span class="bolt-icon"></span>Near & Fast</button><button class="filter-chip" data-filter="featured" type="button"><span class="star-icon"></span>Featured today</button></div>
 <main class="main-content">
-  <section id="foodSection"><div class="section"><div class="section-title"><h2 id="foodHeading">Meal of the Day</h2></div></div><div class="food-grid" id="foodGrid"></div></section>
+  <section id="foodSection"><div class="section"><div class="section-title"><h2 id="foodHeading">Meal of the Day</h2></div></div><div class="filter-row" id="filterRow"><button class="filter-chip" data-filter="filters" type="button"><span class="filter-icon"><span></span></span>Filters<span class="filter-chevron"></span></button><button class="filter-chip" data-filter="near-fast" type="button"><span class="bolt-icon"></span>Near & Fast</button><button class="filter-chip" data-filter="featured" type="button"><span class="star-icon"></span>Featured today</button></div><div class="food-grid" id="foodGrid"></div></section>
   <section id="tiffinSection" class="hidden"><div class="section"><div class="section-title"><h2>Tiffin Plans</h2></div></div><div id="tiffinList"></div></section>
 </main>
 </div>
