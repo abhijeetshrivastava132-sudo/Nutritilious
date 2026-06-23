@@ -53,6 +53,8 @@
 }
 
 .pot-silhouette{
+  --pot-color:rgba(255,229,124,.92);
+  --pot-dark:rgba(85,13,20,.28);
   position:absolute;
   display:block;
   pointer-events:none;
@@ -62,33 +64,36 @@
 .pot-silhouette::after{
   content:"";
   position:absolute;
-  top:36%;
-  width:16%;
-  height:22%;
-  border:4px solid rgba(255,255,255,.92);
+  top:41%;
+  width:20%;
+  height:24%;
+  background:var(--pot-color);
+  box-shadow:0 4px 0 var(--pot-dark);
   z-index:1;
 }
 
 .pot-silhouette::before{
-  left:3%;
-  border-right:0;
-  border-radius:18px 0 0 18px;
+  left:0;
+  border-radius:16px 4px 4px 16px;
+  transform:rotate(-6deg);
 }
 
 .pot-silhouette::after{
-  right:3%;
-  border-left:0;
-  border-radius:0 18px 18px 0;
+  right:0;
+  border-radius:4px 16px 16px 4px;
+  transform:rotate(6deg);
 }
 
 .pot-lid{
   position:absolute;
-  left:22%;
-  top:12%;
-  width:56%;
-  height:10%;
-  background:rgba(255,255,255,.94);
+  left:21%;
+  top:25%;
+  width:58%;
+  height:12%;
+  background:var(--pot-color);
   border-radius:999px;
+  box-shadow:0 4px 0 var(--pot-dark);
+  z-index:3;
 }
 
 .pot-lid::before{
@@ -96,64 +101,104 @@
   position:absolute;
   left:50%;
   top:-8px;
-  width:16px;
+  width:18px;
   height:8px;
   transform:translateX(-50%);
-  background:rgba(255,255,255,.94);
-  border-radius:999px 999px 0 0;
+  background:var(--pot-color);
+  border-radius:999px 999px 4px 4px;
+}
+
+.pot-lid::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-26px;
+  width:26px;
+  height:19px;
+  transform:translateX(-50%);
+  border-top:4px solid rgba(255,255,255,.55);
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-radius:50%;
+  opacity:.75;
 }
 
 .pot-body{
   position:absolute;
-  left:15%;
-  bottom:9%;
-  width:70%;
-  height:54%;
-  background:rgba(255,255,255,.94);
-  border-radius:7px 7px 22px 22px;
-  clip-path:polygon(8% 0,92% 0,78% 100%,22% 100%);
+  left:14%;
+  bottom:7%;
+  width:72%;
+  height:50%;
+  background:var(--pot-color);
+  border-radius:6px 6px 20px 20px;
+  clip-path:polygon(5% 0,95% 0,83% 100%,17% 100%);
+  box-shadow:0 6px 0 var(--pot-dark);
+  z-index:2;
+}
+
+.pot-body::before{
+  content:"";
+  position:absolute;
+  left:18%;
+  top:28%;
+  width:64%;
+  height:8%;
+  background:rgba(85,13,20,.2);
+  border-radius:999px;
+}
+
+.pot-body::after{
+  content:"";
+  position:absolute;
+  left:40%;
+  bottom:18%;
+  width:20%;
+  height:9%;
+  background:rgba(85,13,20,.16);
+  border-radius:999px;
 }
 
 .pot-decor{
-  width:58px;
-  height:46px;
-  opacity:.18;
+  width:62px;
+  height:54px;
+  opacity:.72;
   z-index:1;
-  filter:drop-shadow(0 5px 8px rgba(0,0,0,.08));
+  filter:drop-shadow(0 7px 0 rgba(92,10,18,.14));
 }
 
 .pot-one{
-  right:24px;
-  top:76px;
-  transform:rotate(-14deg) scale(.72);
+  right:22px;
+  top:74px;
+  transform:rotate(-15deg) scale(.68);
+  opacity:.66;
 }
 
 .pot-two{
   left:20px;
   top:116px;
-  transform:rotate(13deg) scale(.52);
-  opacity:.13;
+  transform:rotate(15deg) scale(.48);
+  opacity:.48;
 }
 
 .pot-three{
   right:118px;
   bottom:13px;
-  transform:rotate(9deg) scale(.46);
-  opacity:.12;
+  transform:rotate(8deg) scale(.43);
+  opacity:.42;
 }
 
 .pot-four{
   left:142px;
   top:50px;
-  transform:rotate(-22deg) scale(.38);
-  opacity:.11;
+  transform:rotate(-22deg) scale(.34);
+  opacity:.38;
 }
 
 .pot-five{
   right:74px;
   top:148px;
-  transform:rotate(18deg) scale(.42);
-  opacity:.10;
+  transform:rotate(18deg) scale(.37);
+  opacity:.36;
 }
 
 @media(max-width:360px){
