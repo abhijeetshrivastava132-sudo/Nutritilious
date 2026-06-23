@@ -39,26 +39,17 @@
 .greeting-card{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin:-6px 0 18px;
+  margin:-6px 0 16px;
+  min-height:22px;
 }
 
 .greeting-text{
-  color:rgba(255,255,255,.82);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.2px;
-  margin-bottom:5px;
-}
-
-.greeting-card h1{
   color:#fff;
-  font-size:23px;
-  line-height:1.08;
+  font-size:19px;
+  line-height:1.1;
   font-weight:950;
-  letter-spacing:-.7px;
-  max-width:260px;
+  letter-spacing:-.25px;
+  text-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
 .pot-silhouette{
@@ -126,53 +117,65 @@
 .pot-decor{
   width:58px;
   height:46px;
-  opacity:.16;
+  opacity:.18;
   z-index:1;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.08));
 }
 
 .pot-one{
-  right:22px;
-  top:82px;
-  transform:rotate(-14deg) scale(.82);
+  right:24px;
+  top:76px;
+  transform:rotate(-14deg) scale(.72);
 }
 
 .pot-two{
-  left:18px;
-  top:118px;
-  transform:rotate(13deg) scale(.58);
-  opacity:.11;
+  left:20px;
+  top:116px;
+  transform:rotate(13deg) scale(.52);
+  opacity:.13;
 }
 
 .pot-three{
-  right:116px;
-  bottom:12px;
-  transform:rotate(9deg) scale(.48);
+  right:118px;
+  bottom:13px;
+  transform:rotate(9deg) scale(.46);
+  opacity:.12;
+}
+
+.pot-four{
+  left:142px;
+  top:50px;
+  transform:rotate(-22deg) scale(.38);
+  opacity:.11;
+}
+
+.pot-five{
+  right:74px;
+  top:148px;
+  transform:rotate(18deg) scale(.42);
   opacity:.10;
 }
 
-.greeting-pot{
-  position:relative;
-  width:72px;
-  height:58px;
-  flex:0 0 72px;
-  opacity:.88;
-  filter:drop-shadow(0 8px 14px rgba(0,0,0,.12));
-}
-
-.greeting-pot::before,
-.greeting-pot::after{
-  border-width:5px;
-}
-
 @media(max-width:360px){
-  .greeting-card h1{
-    font-size:20px;
-    max-width:220px;
+  .greeting-text{
+    font-size:17px;
   }
 
-  .greeting-pot{
-    width:62px;
-    height:50px;
-    flex-basis:62px;
+  .pot-decor{
+    transform-origin:center;
+  }
+
+  .pot-one{
+    right:16px;
+    top:78px;
+  }
+
+  .pot-two{
+    left:12px;
+    top:112px;
+  }
+
+  .pot-four{
+    left:120px;
   }
 }
