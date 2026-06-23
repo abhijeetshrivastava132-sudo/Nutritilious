@@ -69,17 +69,18 @@
 
 .meal-day-grid .food-photo{
   width:100%!important;
-  height:168px!important;
-  aspect-ratio:16/10!important;
+  height:178px!important;
+  aspect-ratio:auto!important;
   border-radius:18px 18px 0 0!important;
   overflow:hidden!important;
-  background:#eee!important;
+  background:#f6f6f6!important;
 }
 
 .meal-day-grid .food-photo img{
   width:100%!important;
   height:100%!important;
-  object-fit:cover!important;
+  object-fit:contain!important;
+  object-position:center!important;
   display:block!important;
 }
 
@@ -126,6 +127,6 @@
   }
 
   .meal-day-grid .food-photo{
-    height:150px!important;
+    height:160px!important;
   }
 }
