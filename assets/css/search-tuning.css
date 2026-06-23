@@ -36,6 +36,31 @@
   padding:15px 16px 12px;
 }
 
+.genre-row{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:18px 10px!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  padding:4px 16px 20px!important;
+}
+
+.genre-card{
+  width:100%!important;
+  flex:initial!important;
+}
+
+.genre-img{
+  width:88px!important;
+  height:88px!important;
+  margin:0 auto 8px!important;
+  padding:3px!important;
+}
+
+.genre-card span{
+  font-size:13px!important;
+}
+
 .genre-title.hidden,
 .genre-row.hidden,
 .filter-row.hidden{
@@ -62,4 +87,19 @@
 .nav-item div{
   font-size:19px!important;
   margin-bottom:2px!important;
+}
+
+@media(max-width:360px){
+  .genre-row{
+    gap:16px 8px!important;
+  }
+
+  .genre-img{
+    width:78px!important;
+    height:78px!important;
+  }
+
+  .genre-card span{
+    font-size:12px!important;
+  }
 }
