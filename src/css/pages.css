@@ -1,0 +1,495 @@
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px 12px;
+}
+
+.cat-item {
+  border: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.cat-img-wrap {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #f1f1f1;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+}
+
+.cat-name {
+  margin-top: 10px;
+  color: #222222;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.offer-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 16px 0;
+}
+
+.offer-card {
+  min-height: 92px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.06);
+}
+
+.offer-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 9px;
+  border-radius: 12px;
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.offer-icon svg {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.offer-title {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.offer-sub {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 16px 15px;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  color: #333333;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.filter-chip svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.restaurant-list {
+  padding: 0 16px 16px;
+}
+
+.restaurant-card {
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.restaurant-img-box {
+  position: relative;
+  height: 185px;
+  overflow: hidden;
+}
+
+.restaurant-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discount-badge,
+.time-badge {
+  position: absolute;
+  bottom: 12px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.discount-badge {
+  left: 12px;
+  color: #ffffff;
+  background: #256fef;
+}
+
+.time-badge {
+  right: 12px;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.restaurant-content {
+  padding: 14px 14px 16px;
+}
+
+.restaurant-top,
+.restaurant-bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.restaurant-name {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+}
+
+.rating {
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--success);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.restaurant-meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.restaurant-bottom {
+  align-items: center;
+  margin-top: 13px;
+  padding-top: 13px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.price {
+  color: #333333;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.distance {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.empty-page {
+  min-height: calc(100vh - 150px);
+  padding: 54px 24px 16px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 28px;
+  color: var(--brand);
+  background: linear-gradient(180deg, #ffffff, #f2f2f4);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
+}
+
+.empty-icon svg {
+  width: 38px;
+  height: 38px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.empty-title {
+  margin-bottom: 8px;
+  color: #111111;
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+.empty-text {
+  max-width: 300px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.empty-btn,
+.primary-btn,
+.outline-btn {
+  min-height: 48px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 900;
+  transition: 0.18s;
+}
+
+.empty-btn {
+  margin-top: 24px;
+  padding: 0 24px;
+  border: 0;
+  color: #ffffff;
+  background: var(--brand);
+  box-shadow: 0 12px 24px rgba(155, 0, 28, 0.24);
+}
+
+.subscription-wrap {
+  padding: 22px 16px 18px;
+}
+
+.subscription-card {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 20px 22px;
+  border: 1.5px solid rgba(141, 22, 34, 0.12);
+  border-radius: 28px;
+  background: radial-gradient(circle at top left, rgba(176, 132, 50, 0.08), transparent 28%), radial-gradient(circle at bottom right, rgba(155, 0, 28, 0.06), transparent 30%), #fffaf0;
+  box-shadow: 0 20px 45px rgba(60, 36, 20, 0.12);
+  text-align: center;
+}
+
+.subscription-card::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 34px;
+  right: 34px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(176, 132, 50, 0.8), transparent);
+}
+
+.sub-title {
+  margin-top: 20px;
+  color: #7b111d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.4px;
+}
+
+.sub-coming {
+  margin-top: 7px;
+  color: #8d7040;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.sub-desc {
+  max-width: 330px;
+  margin: 26px auto 0;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.sub-line {
+  height: 1px;
+  margin: 26px 18px 20px;
+  background: rgba(141, 112, 64, 0.16);
+}
+
+.primary-btn,
+.outline-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 16px;
+  letter-spacing: 0.8px;
+}
+
+.primary-btn {
+  gap: 14px;
+  border: 0;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8f0715, #720511);
+  box-shadow: 0 14px 28px rgba(114, 5, 17, 0.26);
+}
+
+.outline-btn {
+  gap: 12px;
+  margin-top: 14px;
+  border: 1.6px solid rgba(123, 17, 29, 0.65);
+  color: #7b111d;
+  background: rgba(255, 250, 240, 0.82);
+}
+
+.outline-btn.interested {
+  background: var(--brand-soft);
+}
+
+.heart-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(123, 17, 29, 0.08);
+}
+
+.heart-icon svg {
+  width: 19px;
+  height: 19px;
+  stroke: #7b111d;
+  stroke-width: 1.9;
+  fill: none;
+}
+
+.outline-btn.interested .heart-icon svg {
+  fill: #7b111d;
+}
+
+.know-more-page {
+  min-height: calc(100vh - 70px);
+  padding: 18px 16px 96px;
+  background: #fbf7ed;
+}
+
+.info-panel {
+  padding: 20px;
+  border-radius: 24px;
+  background: #fffdf7;
+  box-shadow: var(--shadow-soft);
+}
+
+.info-panel h2 {
+  color: #7b111d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.info-panel p {
+  margin-top: 12px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.info-card {
+  padding: 16px 14px;
+  border: 1px solid rgba(80, 70, 40, 0.08);
+  border-radius: 18px;
+  background: #fff6db;
+}
+
+.info-card:nth-child(2n) {
+  background: #fff1ed;
+}
+
+.info-card h3 {
+  color: #422d27;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.info-card p {
+  margin-top: 8px;
+  color: #333333;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+@media (max-width: 370px) {
+  .category-grid {
+    gap: 20px 8px;
+  }
+
+  .cat-img-wrap {
+    width: 68px;
+    height: 68px;
+  }
+
+  .filters,
+  .restaurant-list {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .subscription-card {
+    padding: 42px 16px 20px;
+  }
+
+  .sub-title {
+    font-size: 27px;
+  }
+
+  .sub-coming {
+    font-size: 25px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
