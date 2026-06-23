@@ -7,6 +7,13 @@ const genres=[
   {id:'desserts',label:'Desserts',img:'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=300&q=80'}
 ];
 
+const mealOfDay=[
+  {genre:'lunch',name:'Paneer Butter Masala Rice',cook:'Anita Homemade Food',price:'₹120',time:'12 PM - 3 PM',delivery:'20-30 mins',tag:'Meal of Day',img:'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=900&q=80',ingredients:'Paneer, tomato gravy, butter, cream, jeera rice, mild Indian spices',nutrition:['640 kcal','24g','78g','24g']},
+  {genre:'lunch',name:'Hyderabadi Veg Biryani',cook:'Daily Fresh Home Food',price:'₹130',time:'12 PM - 10 PM',delivery:'25-35 mins',tag:'Popular',img:'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=900&q=80',ingredients:'Basmati rice, vegetables, saffron, curd, fried onion, biryani masala',nutrition:['590 kcal','15g','92g','18g']},
+  {genre:'breakfast',name:'Masala Dosa Sambar',cook:'South Home Kitchen',price:'₹90',time:'8 AM - 11 AM',delivery:'20-30 mins',tag:'South Indian',img:'https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=900&q=80',ingredients:'Rice batter dosa, potato masala, sambar, coconut chutney, curry leaves',nutrition:['430 kcal','12g','72g','10g']},
+  {genre:'lunch',name:'Rajma Chawal Bowl',cook:'Sunita Kitchen',price:'₹95',time:'12 PM - 3 PM',delivery:'20-30 mins',tag:'Homely',img:'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=900&q=80',ingredients:'Rajma, steamed rice, tomato onion gravy, cumin, coriander, homemade spices',nutrition:['520 kcal','18g','82g','11g']}
+];
+
 const foods=[
   {genre:'breakfast',name:'Sattu Paratha Meal',cook:'Raj Home Meals',price:'₹70',time:'8 AM - 11 AM',delivery:'20-30 mins',tag:'Breakfast',img:'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=80',ingredients:'Sattu, wheat flour, onion, green chilli, ajwain, coriander, curd, pickle',nutrition:['460 kcal','16g','68g','14g']},
   {genre:'breakfast',name:'Poha Bowl',cook:'Anita Homemade Food',price:'₹55',time:'7 AM - 10 AM',delivery:'20-30 mins',tag:'Light',img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80',ingredients:'Poha, peanuts, onion, turmeric, curry leaves, lemon, coriander',nutrition:['330 kcal','9g','56g','8g']},
