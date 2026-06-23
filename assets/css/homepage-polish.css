@@ -100,11 +100,15 @@
 }
 
 .filter-icon{
-  width:21px;
+  width:22px;
   height:18px;
   position:relative;
   flex-shrink:0;
   display:inline-block;
+  background:
+    linear-gradient(currentColor,currentColor) 0 3px/22px 2px no-repeat,
+    linear-gradient(currentColor,currentColor) 0 8px/22px 2px no-repeat,
+    linear-gradient(currentColor,currentColor) 0 13px/22px 2px no-repeat;
 }
 
 .filter-icon::before,
@@ -112,45 +116,27 @@
 .filter-icon span{
   content:"";
   position:absolute;
-  left:0;
-  width:21px;
-  height:2px;
-  background:currentColor;
-  border-radius:999px;
-}
-
-.filter-icon::before{
-  top:3px;
-}
-
-.filter-icon span{
-  top:8px;
-}
-
-.filter-icon::after{
-  top:13px;
-}
-
-.filter-icon span::before,
-.filter-icon span::after{
-  content:"";
-  position:absolute;
-  width:6px;
-  height:6px;
+  width:7px;
+  height:7px;
   background:#fff;
   border:2px solid currentColor;
   border-radius:50%;
-  top:-2px;
+  box-sizing:border-box;
 }
 
-.filter-icon span::before{
-  left:3px;
-  box-shadow:9px -5px 0 -2px #fff,9px -5px 0 0 currentColor;
+.filter-icon::before{
+  left:4px;
+  top:.5px;
 }
 
-.filter-icon span::after{
-  right:2px;
-  box-shadow:-9px 5px 0 -2px #fff,-9px 5px 0 0 currentColor;
+.filter-icon span{
+  right:3px;
+  top:5.5px;
+}
+
+.filter-icon::after{
+  left:8px;
+  top:10.5px;
 }
 
 .filter-chevron{
