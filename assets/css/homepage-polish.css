@@ -100,43 +100,40 @@
 }
 
 .filter-icon{
-  width:22px;
-  height:18px;
+  width:18px;
+  height:14px;
   position:relative;
   flex-shrink:0;
   display:inline-block;
   background:
-    linear-gradient(currentColor,currentColor) 0 3px/22px 2px no-repeat,
-    linear-gradient(currentColor,currentColor) 0 8px/22px 2px no-repeat,
-    linear-gradient(currentColor,currentColor) 0 13px/22px 2px no-repeat;
+    linear-gradient(currentColor,currentColor) 0 4px/18px 1.6px no-repeat,
+    linear-gradient(currentColor,currentColor) 0 10px/18px 1.6px no-repeat;
 }
 
 .filter-icon::before,
-.filter-icon::after,
 .filter-icon span{
   content:"";
   position:absolute;
-  width:7px;
-  height:7px;
+  width:5px;
+  height:5px;
   background:#fff;
-  border:2px solid currentColor;
+  border:1.5px solid currentColor;
   border-radius:50%;
   box-sizing:border-box;
 }
 
 .filter-icon::before{
   left:4px;
-  top:.5px;
+  top:2.2px;
 }
 
 .filter-icon span{
   right:3px;
-  top:5.5px;
+  top:8.2px;
 }
 
 .filter-icon::after{
-  left:8px;
-  top:10.5px;
+  content:none;
 }
 
 .filter-chevron{
