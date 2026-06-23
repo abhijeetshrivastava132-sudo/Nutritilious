@@ -1,0 +1,178 @@
+.top-area{
+  border-radius:0!important;
+  position:relative;
+  overflow:hidden;
+  padding-bottom:20px;
+}
+
+.top-area::before{
+  content:"";
+  position:absolute;
+  inset:-35px -40px auto auto;
+  width:190px;
+  height:190px;
+  background:rgba(255,255,255,.08);
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  transform:rotate(15deg);
+  z-index:0;
+}
+
+.top-area::after{
+  content:"";
+  position:absolute;
+  left:-45px;
+  bottom:16px;
+  width:160px;
+  height:95px;
+  background:rgba(255,255,255,.055);
+  clip-path:polygon(0 18%,100% 0,74% 100%,12% 82%);
+  z-index:0;
+}
+
+.location-row,
+.greeting-card,
+.search-row{
+  position:relative;
+  z-index:2;
+}
+
+.greeting-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:-6px 0 18px;
+}
+
+.greeting-text{
+  color:rgba(255,255,255,.82);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.2px;
+  margin-bottom:5px;
+}
+
+.greeting-card h1{
+  color:#fff;
+  font-size:23px;
+  line-height:1.08;
+  font-weight:950;
+  letter-spacing:-.7px;
+  max-width:260px;
+}
+
+.pot-silhouette{
+  position:absolute;
+  display:block;
+  pointer-events:none;
+}
+
+.pot-silhouette::before,
+.pot-silhouette::after{
+  content:"";
+  position:absolute;
+  top:36%;
+  width:16%;
+  height:22%;
+  border:4px solid rgba(255,255,255,.92);
+  z-index:1;
+}
+
+.pot-silhouette::before{
+  left:3%;
+  border-right:0;
+  border-radius:18px 0 0 18px;
+}
+
+.pot-silhouette::after{
+  right:3%;
+  border-left:0;
+  border-radius:0 18px 18px 0;
+}
+
+.pot-lid{
+  position:absolute;
+  left:22%;
+  top:12%;
+  width:56%;
+  height:10%;
+  background:rgba(255,255,255,.94);
+  border-radius:999px;
+}
+
+.pot-lid::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-8px;
+  width:16px;
+  height:8px;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.94);
+  border-radius:999px 999px 0 0;
+}
+
+.pot-body{
+  position:absolute;
+  left:15%;
+  bottom:9%;
+  width:70%;
+  height:54%;
+  background:rgba(255,255,255,.94);
+  border-radius:7px 7px 22px 22px;
+  clip-path:polygon(8% 0,92% 0,78% 100%,22% 100%);
+}
+
+.pot-decor{
+  width:58px;
+  height:46px;
+  opacity:.16;
+  z-index:1;
+}
+
+.pot-one{
+  right:22px;
+  top:82px;
+  transform:rotate(-14deg) scale(.82);
+}
+
+.pot-two{
+  left:18px;
+  top:118px;
+  transform:rotate(13deg) scale(.58);
+  opacity:.11;
+}
+
+.pot-three{
+  right:116px;
+  bottom:12px;
+  transform:rotate(9deg) scale(.48);
+  opacity:.10;
+}
+
+.greeting-pot{
+  position:relative;
+  width:72px;
+  height:58px;
+  flex:0 0 72px;
+  opacity:.88;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.12));
+}
+
+.greeting-pot::before,
+.greeting-pot::after{
+  border-width:5px;
+}
+
+@media(max-width:360px){
+  .greeting-card h1{
+    font-size:20px;
+    max-width:220px;
+  }
+
+  .greeting-pot{
+    width:62px;
+    height:50px;
+    flex-basis:62px;
+  }
+}
