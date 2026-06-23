@@ -411,6 +411,22 @@ select:focus,
   color:#fff;
 }
 
+#foodSection>.section,
+#foodSection>.filter-row{
+  position:static!important;
+  top:auto!important;
+  z-index:auto!important;
+}
+
+.meal-day-grid{
+  max-height:none!important;
+  height:auto!important;
+  overflow-y:visible!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:auto!important;
+  padding-bottom:95px!important;
+}
+
 @media(max-width:360px){
   .greeting-text{
     font-size:17px;
@@ -445,5 +461,9 @@ select:focus,
     border-radius:11px;
     padding:0 10px;
     font-size:12px;
+  }
+
+  .meal-day-grid{
+    max-height:none!important;
   }
 }
