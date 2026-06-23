@@ -61,6 +61,28 @@
   font-size:13px!important;
 }
 
+.meal-day-grid .food-card{
+  border-radius:18px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+}
+
+.meal-day-grid .food-photo{
+  width:100%!important;
+  height:168px!important;
+  aspect-ratio:16/10!important;
+  border-radius:18px 18px 0 0!important;
+  overflow:hidden!important;
+  background:#eee!important;
+}
+
+.meal-day-grid .food-photo img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+}
+
 .genre-title.hidden,
 .genre-row.hidden,
 .filter-row.hidden{
@@ -101,5 +123,9 @@
 
   .genre-card span{
     font-size:12px!important;
+  }
+
+  .meal-day-grid .food-photo{
+    height:150px!important;
   }
 }
