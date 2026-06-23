@@ -9,6 +9,12 @@ Use this file to avoid random changes and keep development clean.
 - [x] Move JS into `src/js/`
 - [x] Move frontend data into `src/data/`
 - [x] Add architecture and design docs
+- [x] Add location selector step 1
+  - [x] Header location click opens selector sheet
+  - [x] Browser current-location permission flow
+  - [x] Manual location input
+  - [x] Save selected location in localStorage
+  - [x] Update header location title/subtitle
 
 ## Next priority tasks
 
@@ -18,9 +24,9 @@ Use this file to avoid random changes and keep development clean.
    - Improve filters.
 
 2. **Location system**
-   - Add location permission prompt.
-   - Add manual location search.
-   - Add nearby provider filtering.
+   - Add reverse geocoding so GPS coordinates become readable area names.
+   - Add nearby provider filtering using latitude/longitude.
+   - Add delivery radius and unavailable-area UI.
 
 3. **Provider detail page**
    - Show menu by day and time.

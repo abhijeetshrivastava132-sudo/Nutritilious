@@ -6,26 +6,28 @@
   <title>Nutritilious</title>
   <link rel="stylesheet" href="src/css/base.css" />
   <link rel="stylesheet" href="src/css/components.css" />
+  <link rel="stylesheet" href="src/css/location.css" />
   <link rel="stylesheet" href="src/css/pages.css" />
   <script src="src/data/app-data.js" defer></script>
   <script src="src/js/app.js" defer></script>
+  <script src="src/js/location.js" defer></script>
 </head>
 <body>
   <div class="app" id="app">
     <header class="top-header">
       <div class="top-row">
-        <button class="location-btn" type="button" aria-label="Choose delivery location">
+        <button class="location-btn" id="locationBtn" type="button" aria-label="Choose delivery location" aria-haspopup="dialog">
           <span class="location-pin">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c-3.8 0-6.9 3.1-6.9 6.9 0 5.2 6.9 12.7 6.9 12.7s6.9-7.5 6.9-12.7c0-3.8-3.1-6.9-6.9-6.9zm0 9.4a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
           </span>
           <span class="location-text">
             <span class="location-title-row">
-              <span class="location-title">Lajpat Nagar Metro Station</span>
+              <span class="location-title" id="locationTitle">Lajpat Nagar Metro Station</span>
               <span class="location-down">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </span>
             </span>
-            <span class="location-sub">Lajpat Nagar, Ring Road, New Delhi</span>
+            <span class="location-sub" id="locationSub">Lajpat Nagar, Ring Road, New Delhi</span>
           </span>
         </button>
 
@@ -180,6 +182,40 @@
         <span>Subscription</span>
       </button>
     </nav>
+
+    <div class="location-sheet" id="locationSheet" aria-hidden="true">
+      <button class="location-backdrop" id="locationBackdrop" type="button" aria-label="Close location selector"></button>
+      <section class="location-panel" role="dialog" aria-modal="true" aria-labelledby="locationSheetTitle">
+        <div class="location-drag"></div>
+        <div class="location-panel-head">
+          <div>
+            <p class="location-kicker">Delivery location</p>
+            <h2 id="locationSheetTitle">Choose your location</h2>
+          </div>
+          <button class="location-close" id="locationCloseBtn" type="button" aria-label="Close location selector">×</button>
+        </div>
+
+        <button class="detect-location-btn" id="detectLocationBtn" type="button">
+          <span class="detect-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </span>
+          <span>
+            <strong>Use current location</strong>
+            <small>Allow browser location permission</small>
+          </span>
+        </button>
+
+        <div class="location-or"><span></span>or enter manually<span></span></div>
+
+        <form class="manual-location-form" id="manualLocationForm">
+          <label for="manualLocationInput">Area, street, city</label>
+          <input id="manualLocationInput" type="text" placeholder="Example: Sun Street, California" autocomplete="street-address" />
+          <button class="save-location-btn" type="submit">Save location</button>
+        </form>
+
+        <p class="location-status" id="locationStatus">Your saved location will be shown in the header.</p>
+      </section>
+    </div>
   </div>
 </body>
 </html>
