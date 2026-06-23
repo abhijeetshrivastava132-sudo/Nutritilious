@@ -16,7 +16,7 @@ root.innerHTML=`
     <button class="profile-btn" id="profileBtn"><span class="profile-icon"></span></button>
   </div>
   <div class="greeting-card">
-    <p class="greeting-text" id="greetingText">Good evening</p>
+    <p class="greeting-text" id="greetingText">Food Evening!</p>
   </div>
   <div class="search-row">
     <div class="search-box"><span class="search-icon"></span><input id="searchInput" type="text" placeholder="Search, order and enjoy"><span class="divider"></span><button class="mic-btn" id="micBtn" type="button"><span class="mic-icon"><span class="mic-head"></span><span class="mic-arc"></span><span class="mic-line"></span><span class="mic-base"></span></span></button></div>
@@ -37,7 +37,7 @@ root.innerHTML=`
 
 function injectMealRowCSS(){if(document.getElementById('mealRowCSS'))return;const s=document.createElement('style');s.id='mealRowCSS';s.textContent=`.meal-day-grid{display:flex!important;grid-template-columns:none!important;flex-direction:column!important;gap:13px;max-height:430px;overflow-y:auto!important;overflow-x:hidden!important;white-space:normal;padding:0 16px 20px!important;scrollbar-width:none}.meal-day-grid::-webkit-scrollbar{display:none}.meal-day-grid .food-card{flex:0 0 auto;width:100%;white-space:normal}.meal-day-grid .food-photo{height:145px}.healthy-tag{display:none!important}@media(max-width:360px){.meal-day-grid{gap:12px;max-height:390px}.meal-day-grid .food-photo{height:132px}}`;document.head.appendChild(s)}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
-function setGreeting(){const h=new Date().getHours();const msg=h<12?'Good morning':h<17?'Good afternoon':'Good evening';const el=document.getElementById('greetingText');if(el)el.textContent=msg}
+function setGreeting(){const h=new Date().getHours();let msg='Food Night!';if(h>=5&&h<12)msg='Food Morning!';else if(h>=12&&h<18)msg='Food Afternoon!';else if(h>=18&&h<22)msg='Food Evening!';const el=document.getElementById('greetingText');if(el)el.textContent=msg}
 function getDeliveryMinutes(item){const match=item.delivery.match(/\d+/g);return match?Number(match[0]):99}
 function getPrice(item){return Number(item.price.replace(/[^0-9]/g,''))}
 function getProtein(item){return Number(item.nutrition[1].replace(/[^0-9]/g,''))}
