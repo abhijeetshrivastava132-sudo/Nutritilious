@@ -19,6 +19,12 @@ Use this file to avoid random changes and keep development clean.
   - [x] Convert latitude/longitude into readable area/address
   - [x] Save readable address in localStorage
   - [x] Fallback to GPS coordinates if address lookup fails
+- [x] Add nearby provider filtering
+  - [x] Add provider latitude/longitude data
+  - [x] Calculate user-to-provider distance
+  - [x] Show providers inside delivery radius
+  - [x] Sort providers nearest first
+  - [x] Refresh provider list when location changes
 
 ## Next priority tasks
 
@@ -28,9 +34,9 @@ Use this file to avoid random changes and keep development clean.
    - Improve filters.
 
 2. **Location system**
-   - Add nearby provider filtering using latitude/longitude.
-   - Add delivery radius and unavailable-area UI.
+   - Add stronger unavailable-area UI.
    - Add production-safe geocoding backend/API key later.
+   - Add provider onboarding location capture.
 
 3. **Provider detail page**
    - Show menu by day and time.

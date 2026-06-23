@@ -1,4 +1,6 @@
 window.NUTRITILIOUS_DATA = {
+  deliveryRadiusKm: 8,
+
   categories: [
     {
       name: 'Breakfast',
@@ -35,6 +37,9 @@ window.NUTRITILIOUS_DATA = {
       rating: '4.8',
       discount: '₹80 OFF',
       time: '10 mins',
+      latitude: 28.5681,
+      longitude: 77.2436,
+      area: 'Lajpat Nagar',
       image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=900&q=80'
     },
     {
@@ -45,6 +50,9 @@ window.NUTRITILIOUS_DATA = {
       rating: '4.6',
       discount: '20% OFF',
       time: '15 mins',
+      latitude: 28.5706,
+      longitude: 77.2367,
+      area: 'Amar Colony',
       image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80'
     },
     {
@@ -55,7 +63,23 @@ window.NUTRITILIOUS_DATA = {
       rating: '4.5',
       discount: '₹60 OFF',
       time: '18 mins',
+      latitude: 28.5629,
+      longitude: 77.2513,
+      area: 'Defence Colony',
       image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=900&q=80'
+    },
+    {
+      name: 'Kathmandu Ghar Ko Khana',
+      meta: 'Dal Bhat, Tarkari, Achar',
+      price: '₹109 for one',
+      distance: '2.2 km',
+      rating: '4.7',
+      discount: '15% OFF',
+      time: '20 mins',
+      latitude: 27.7172,
+      longitude: 85.3240,
+      area: 'Kathmandu',
+      image: 'https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?auto=format&fit=crop&w=900&q=80'
     }
   ],
 
