@@ -47,6 +47,10 @@
   column-gap: 9px;
   flex: 1;
   min-width: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
 }
 
 .location-pin,
@@ -202,6 +206,10 @@
 }
 
 .veg-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 62px;
   height: 52px;
   border: 0;
