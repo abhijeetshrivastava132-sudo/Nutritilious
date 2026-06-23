@@ -1,104 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutritilious</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="app">
-    <header class="top-area" id="home">
-      <div class="location-row">
-        <div class="location-icon">➤</div>
-        <div class="location-text" id="locationBtn">
-          <div class="location-title">
-            <span class="location-name">Lajpat Nagar Metro Station</span>
-            <button class="dropdown-btn" id="dropBtn" type="button"><span class="chevron-down"></span></button>
-          </div>
-          <div class="location-subtitle">Lajpat Nagar, Ring Road, New Delhi</div>
-        </div>
-        <button class="profile-btn" id="profileBtn"><span class="profile-icon"></span></button>
-      </div>
-      <div class="search-row">
-        <div class="search-box">
-          <span class="search-icon"></span>
-          <input id="searchInput" type="text" placeholder="Search homemade food" />
-          <span class="divider"></span>
-          <button class="mic-btn" id="micBtn"><span class="mic-icon"><span class="mic-head"></span><span class="mic-arc"></span><span class="mic-line"></span><span class="mic-base"></span></span></button>
-        </div>
-        <div class="veg-box active" id="vegBox">
-          <div class="veg-text">VEG</div>
-          <button class="veg-toggle" type="button"><span class="veg-toggle-knob"></span></button>
-        </div>
-      </div>
-    </header>
-
-    <div class="toggle-area">
-      <div class="service-toggle">
-        <button class="service-btn active" data-tab="food">FOOD</button>
-        <button class="service-btn" data-tab="tiffin">TIFFIN SERVICE</button>
-      </div>
-    </div>
-
-    <main class="main-content">
-      <section id="foodSection">
-        <div class="section"><div class="section-title"><h2>What do you want to eat?</h2></div></div>
-        <div class="genre-row">
-          <button class="genre-card active" data-genre="breakfast"><div class="genre-img"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80" alt="Breakfast" /></div><span>Breakfast</span></button>
-          <button class="genre-card" data-genre="lunch"><div class="genre-img"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=300&q=80" alt="Lunch" /></div><span>Lunch</span></button>
-          <button class="genre-card" data-genre="dinner"><div class="genre-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80" alt="Dinner" /></div><span>Dinner</span></button>
-          <button class="genre-card" data-genre="snacks"><div class="genre-img"><img src="https://images.unsplash.com/photo-1559054663-e8d23213f55c?auto=format&fit=crop&w=300&q=80" alt="Snacks" /></div><span>Snacks</span></button>
-          <button class="genre-card" data-genre="drinks"><div class="genre-img"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=300&q=80" alt="Drinks" /></div><span>Drinks</span></button>
-          <button class="genre-card" data-genre="desserts"><div class="genre-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=300&q=80" alt="Desserts" /></div><span>Desserts</span></button>
-        </div>
-        <div class="section"><div class="section-title"><h2 id="foodHeading">Available Breakfast</h2></div></div>
-        <div class="food-grid">
-          <article class="food-card" data-genre="breakfast" data-name="Sattu Paratha Meal" data-cook="Raj Home Meals" data-price="₹70" data-time="8 AM - 11 AM" data-delivery="20-30 mins" data-img="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=80" data-ingredients="Sattu, wheat flour, onion, green chilli, ajwain, coriander, curd, pickle" data-nutrition="460 kcal|16g|68g|14g"><div class="food-photo"><span class="healthy-tag">Breakfast</span><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80" alt="Sattu Paratha Meal" /></div><div class="food-info"><h3>Sattu Paratha Meal</h3><p>by Raj Home Meals</p><div class="food-meta"><span class="price">₹70</span><span class="time">20-30 mins</span></div></div></article>
-          <article class="food-card" data-genre="breakfast" data-name="Poha Bowl" data-cook="Anita Homemade Food" data-price="₹55" data-time="7 AM - 10 AM" data-delivery="20-30 mins" data-img="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80" data-ingredients="Poha, peanuts, onion, turmeric, curry leaves, lemon, coriander" data-nutrition="330 kcal|9g|56g|8g"><div class="food-photo"><span class="healthy-tag">Light</span><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Poha Bowl" /></div><div class="food-info"><h3>Poha Bowl</h3><p>by Anita Homemade Food</p><div class="food-meta"><span class="price">₹55</span><span class="time">20-30 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="lunch" data-name="Dal Rice Combo" data-cook="Sunita Kitchen" data-price="₹80" data-time="12 PM - 3 PM" data-delivery="25-35 mins" data-img="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=900&q=80" data-ingredients="Arhar dal, steamed rice, jeera, turmeric, tomato, onion, salt, homemade ghee" data-nutrition="430 kcal|14g|72g|8g"><div class="food-photo"><span class="healthy-tag">Lunch</span><img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80" alt="Dal Rice Combo" /></div><div class="food-info"><h3>Dal Rice Combo</h3><p>by Sunita Kitchen</p><div class="food-meta"><span class="price">₹80</span><span class="time">25-35 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="lunch" data-name="Roti Sabzi Thali" data-cook="Anita Homemade Food" data-price="₹90" data-time="12 PM - 3 PM" data-delivery="30-40 mins" data-img="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=900&q=80" data-ingredients="4 roti, seasonal sabzi, dal, salad, pickle, mild spices" data-nutrition="520 kcal|18g|82g|12g"><div class="food-photo"><span class="healthy-tag">Fresh</span><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80" alt="Roti Sabzi Thali" /></div><div class="food-info"><h3>Roti Sabzi Thali</h3><p>by Anita Homemade Food</p><div class="food-meta"><span class="price">₹90</span><span class="time">30-40 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="dinner" data-name="Moong Dal Khichdi" data-cook="Sunita Kitchen" data-price="₹75" data-time="7 PM - 10 PM" data-delivery="25-35 mins" data-img="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80" data-ingredients="Moong dal, rice, turmeric, cumin, ginger, salt, small amount of ghee" data-nutrition="390 kcal|13g|65g|7g"><div class="food-photo"><span class="healthy-tag">Dinner</span><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Moong Dal Khichdi" /></div><div class="food-info"><h3>Moong Dal Khichdi</h3><p>by Sunita Kitchen</p><div class="food-meta"><span class="price">₹75</span><span class="time">25-35 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="dinner" data-name="Mini Veg Thali" data-cook="Daily Fresh Home Food" data-price="₹100" data-time="7 PM - 10 PM" data-delivery="25-35 mins" data-img="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=900&q=80" data-ingredients="2 roti, rice, dal, sabzi, salad, homemade pickle, low oil cooking" data-nutrition="610 kcal|20g|92g|16g"><div class="food-photo"><span class="healthy-tag">Dinner</span><img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80" alt="Mini Veg Thali" /></div><div class="food-info"><h3>Mini Veg Thali</h3><p>by Daily Fresh Home Food</p><div class="food-meta"><span class="price">₹100</span><span class="time">25-35 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="snacks" data-name="Sprouts Chaat" data-cook="Fit Home Kitchen" data-price="₹60" data-time="4 PM - 7 PM" data-delivery="15-25 mins" data-img="https://images.unsplash.com/photo-1606756790138-261d2b21cd75?auto=format&fit=crop&w=900&q=80" data-ingredients="Moong sprouts, onion, tomato, lemon, coriander, black salt, light masala" data-nutrition="220 kcal|14g|32g|4g"><div class="food-photo"><span class="healthy-tag">Snack</span><img src="https://images.unsplash.com/photo-1606756790138-261d2b21cd75?auto=format&fit=crop&w=600&q=80" alt="Sprouts Chaat" /></div><div class="food-info"><h3>Sprouts Chaat</h3><p>by Fit Home Kitchen</p><div class="food-meta"><span class="price">₹60</span><span class="time">15-25 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="snacks" data-name="Veg Sandwich" data-cook="Anita Homemade Food" data-price="₹65" data-time="4 PM - 7 PM" data-delivery="20-30 mins" data-img="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80" data-ingredients="Brown bread, cucumber, tomato, paneer spread, black pepper, homemade chutney" data-nutrition="310 kcal|12g|42g|9g"><div class="food-photo"><span class="healthy-tag">Snack</span><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Veg Sandwich" /></div><div class="food-info"><h3>Veg Sandwich</h3><p>by Anita Homemade Food</p><div class="food-meta"><span class="price">₹65</span><span class="time">20-30 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="drinks" data-name="Homemade Chaas" data-cook="Sunita Kitchen" data-price="₹35" data-time="11 AM - 5 PM" data-delivery="10-20 mins" data-img="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80" data-ingredients="Curd, water, roasted cumin, black salt, mint, coriander" data-nutrition="90 kcal|5g|8g|3g"><div class="food-photo"><span class="healthy-tag">Drink</span><img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=600&q=80" alt="Homemade Chaas" /></div><div class="food-info"><h3>Homemade Chaas</h3><p>by Sunita Kitchen</p><div class="food-meta"><span class="price">₹35</span><span class="time">10-20 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="drinks" data-name="Fresh Lemon Water" data-cook="Daily Fresh Home Food" data-price="₹30" data-time="11 AM - 6 PM" data-delivery="10-20 mins" data-img="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80" data-ingredients="Lemon, water, black salt, mint, little sugar optional" data-nutrition="60 kcal|0g|15g|0g"><div class="food-photo"><span class="healthy-tag">Fresh</span><img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Fresh Lemon Water" /></div><div class="food-info"><h3>Fresh Lemon Water</h3><p>by Daily Fresh Home Food</p><div class="food-meta"><span class="price">₹30</span><span class="time">10-20 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="desserts" data-name="Rice Kheer" data-cook="Sunita Kitchen" data-price="₹60" data-time="12 PM - 9 PM" data-delivery="20-30 mins" data-img="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80" data-ingredients="Milk, rice, sugar, cardamom, almonds, raisins" data-nutrition="280 kcal|8g|45g|7g"><div class="food-photo"><span class="healthy-tag">Sweet</span><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Rice Kheer" /></div><div class="food-info"><h3>Rice Kheer</h3><p>by Sunita Kitchen</p><div class="food-meta"><span class="price">₹60</span><span class="time">20-30 mins</span></div></div></article>
-          <article class="food-card hidden" data-genre="desserts" data-name="Fruit Custard" data-cook="Anita Homemade Food" data-price="₹70" data-time="12 PM - 9 PM" data-delivery="20-30 mins" data-img="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80" data-ingredients="Milk, custard powder, banana, apple, grapes, little sugar" data-nutrition="260 kcal|7g|48g|5g"><div class="food-photo"><span class="healthy-tag">Dessert</span><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80" alt="Fruit Custard" /></div><div class="food-info"><h3>Fruit Custard</h3><p>by Anita Homemade Food</p><div class="food-meta"><span class="price">₹70</span><span class="time">20-30 mins</span></div></div></article>
-        </div>
-      </section>
-
-      <section id="tiffinSection" class="hidden">
-        <div class="section"><div class="section-title"><h2>Tiffin Plans</h2></div></div>
-        <div class="plan-card"><div class="plan-icon"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=300&q=80" alt="Monthly Veg Tiffin" /></div><div class="plan-info"><h3>Monthly Veg Tiffin</h3><p>Lunch + dinner for bachelors</p><div class="food-meta"><span class="price">₹2499/month</span><span class="time">2 meals/day</span></div></div></div>
-        <div class="plan-card"><div class="plan-icon"><img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=300&q=80" alt="Student Budget Plan" /></div><div class="plan-info"><h3>Student Budget Plan</h3><p>Simple homemade daily meals</p><div class="food-meta"><span class="price">₹2200/month</span><span class="time">Lunch only</span></div></div></div>
-        <div class="plan-card"><div class="plan-icon"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=300&q=80" alt="Office Lunch Plan" /></div><div class="plan-info"><h3>Office Lunch Plan</h3><p>Fresh lunch on weekdays</p><div class="food-meta"><span class="price">₹75/day</span><span class="time">12 PM - 3 PM</span></div></div></div>
-      </section>
-    </main>
-  </div>
-
-  <nav class="bottom-nav">
-    <button class="nav-item active" data-nav="home"><div>🍱</div>Food</button>
-    <button class="nav-item" data-nav="offers"><div>🏷️</div>Offers</button>
-    <button class="nav-item" data-nav="genre"><div>🍽️</div>Genre</button>
-    <button class="nav-item" data-nav="orders"><div>📦</div>Orders</button>
-    <button class="nav-item" data-nav="profile"><div>👤</div>Profile</button>
-  </nav>
-
-  <div class="modal" id="foodModal">
-    <div class="modal-box">
-      <div class="modal-food-photo"><img id="modalImg" src="" alt="Food image" /></div>
-      <h2 id="modalName">Sattu Paratha Meal</h2>
-      <div class="cook-line" id="modalCook">by Raj Home Meals</div>
-      <div class="detail-row"><div class="detail-chip"><strong id="modalPrice">₹70</strong><span>Price</span></div><div class="detail-chip"><strong id="modalTime">8 AM</strong><span>Available</span></div><div class="detail-chip"><strong id="modalDelivery">30 mins</strong><span>Delivery</span></div></div>
-      <div class="info-box"><h3>Ingredients</h3><p id="modalIngredients">Sattu, wheat flour, onion, green chilli, ajwain, coriander, curd, pickle</p></div>
-      <div class="info-box"><h3>Nutritional Info</h3><div class="nutrition-grid"><div class="nutrition-item"><strong id="modalCalories">460</strong><span>Calories</span></div><div class="nutrition-item"><strong id="modalProtein">16g</strong><span>Protein</span></div><div class="nutrition-item"><strong id="modalCarbs">68g</strong><span>Carbs</span></div><div class="nutrition-item"><strong id="modalFat">14g</strong><span>Fat</span></div></div></div>
-      <div class="info-box"><h3>Transparency Note</h3><p>Homemade meal prepared by a nearby local cook. Ingredients and nutrition are shown so users can choose healthier food with more clarity.</p></div>
-      <div class="modal-actions"><button class="btn close-btn" id="closeModal">Close</button><button class="btn cart-btn" id="addToCart">Add to Cart</button></div>
-    </div>
-  </div>
-  <div class="toast" id="toast"></div>
+  <div id="root"></div>
+  <script src="assets/js/data.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
