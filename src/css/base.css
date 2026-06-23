@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --brand: #9b001c;
+  --brand-dark: #650610;
+  --brand-soft: #fff0f2;
+  --bg: #f7f7f7;
+  --card: #ffffff;
+  --text: #1c1c1c;
+  --muted: #777777;
+  --line: #eeeeee;
+  --success: #24963f;
+  --danger: #e23744;
+  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --shadow-header: 0 8px 22px rgba(92, 6, 18, 0.24);
+  --radius-card: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 86px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.app {
+  max-width: 430px;
+  min-height: 100vh;
+  margin: auto;
+  background: var(--bg);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app.inner-page .top-header {
+  display: none;
+}
+
+.page {
+  display: none;
+}
+
+.page.active-page {
+  display: block;
+}
+
+.section {
+  padding: 24px 16px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.see-all {
+  border: 0;
+  background: transparent;
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+@media (max-width: 370px) {
+  .section {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+}
