@@ -24,6 +24,12 @@ function setStatus(message, type = '') {
   locationStatus.className = `location-status ${type}`.trim();
 }
 
+function notifyLocationChange(location) {
+  window.dispatchEvent(new CustomEvent('nutritilious:location-changed', {
+    detail: location
+  }));
+}
+
 function getSavedLocation() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -39,6 +45,8 @@ function saveLocation(location) {
   } catch (error) {
     setStatus('Location saved for this session only. Browser storage is blocked.', 'error');
   }
+
+  notifyLocationChange(location);
 }
 
 function updateHeaderLocation(location) {
