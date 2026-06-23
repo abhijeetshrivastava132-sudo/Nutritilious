@@ -24,9 +24,10 @@ root.innerHTML=`
   </div>
 </header>
 <div class="toggle-area"><div class="service-toggle"><button class="service-btn active" data-tab="food">FOOD</button><button class="service-btn" data-tab="tiffin">TIFFIN SERVICE</button></div></div>
+<div class="genre-row" id="genreRow"></div>
 <div class="filter-row" id="filterRow"><button class="filter-chip" data-filter="filters" type="button"><span class="filter-icon"><span></span></span>Filters<span class="filter-chevron"></span></button><button class="filter-chip" data-filter="near-fast" type="button"><span class="bolt-icon"></span>Near & Fast</button><button class="filter-chip" data-filter="featured" type="button"><span class="star-icon"></span>Featured today</button></div>
 <main class="main-content">
-  <section id="foodSection"><div class="section"><div class="section-title"><h2>What do you want to eat?</h2></div></div><div class="genre-row" id="genreRow"></div><div class="section"><div class="section-title"><h2 id="foodHeading">Available Breakfast</h2></div></div><div class="food-grid" id="foodGrid"></div></section>
+  <section id="foodSection"><div class="section"><div class="section-title"><h2 id="foodHeading">Available Breakfast</h2></div></div><div class="food-grid" id="foodGrid"></div></section>
   <section id="tiffinSection" class="hidden"><div class="section"><div class="section-title"><h2>Tiffin Plans</h2></div></div><div id="tiffinList"></div></section>
 </main>
 </div>
@@ -56,6 +57,6 @@ searchInput.oninput=()=>renderFoods();
 vegBox.onclick=function(){this.classList.toggle('active');activeFilters.preference=this.classList.contains('active')?'veg':'';updateFilterButtons();updateFilterOptions();renderFoods();showToast(this.classList.contains('active')?'Veg filter applied':'Veg filter removed')};
 closeModal.onclick=closeModal;addToCart.onclick=()=>{closeModal();showToast(selectedFood+' added to cart')};foodModal.onclick=e=>{if(e.target.id==='foodModal')closeModal()};
 locationBtn.onclick=()=>showToast('Location selector will open in next demo version');dropBtn.onclick=e=>{e.stopPropagation();showToast('Location selector will open in next demo version')};profileBtn.onclick=()=>showToast('Profile page will open in next demo version');micBtn.onclick=()=>showToast('Voice search will open in next demo version');
-document.querySelectorAll('.service-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.service-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const tab=b.dataset.tab;foodSection.classList.toggle('hidden',tab!=='food');tiffinSection.classList.toggle('hidden',tab==='food');filterRow.classList.toggle('hidden',tab!=='food');showToast(tab==='food'?'Showing homemade food':'Showing tiffin services')});
+document.querySelectorAll('.service-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.service-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const tab=b.dataset.tab;foodSection.classList.toggle('hidden',tab!=='food');tiffinSection.classList.toggle('hidden',tab==='food');genreRow.classList.toggle('hidden',tab!=='food');filterRow.classList.toggle('hidden',tab!=='food');showToast(tab==='food'?'Showing homemade food':'Showing tiffin services')});
 document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));b.classList.add('active');const nav=b.dataset.nav;if(nav==='home')home.scrollIntoView({behavior:'smooth'});else if(nav==='genre')genreRow.scrollIntoView({behavior:'smooth'});else showToast(nav+' page will open in next demo version')});
 setGreeting();renderGenres();renderFoods();renderTiffin();bindGenres();bindFilters();updateFilterButtons();updateFilterOptions();
