@@ -1,487 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Startup - Homemade Food Web App</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutritilious</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #fff8f0;
-      color: #222;
-      padding-bottom: 90px;
-    }
-
-    .app {
-      max-width: 430px;
-      margin: auto;
-      min-height: 100vh;
-      background: #fff8f0;
-    }
-
-    .header {
-      padding: 16px 18px 8px;
-      position: sticky;
-      top: 0;
-      background: #fff8f0;
-      z-index: 10;
-    }
-
-    .location {
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .location small {
-      display: block;
-      font-size: 11px;
-      font-weight: 800;
-      color: #222;
-      margin-bottom: 3px;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-
-    .location h3 {
-      font-size: 20px;
-      font-weight: 900;
-      color: #111;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      max-width: 360px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .location h3 span {
-      font-size: 13px;
-    }
-
-    .hero {
-      padding: 18px 18px 24px;
-    }
-
-    .hero h1 {
-      font-size: 33px;
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      color: #666;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .section {
-      padding: 0 18px;
-      margin-bottom: 24px;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .section-title h2 {
-      font-size: 21px;
-    }
-
-    .section-title span {
-      color: #ff6b35;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .cook-card {
-      background: white;
-      border-radius: 22px;
-      padding: 15px;
-      margin-bottom: 14px;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    }
-
-    .cook-img {
-      width: 72px;
-      height: 72px;
-      background: #ffe1d4;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 32px;
-      flex-shrink: 0;
-    }
-
-    .cook-info {
-      flex: 1;
-    }
-
-    .cook-info h3 {
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
-
-    .cook-info p {
-      color: #666;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    .meta {
-      display: flex;
-      gap: 8px;
-      font-size: 12px;
-      color: #444;
-      flex-wrap: wrap;
-    }
-
-    .view-btn {
-      background: #ff6b35;
-      color: white;
-      border: none;
-      padding: 9px 12px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 430px;
-      width: 100%;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      box-shadow: 0 -5px 20px rgba(0,0,0,0.08);
-      border-radius: 22px 22px 0 0;
-      z-index: 50;
-    }
-
-    .nav-item {
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-      cursor: pointer;
-    }
-
-    .nav-item.active {
-      color: #ff6b35;
-      font-weight: bold;
-    }
-
-    .nav-item div {
-      font-size: 21px;
-      margin-bottom: 3px;
-    }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      display: none;
-      align-items: end;
-      justify-content: center;
-      z-index: 100;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 430px;
-      background: white;
-      border-radius: 28px 28px 0 0;
-      padding: 22px;
-      animation: slideUp 0.25s ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(100px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .modal-box h2 {
-      margin-bottom: 12px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      border: none;
-      padding: 13px 16px;
-      border-radius: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .close-btn {
-      background: #eee;
-      color: #222;
-      flex: 1;
-    }
-
-    .submit-btn {
-      background: #ff6b35;
-      color: white;
-      flex: 1;
-    }
-
-    .menu-item {
-      background: #fff8f0;
-      padding: 14px;
-      border-radius: 16px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .menu-item h4 {
-      margin-bottom: 4px;
-    }
-
-    .menu-item p {
-      color: #666;
-      font-size: 13px;
-    }
-
-    .order-btn {
-      background: #ff6b35;
-      color: white;
-      border: none;
-      padding: 9px 13px;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 85px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 14px;
-      display: none;
-      z-index: 200;
-      font-size: 14px;
-      max-width: 90%;
-      text-align: center;
-    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+    body{background:#f6f6f8;color:#1f1f1f;padding-bottom:88px}
+    button,input{font:inherit}
+    .app{max-width:430px;margin:auto;min-height:100vh;background:#f6f6f8;overflow-x:hidden}
+    .top-area{background:linear-gradient(180deg,#070b2d,#12175c 58%,#161b6e);padding:15px 16px 20px;border-radius:0 0 26px 26px;color:#fff}
+    .location-row{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+    .location-icon{font-size:19px;transform:rotate(-35deg);flex-shrink:0}
+    .location-text{flex:1;min-width:0;cursor:pointer}
+    .location-title{display:flex;align-items:center;gap:6px;font-size:17px;font-weight:650;line-height:1.15;white-space:nowrap;overflow:hidden}
+    .location-name{overflow:hidden;text-overflow:ellipsis}
+    .dropdown-btn{width:18px;height:18px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+    .chevron-down{width:7px;height:7px;border-right:1.7px solid rgba(255,255,255,.55);border-bottom:1.7px solid rgba(255,255,255,.55);transform:rotate(45deg);margin-top:-4px}
+    .location-subtitle{color:rgba(255,255,255,.62);font-size:12px;font-weight:500;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .profile-btn{width:43px;height:43px;border-radius:50%;border:0;background:rgba(255,255,255,.12);display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+    .profile-icon{width:20px;height:20px;position:relative}
+    .profile-icon:before{content:"";position:absolute;top:0;left:5px;width:10px;height:10px;border-radius:50%;background:#fff}
+    .profile-icon:after{content:"";position:absolute;bottom:0;left:1px;width:18px;height:9px;border-radius:10px 10px 4px 4px;background:#fff}
+    .search-row{display:flex;align-items:center;gap:10px}
+    .search-box{flex:1;height:58px;background:#fff;border-radius:17px;display:flex;align-items:center;padding:0 15px;min-width:0;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+    .search-icon{width:14.5px;height:14.5px;border:2px solid #6f6f6f;border-radius:50%;position:relative;flex-shrink:0;margin-right:14px}
+    .search-icon:after{content:"";position:absolute;width:7px;height:2px;background:#6f6f6f;right:-5.5px;bottom:-3.5px;transform:rotate(45deg);border-radius:4px}
+    .search-box input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#222;font-size:18px;font-weight:500}
+    .search-box input::placeholder{color:#858585}
+    .divider{width:1px;height:32px;background:#e3e3e3;margin:0 13px 0 7px;flex-shrink:0}
+    .mic-btn{width:21px;height:26px;border:0;background:transparent;cursor:pointer;flex-shrink:0;display:grid;place-items:center}
+    .mic-icon{width:13px;height:21px;position:relative}.mic-head{position:absolute;top:0;left:3.5px;width:6px;height:11px;background:#f05a17;border-radius:10px}.mic-arc{position:absolute;left:0;top:5px;width:13px;height:10px;border:2px solid #f05a17;border-top:0;border-radius:0 0 14px 14px}.mic-line{position:absolute;left:5.2px;top:15.5px;width:2.5px;height:5px;background:#f05a17;border-radius:3px}.mic-base{position:absolute;left:2px;bottom:0;width:9px;height:2px;background:#f05a17;border-radius:5px}
+    .veg-box{width:58px;height:58px;background:#fff;border-radius:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+    .veg-text{color:#555;font-size:13px;font-weight:900;line-height:1;margin-bottom:8px;letter-spacing:.3px}
+    .veg-toggle{width:33px;height:18px;border:0;border-radius:30px;background:#ffdede;position:relative;cursor:pointer;transition:.25s}
+    .veg-toggle-knob{width:14px;height:14px;border-radius:50%;background:#e53935;position:absolute;top:2px;left:2px;transition:.25s}
+    .veg-box.active .veg-toggle{background:#d8f3e5}.veg-box.active .veg-toggle-knob{background:#25a46b;transform:translateX(15px)}
+    .toggle-area{padding:14px 16px 6px;background:#f6f6f8}
+    .service-toggle{display:flex;width:100%;height:42px;background:#d9dae3;border-radius:999px;padding:4px;box-shadow:inset 0 2px 5px rgba(0,0,0,.10)}
+    .service-btn{flex:1;border:0;background:transparent;border-radius:999px;font-size:13px;font-weight:900;color:#33333d;cursor:pointer;transition:.22s;letter-spacing:.1px}
+    .service-btn.active{background:#fff;color:#f05a17;box-shadow:0 3px 9px rgba(0,0,0,.14)}
+    .main-content{padding-top:10px}.list-section{padding:0 16px 18px}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}.section-title h2{font-size:18.5px;font-weight:900;letter-spacing:-.3px}.section-title span{color:#ff6b35;font-size:13px;font-weight:850;cursor:pointer}
+    .list-card{background:#fff;border-radius:20px;padding:13px;display:flex;align-items:center;gap:13px;margin-bottom:13px;box-shadow:0 7px 18px rgba(0,0,0,.05)}
+    .list-img{width:66px;height:66px;border-radius:17px;background:#ffe1d4;display:grid;place-items:center;font-size:31px;flex-shrink:0}.list-info{flex:1;min-width:0}.list-info h3{font-size:15.5px;font-weight:900;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.list-info p{color:#666;font-size:12.5px;font-weight:500;margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{display:flex;gap:7px;font-size:11.5px;font-weight:600;color:#444;flex-wrap:wrap}.view-btn{background:#ff6b35;color:#fff;border:0;padding:8px 10px;border-radius:11px;font-size:11px;font-weight:900;cursor:pointer;flex-shrink:0}
+    .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:430px;width:100%;background:#fff;display:flex;justify-content:space-around;padding:9px 0 10px;box-shadow:0 -5px 20px rgba(0,0,0,.08);border-radius:22px 22px 0 0;z-index:50}.nav-item{text-align:center;font-size:10.5px;color:#777;cursor:pointer;border:0;background:transparent;min-width:50px;font-weight:750}.nav-item.active{color:#ff6b35;font-weight:900}.nav-item div{font-size:20px;margin-bottom:3px}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:end;justify-content:center;z-index:100}.modal-box{width:100%;max-width:430px;background:#fff;border-radius:28px 28px 0 0;padding:20px}.modal-box h2{margin-bottom:12px;font-size:20px;font-weight:900;letter-spacing:-.4px}.menu-item{background:#fff8f0;padding:13px;border-radius:15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}.menu-item h4{margin-bottom:4px;font-size:14.5px;font-weight:850}.menu-item p{color:#666;font-size:12.5px;line-height:1.35}.order-btn{background:#ff6b35;color:#fff;border:0;padding:8px 12px;border-radius:11px;font-size:12px;font-weight:900;cursor:pointer;flex-shrink:0}.modal-actions{display:flex;gap:10px;margin-top:10px}.btn{border:0;padding:12px 15px;border-radius:14px;font-weight:900;cursor:pointer;font-size:13px}.close-btn{background:#eee;color:#222;flex:1}.submit-btn{background:#ff6b35;color:#fff;flex:1}.toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:11px 16px;border-radius:13px;display:none;z-index:200;font-size:13px;font-weight:600;max-width:90%;text-align:center}
+    @media(max-width:360px){.location-title{font-size:16px}.location-subtitle{font-size:11px}.search-box{height:54px}.veg-box{width:54px;height:54px}.search-box input{font-size:16px}.service-toggle{height:40px}.service-btn{font-size:12.5px}.section-title h2{font-size:17px}}
   </style>
 </head>
-
 <body>
   <div class="app">
-
-    <div class="header">
-      <div class="location" onclick="showToast('Location selector will open in next demo version')">
-        <small>DELIVERING TO</small>
-        <h3>
-          Sun Street, California
-          <span>▼</span>
-        </h3>
-      </div>
-    </div>
-
-    <section class="hero" id="home">
-      <h1>Healthy Homemade Food Near You</h1>
-      <p>
-        Choose local home cooks, view their menu, and get fresh homemade food.
-      </p>
-    </section>
-
-    <section class="section" id="cooks">
-      <div class="section-title">
-        <h2>Nearby Home Cooks</h2>
-        <span onclick="scrollToSection('cooks')">See all</span>
-      </div>
-
-      <div class="cook-card">
-        <div class="cook-img">👩‍🍳</div>
-        <div class="cook-info">
-          <h3>Sunita Kitchen</h3>
-          <p>Homemade North Indian Meals</p>
-          <div class="meta">
-            <span>⭐ 4.8</span>
-            <span>📍 1.2 km</span>
-            <span>₹80/meal</span>
-          </div>
-        </div>
-        <button class="view-btn" onclick="openMenuModal('Sunita Kitchen')">View Menu</button>
-      </div>
-
-      <div class="cook-card">
-        <div class="cook-img">👩‍🍳</div>
-        <div class="cook-info">
-          <h3>Anita Homemade Food</h3>
-          <p>Healthy Lunch & Dinner</p>
-          <div class="meta">
-            <span>⭐ 4.6</span>
-            <span>📍 900 m</span>
-            <span>₹70/meal</span>
-          </div>
-        </div>
-        <button class="view-btn" onclick="openMenuModal('Anita Homemade Food')">View Menu</button>
-      </div>
-
-      <div class="cook-card">
-        <div class="cook-img">👨‍🍳</div>
-        <div class="cook-info">
-          <h3>Raj Home Meals</h3>
-          <p>Custom Veg & Non-Veg Meals</p>
-          <div class="meta">
-            <span>⭐ 4.7</span>
-            <span>📍 1.8 km</span>
-            <span>₹90/meal</span>
-          </div>
-        </div>
-        <button class="view-btn" onclick="openMenuModal('Raj Home Meals')">View Menu</button>
-      </div>
-    </section>
-
-    <nav class="bottom-nav">
-      <div class="nav-item active" onclick="setActive(this); scrollToSection('home')">
-        <div>🏠</div>
-        Home
-      </div>
-
-      <div class="nav-item" onclick="setActive(this); scrollToSection('cooks')">
-        <div>👨‍🍳</div>
-        Cooks
-      </div>
-
-      <div class="nav-item" onclick="setActive(this); showToast('Orders page will open in next demo version')">
-        <div>📦</div>
-        Orders
-      </div>
-
-      <div class="nav-item" onclick="setActive(this); showToast('Profile page will open in next demo version')">
-        <div>👤</div>
-        Profile
-      </div>
-    </nav>
+    <header class="top-area" id="home">
+      <div class="location-row"><div class="location-icon">➤</div><div class="location-text" id="locationBtn"><div class="location-title"><span class="location-name">Lajpat Nagar Metro Station</span><button class="dropdown-btn" id="dropBtn" type="button"><span class="chevron-down"></span></button></div><div class="location-subtitle">Lajpat Nagar, Ring Road, New Delhi</div></div><button class="profile-btn" id="profileBtn"><span class="profile-icon"></span></button></div>
+      <div class="search-row"><div class="search-box"><span class="search-icon"></span><input id="searchInput" type="text" placeholder="Search for 'Dal Rice'"><span class="divider"></span><button class="mic-btn" id="micBtn"><span class="mic-icon"><span class="mic-head"></span><span class="mic-arc"></span><span class="mic-line"></span><span class="mic-base"></span></span></button></div><div class="veg-box active" id="vegBox"><div class="veg-text">VEG</div><button class="veg-toggle" type="button"><span class="veg-toggle-knob"></span></button></div></div>
+    </header>
+    <div class="toggle-area"><div class="service-toggle"><button class="service-btn active" data-type="home">HOME COOKS</button><button class="service-btn" data-type="tiffin">TIFFIN SERVICE</button></div></div>
+    <main class="main-content"><section class="list-section" id="cooks"><div class="section-title"><h2 id="sectionHeading">Nearby Home Cooks</h2><span id="seeAll">See all</span></div><div id="cards"></div></section></main>
   </div>
-
-  <div class="modal" id="menuModal">
-    <div class="modal-box">
-      <h2 id="menuTitle">Cook Menu</h2>
-
-      <div class="menu-item">
-        <div>
-          <h4>Dal Rice</h4>
-          <p>Fresh homemade dal with rice</p>
-        </div>
-        <button class="order-btn" onclick="placeOrder('Dal Rice')">₹60</button>
-      </div>
-
-      <div class="menu-item">
-        <div>
-          <h4>Roti Sabzi</h4>
-          <p>4 roti with seasonal sabzi</p>
-        </div>
-        <button class="order-btn" onclick="placeOrder('Roti Sabzi')">₹70</button>
-      </div>
-
-      <div class="menu-item">
-        <div>
-          <h4>Paneer Meal</h4>
-          <p>Paneer curry, roti and salad</p>
-        </div>
-        <button class="order-btn" onclick="placeOrder('Paneer Meal')">₹100</button>
-      </div>
-
-      <div class="modal-actions">
-        <button class="btn close-btn" onclick="closeMenuModal()">Close</button>
-        <button class="btn submit-btn" onclick="showToast('Custom request will be added in next demo version')">
-          Custom Request
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast" id="toast"></div>
-
+  <nav class="bottom-nav"><button class="nav-item active" data-nav="home"><div>🍱</div>Food</button><button class="nav-item" data-nav="offers"><div>🏷️</div>Offers</button><button class="nav-item" data-nav="cooks"><div>👩‍🍳</div>Cooks</button><button class="nav-item" data-nav="orders"><div>📦</div>Orders</button><button class="nav-item" data-nav="profile"><div>👤</div>Profile</button></nav>
+  <div class="modal" id="menuModal"><div class="modal-box"><h2 id="menuTitle">Menu</h2><div id="menuItems"></div><div class="modal-actions"><button class="btn close-btn" id="closeModal">Close</button><button class="btn submit-btn" id="customRequest">Custom Request</button></div></div></div><div class="toast" id="toast"></div>
   <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-
-    function openMenuModal(cookName) {
-      document.getElementById("menuTitle").innerText = cookName + " Menu";
-      document.getElementById("menuModal").style.display = "flex";
-    }
-
-    function closeMenuModal() {
-      document.getElementById("menuModal").style.display = "none";
-    }
-
-    function placeOrder(itemName) {
-      closeMenuModal();
-      showToast(itemName + " added to order!");
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-
-      toast.innerText = message;
-      toast.style.display = "block";
-
-      setTimeout(function () {
-        toast.style.display = "none";
-      }, 2200);
-    }
-
-    function setActive(item) {
-      document.querySelectorAll(".nav-item").forEach(function (nav) {
-        nav.classList.remove("active");
-      });
-
-      item.classList.add("active");
-    }
-
-    window.addEventListener("click", function (e) {
-      const menuModal = document.getElementById("menuModal");
-
-      if (e.target === menuModal) {
-        closeMenuModal();
-      }
-    });
+    const data={home:[['Sunita Kitchen','Homemade North Indian Meals','4.8','1.2 km','₹80/meal','👩‍🍳'],['Anita Homemade Food','Healthy Lunch & Dinner','4.6','900 m','₹70/meal','👩‍🍳'],['Raj Home Meals','Custom Veg & Non-Veg Meals','4.7','1.8 km','₹90/meal','👨‍🍳']],tiffin:[['Daily Fresh Tiffin','Monthly lunch and dinner plan','4.7','800 m','₹2499/month','🍱'],['Student Tiffin Center','Budget meals for students','4.5','1.1 km','₹2200/month','🍛'],['Office Lunch Tiffin','Fresh lunch delivery on weekdays','4.6','1.5 km','₹75/day','🥘']]};
+    const menu=[['Dal Rice','Fresh homemade dal with rice','₹60'],['Roti Sabzi','4 roti with seasonal sabzi','₹70'],['Paneer Meal','Paneer curry, roti and salad','₹100'],['Monthly Tiffin','Lunch and dinner plan for bachelors','₹2499']];
+    let currentService='home';
+    function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+    function renderCards(){const q=document.getElementById('searchInput').value.toLowerCase().trim();const box=document.getElementById('cards');box.innerHTML='';data[currentService].filter(x=>x.join(' ').toLowerCase().includes(q)).forEach(x=>{box.innerHTML+=`<div class="list-card meal-card"><div class="list-img">${x[5]}</div><div class="list-info"><h3>${x[0]}</h3><p>${x[1]}</p><div class="meta"><span>⭐ ${x[2]}</span><span>📍 ${x[3]}</span><span>${x[4]}</span></div></div><button class="view-btn" data-name="${x[0]}">${currentService==='home'?'View Menu':'View Plan'}</button></div>`});document.querySelectorAll('.view-btn').forEach(b=>b.addEventListener('click',()=>openMenu(b.dataset.name)))}
+    function openMenu(name){document.getElementById('menuTitle').textContent=name+' Menu';document.getElementById('menuItems').innerHTML=menu.map(m=>`<div class="menu-item"><div><h4>${m[0]}</h4><p>${m[1]}</p></div><button class="order-btn" data-item="${m[0]}">${m[2]}</button></div>`).join('');document.querySelectorAll('.order-btn').forEach(b=>b.addEventListener('click',()=>{closeModal();showToast(b.dataset.item+' added to order!')}));document.getElementById('menuModal').style.display='flex'}
+    function closeModal(){document.getElementById('menuModal').style.display='none'}
+    document.getElementById('searchInput').addEventListener('input',renderCards);
+    document.getElementById('vegBox').addEventListener('click',e=>{e.currentTarget.classList.toggle('active');showToast(e.currentTarget.classList.contains('active')?'Veg filter applied':'Veg filter removed')});
+    document.querySelectorAll('.service-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.service-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentService=btn.dataset.type;document.getElementById('sectionHeading').textContent=currentService==='home'?'Nearby Home Cooks':'Nearby Tiffin Services';showToast(currentService==='home'?'Showing Home Cooks':'Showing Tiffin Services');renderCards()}));
+    document.querySelectorAll('.nav-item').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(btn.dataset.nav==='home')document.getElementById('home').scrollIntoView({behavior:'smooth'});else if(btn.dataset.nav==='cooks')document.getElementById('cooks').scrollIntoView({behavior:'smooth'});else showToast(btn.dataset.nav+' page will open in next demo version')}));
+    document.getElementById('locationBtn').addEventListener('click',()=>showToast('Location selector will open in next demo version'));
+    document.getElementById('dropBtn').addEventListener('click',e=>{e.stopPropagation();showToast('Location selector will open in next demo version')});
+    document.getElementById('profileBtn').addEventListener('click',()=>showToast('Profile page will open in next demo version'));
+    document.getElementById('micBtn').addEventListener('click',()=>showToast('Voice search will open in next demo version'));
+    document.getElementById('closeModal').addEventListener('click',closeModal);document.getElementById('customRequest').addEventListener('click',()=>showToast('Custom request will be added in next demo version'));
+    document.getElementById('menuModal').addEventListener('click',e=>{if(e.target.id==='menuModal')closeModal()});renderCards();
   </script>
 </body>
 </html>
