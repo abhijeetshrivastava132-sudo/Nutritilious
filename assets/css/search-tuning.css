@@ -1,0 +1,28 @@
+.search-box{
+  height:54px!important;
+  border-radius:16px!important;
+}
+
+.search-box input{
+  font-size:16.2px!important;
+}
+
+.search-box input::placeholder{
+  font-size:16.2px!important;
+}
+
+.search-icon{
+  transform:scale(.9)!important;
+  transform-origin:center;
+  margin-right:12.6px!important;
+}
+
+.mic-btn{
+  width:19px!important;
+  height:23px!important;
+}
+
+.mic-icon{
+  transform:scale(.9)!important;
+  transform-origin:center;
+}
