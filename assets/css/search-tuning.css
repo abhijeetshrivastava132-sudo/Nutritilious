@@ -61,6 +61,15 @@
   font-size:13px!important;
 }
 
+#foodSection > .section{
+  border-radius:0!important;
+  box-shadow:0 4px 10px rgba(255,255,255,.96)!important;
+}
+
+#foodSection > .filter-row{
+  box-shadow:0 8px 12px rgba(255,255,255,.96)!important;
+}
+
 .meal-day-grid .food-card{
   border-radius:18px!important;
   overflow:hidden!important;
@@ -70,16 +79,16 @@
 .meal-day-grid .food-photo{
   width:100%!important;
   height:178px!important;
-  aspect-ratio:auto!important;
+  aspect-ratio:16/10!important;
   border-radius:18px 18px 0 0!important;
   overflow:hidden!important;
-  background:#f6f6f6!important;
+  background:#eee!important;
 }
 
 .meal-day-grid .food-photo img{
   width:100%!important;
   height:100%!important;
-  object-fit:contain!important;
+  object-fit:cover!important;
   object-position:center!important;
   display:block!important;
 }
