@@ -5,6 +5,78 @@
   padding-bottom:20px;
 }
 
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+  overscroll-behavior-x:none;
+  scrollbar-width:none;
+  touch-action:manipulation;
+  -webkit-text-size-adjust:100%;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
+  display:none;
+}
+
+*,
+*::before,
+*::after{
+  -webkit-tap-highlight-color:transparent!important;
+  -webkit-touch-callout:none;
+}
+
+button,
+a,
+input,
+textarea,
+select,
+[role="button"],
+.food-card,
+.genre-card,
+.filter-chip,
+.nav-item,
+.service-btn,
+.veg-box,
+.location-text,
+.profile-btn,
+.mic-btn{
+  -webkit-tap-highlight-color:transparent!important;
+  outline:none!important;
+  box-shadow:none;
+  user-select:none;
+}
+
+button:focus,
+button:active,
+a:focus,
+a:active,
+input:focus,
+textarea:focus,
+select:focus,
+.food-card:focus,
+.food-card:active,
+.genre-card:focus,
+.genre-card:active,
+.filter-chip:focus,
+.filter-chip:active,
+.nav-item:focus,
+.nav-item:active,
+.service-btn:focus,
+.service-btn:active{
+  outline:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+
+.app,
+#root{
+  width:100%;
+  max-width:430px;
+  overflow-x:hidden!important;
+}
+
 .top-area::before{
   content:"";
   position:absolute;
