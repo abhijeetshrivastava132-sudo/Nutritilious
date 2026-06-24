@@ -5,13 +5,28 @@ const pages = document.querySelectorAll('.page');
 const pageButtons = document.querySelectorAll('[data-page-btn]');
 const interestBtn = document.getElementById('interestBtn');
 const knowMoreBtn = document.getElementById('knowMoreBtn');
+const profileBtn = document.getElementById('profileBtn');
 const categoryGrid = document.getElementById('categoryGrid');
 const mealList = document.getElementById('mealList');
 const filterList = document.getElementById('filterList');
+const loginForm = document.getElementById('loginForm');
+const loginMobile = document.getElementById('loginMobile');
+const loginMessage = document.getElementById('loginMessage');
+const otpBox = document.getElementById('otpBox');
+const otpInput = document.getElementById('otpInput');
+const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+const editMobileBtn = document.getElementById('editMobileBtn');
+const loginCard = document.getElementById('loginCard');
+const accountCard = document.getElementById('accountCard');
+const accountMobileText = document.getElementById('accountMobileText');
+const logoutBtn = document.getElementById('logoutBtn');
 
 const data = window.NUTRITILIOUS_DATA || { categories: [], meals: [], filters: [], deliveryRadiusKm: 8 };
 const LOCATION_STORAGE_KEY = 'nutritiliousLocation';
+const AUTH_STORAGE_KEY = 'nutritiliousUser';
+const DEMO_OTP = '123456';
 const deliveryRadiusKm = data.deliveryRadiusKm || 8;
+let pendingMobileNumber = '';
 
 function icon(type) {
   const icons = {
@@ -19,7 +34,8 @@ function icon(type) {
     star: '<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3z"/></svg>',
     flash: '<svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z"/></svg>',
     leaf: '<svg viewBox="0 0 24 24"><path d="M5 12c0-5 4-8 11-9 2 7-1 13-7 13H5z"/><path d="M5 21c1-5 5-8 10-10"/></svg>',
-    rupee: '<svg viewBox="0 0 24 24"><path d="M6 4h12"/><path d="M9 4c3 0 5 1.5 5 4s-2 4-5 4h-3l8 8"/><path d="M6 8h12"/></svg>'
+    rupee: '<svg viewBox="0 0 24 24"><path d="M6 4h12"/><path d="M9 4c3 0 5 1.5 5 4s-2 4-5 4h-3l8 8"/><path d="M6 8h12"/></svg>',
+    pin: '<svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>'
   };
   return icons[type] || icons.filter;
 }
@@ -31,6 +47,23 @@ function getSavedLocation() {
   } catch (error) {
     return null;
   }
+}
+
+function getSavedUser() {
+  try {
+    const saved = localStorage.getItem(AUTH_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveUser(user) {
+  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+}
+
+function clearUser() {
+  localStorage.removeItem(AUTH_STORAGE_KEY);
 }
 
 function toNumber(value) {
@@ -138,7 +171,7 @@ function renderFilters() {
 function renderEmptyNearbyState() {
   mealList.innerHTML = `
     <div class="nearby-empty">
-      <div class="nearby-empty-icon">📍</div>
+      <div class="nearby-empty-icon">${icon('pin')}</div>
       <h3>No nearby homemade food providers yet</h3>
       <p>We could not find providers within ${deliveryRadiusKm} km of your selected location. Try manual location or check again later.</p>
     </div>
@@ -179,6 +212,97 @@ function renderMeals() {
     .join('');
 }
 
+function updateLoginView() {
+  const user = getSavedUser();
+
+  if (user) {
+    if (loginCard) loginCard.hidden = true;
+    if (accountCard) accountCard.hidden = false;
+    if (accountMobileText) accountMobileText.textContent = `Logged in with +91 ${user.mobile}`;
+    profileBtn?.classList.add('logged-in');
+    return;
+  }
+
+  if (loginCard) loginCard.hidden = false;
+  if (accountCard) accountCard.hidden = true;
+  if (accountMobileText) accountMobileText.textContent = 'Logged in';
+  profileBtn?.classList.remove('logged-in');
+}
+
+function setLoginMessage(message, type = '') {
+  if (!loginMessage) return;
+  loginMessage.textContent = message;
+  loginMessage.className = `login-message ${type}`.trim();
+}
+
+function getCleanMobileNumber() {
+  return (loginMobile?.value || '').replace(/\D/g, '').slice(0, 10);
+}
+
+function showOtpStep(mobile) {
+  pendingMobileNumber = mobile;
+  if (otpBox) otpBox.hidden = false;
+  if (loginForm) loginForm.classList.add('otp-active');
+  if (otpInput) {
+    otpInput.value = '';
+    otpInput.focus();
+  }
+  setLoginMessage(`OTP sent to +91 ${mobile}. Use 123456 for this prototype.`, 'success');
+}
+
+function resetLoginStep() {
+  pendingMobileNumber = '';
+  if (otpBox) otpBox.hidden = true;
+  if (loginForm) loginForm.classList.remove('otp-active');
+  if (otpInput) otpInput.value = '';
+  setLoginMessage('OTP login is safer than password login for food delivery users.');
+}
+
+function handleLoginSubmit(event) {
+  event.preventDefault();
+  const mobile = getCleanMobileNumber();
+
+  if (mobile.length !== 10) {
+    setLoginMessage('Enter a valid 10 digit mobile number.', 'error');
+    loginMobile?.focus();
+    return;
+  }
+
+  if (loginMobile) loginMobile.value = mobile;
+  showOtpStep(mobile);
+}
+
+function handleOtpVerify() {
+  const otp = (otpInput?.value || '').replace(/\D/g, '').slice(0, 6);
+
+  if (!pendingMobileNumber) {
+    setLoginMessage('Enter mobile number first.', 'error');
+    return;
+  }
+
+  if (otp !== DEMO_OTP) {
+    setLoginMessage('Wrong OTP. Use 123456 in this prototype.', 'error');
+    otpInput?.focus();
+    return;
+  }
+
+  saveUser({
+    mobile: pendingMobileNumber,
+    loggedInAt: new Date().toISOString()
+  });
+
+  setLoginMessage('Login successful.', 'success');
+  resetLoginStep();
+  updateLoginView();
+}
+
+function handleLogout() {
+  clearUser();
+  updateLoginView();
+  resetLoginStep();
+  setLoginMessage('Logged out successfully.', 'success');
+}
+
 function openPage(pageId) {
   pages.forEach((page) => page.classList.remove('active-page'));
   document.getElementById(pageId)?.classList.add('active-page');
@@ -194,6 +318,8 @@ function openPage(pageId) {
   } else {
     app.classList.add('inner-page');
   }
+
+  if (pageId === 'loginPage') updateLoginView();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -216,6 +342,19 @@ function bindEvents() {
   });
 
   knowMoreBtn?.addEventListener('click', () => openPage('knowMorePage'));
+  profileBtn?.addEventListener('click', () => openPage('loginPage'));
+  loginForm?.addEventListener('submit', handleLoginSubmit);
+  verifyOtpBtn?.addEventListener('click', handleOtpVerify);
+  editMobileBtn?.addEventListener('click', resetLoginStep);
+  logoutBtn?.addEventListener('click', handleLogout);
+
+  loginMobile?.addEventListener('input', () => {
+    loginMobile.value = getCleanMobileNumber();
+  });
+
+  otpInput?.addEventListener('input', () => {
+    otpInput.value = (otpInput.value || '').replace(/\D/g, '').slice(0, 6);
+  });
 
   window.addEventListener('nutritilious:location-changed', renderMeals);
 }
@@ -223,4 +362,5 @@ function bindEvents() {
 renderCategories();
 renderFilters();
 renderMeals();
+updateLoginView();
 bindEvents();
