@@ -1,0 +1,13 @@
+body .app .top-header {
+  background-image: url("../assets/header-bg-red.svg") !important;
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-color: #97001d !important;
+  image-rendering: auto !important;
+}
+
+body .app .top-header::before,
+body .app .top-header::after {
+  display: none !important;
+}
