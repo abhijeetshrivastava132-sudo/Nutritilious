@@ -325,3 +325,29 @@ body:has(.app.inner-page) {
 #subscriptionPage .heart-icon {
   right: 38px !important;
 }
+
+/* Latest home cleanup */
+.offer-strip {
+  display: none !important;
+}
+
+#vegToggle::before {
+  background: #bfead7 !important;
+}
+
+#vegToggle .veg-dot {
+  border-color: #0d8d52 !important;
+}
+
+#vegToggle.off::before {
+  background: #ffd6d6 !important;
+}
+
+#vegToggle.off .veg-dot {
+  border-color: var(--danger) !important;
+}
+
+#vegToggle.off + .veg-dot,
+.veg-toggle.off .veg-dot {
+  background: #ffffff !important;
+}
