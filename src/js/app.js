@@ -10,23 +10,28 @@ const categoryGrid = document.getElementById('categoryGrid');
 const mealList = document.getElementById('mealList');
 const filterList = document.getElementById('filterList');
 const loginForm = document.getElementById('loginForm');
-const loginMobile = document.getElementById('loginMobile');
+const loginEmail = document.getElementById('loginEmail');
+const sendLoginLinkBtn = document.getElementById('sendLoginLinkBtn');
 const loginMessage = document.getElementById('loginMessage');
-const otpBox = document.getElementById('otpBox');
-const otpInput = document.getElementById('otpInput');
-const verifyOtpBtn = document.getElementById('verifyOtpBtn');
-const editMobileBtn = document.getElementById('editMobileBtn');
+const emailLinkBox = document.getElementById('emailLinkBox');
+const emailLinkText = document.getElementById('emailLinkText');
+const resendEmailLinkBtn = document.getElementById('resendEmailLinkBtn');
+const changeEmailBtn = document.getElementById('changeEmailBtn');
+const guestLoginBtn = document.getElementById('guestLoginBtn');
 const loginCard = document.getElementById('loginCard');
 const accountCard = document.getElementById('accountCard');
-const accountMobileText = document.getElementById('accountMobileText');
+const accountIdentityText = document.getElementById('accountIdentityText');
 const logoutBtn = document.getElementById('logoutBtn');
 
 const data = window.NUTRITILIOUS_DATA || { categories: [], meals: [], filters: [], deliveryRadiusKm: 8 };
 const LOCATION_STORAGE_KEY = 'nutritiliousLocation';
 const AUTH_STORAGE_KEY = 'nutritiliousUser';
-const DEMO_OTP = '123456';
+const EMAIL_FOR_SIGNIN_KEY = 'nutritiliousEmailForSignIn';
 const deliveryRadiusKm = data.deliveryRadiusKm || 8;
-let pendingMobileNumber = '';
+let firebaseAuth = null;
+let currentFirebaseUser = null;
+let authInitialized = false;
+let pendingEmailAddress = '';
 
 function icon(type) {
   const icons = {
@@ -52,7 +57,8 @@ function getSavedLocation() {
 function getSavedUser() {
   try {
     const saved = localStorage.getItem(AUTH_STORAGE_KEY);
-    return saved ? JSON.parse(saved) : null;
+    const user = saved ? JSON.parse(saved) : null;
+    return user?.provider === 'firebase' ? user : null;
   } catch (error) {
     return null;
   }
@@ -212,21 +218,41 @@ function renderMeals() {
     .join('');
 }
 
-function updateLoginView() {
-  const user = getSavedUser();
+function isFirebaseConfigReady() {
+  const config = window.NUTRITILIOUS_FIREBASE_CONFIG;
+  return Boolean(
+    config &&
+    config.apiKey &&
+    config.authDomain &&
+    config.projectId &&
+    !String(config.apiKey).includes('PASTE_') &&
+    !String(config.projectId).includes('PASTE_')
+  );
+}
 
-  if (user) {
-    if (loginCard) loginCard.hidden = true;
-    if (accountCard) accountCard.hidden = false;
-    if (accountMobileText) accountMobileText.textContent = `Logged in with +91 ${user.mobile}`;
-    profileBtn?.classList.add('logged-in');
-    return;
+function getFirebaseAuth() {
+  if (firebaseAuth) return firebaseAuth;
+  if (!window.firebase || !isFirebaseConfigReady()) return null;
+
+  if (!window.firebase.apps.length) {
+    window.firebase.initializeApp(window.NUTRITILIOUS_FIREBASE_CONFIG);
   }
 
-  if (loginCard) loginCard.hidden = false;
-  if (accountCard) accountCard.hidden = true;
-  if (accountMobileText) accountMobileText.textContent = 'Logged in';
-  profileBtn?.classList.remove('logged-in');
+  firebaseAuth = window.firebase.auth();
+  firebaseAuth.setPersistence(window.firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+  return firebaseAuth;
+}
+
+function getAuthRedirectUrl() {
+  return window.NUTRITILIOUS_FIREBASE_AUTH_REDIRECT_URL || `${window.location.origin}${window.location.pathname}`;
+}
+
+function getCleanEmail() {
+  return (loginEmail?.value || '').trim().toLowerCase();
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function setLoginMessage(message, type = '') {
@@ -235,72 +261,209 @@ function setLoginMessage(message, type = '') {
   loginMessage.className = `login-message ${type}`.trim();
 }
 
-function getCleanMobileNumber() {
-  return (loginMobile?.value || '').replace(/\D/g, '').slice(0, 10);
+function setAuthButtonsDisabled(isDisabled) {
+  if (sendLoginLinkBtn) sendLoginLinkBtn.disabled = isDisabled;
+  if (resendEmailLinkBtn) resendEmailLinkBtn.disabled = isDisabled;
+  if (guestLoginBtn) guestLoginBtn.disabled = isDisabled;
+  if (logoutBtn) logoutBtn.disabled = isDisabled;
 }
 
-function showOtpStep(mobile) {
-  pendingMobileNumber = mobile;
-  if (otpBox) otpBox.hidden = false;
-  if (loginForm) loginForm.classList.add('otp-active');
-  if (otpInput) {
-    otpInput.value = '';
-    otpInput.focus();
+function getUserSnapshot(user) {
+  if (!user) return null;
+  return {
+    provider: 'firebase',
+    uid: user.uid,
+    email: user.email || '',
+    isAnonymous: Boolean(user.isAnonymous),
+    loggedInAt: new Date().toISOString()
+  };
+}
+
+function getCurrentAuthUser() {
+  return currentFirebaseUser ? getUserSnapshot(currentFirebaseUser) : getSavedUser();
+}
+
+function formatUserIdentity(user) {
+  if (!user) return 'Logged in';
+  if (user.isAnonymous) return 'Guest account active';
+  if (user.email) return `Logged in with ${user.email}`;
+  return 'Firebase account active';
+}
+
+function updateLoginView() {
+  const user = getCurrentAuthUser();
+
+  if (user) {
+    if (loginCard) loginCard.hidden = true;
+    if (accountCard) accountCard.hidden = false;
+    if (accountIdentityText) accountIdentityText.textContent = formatUserIdentity(user);
+    profileBtn?.classList.add('logged-in');
+    return;
   }
-  setLoginMessage(`OTP sent to +91 ${mobile}. Use 123456 for this prototype.`, 'success');
+
+  if (loginCard) loginCard.hidden = false;
+  if (accountCard) accountCard.hidden = true;
+  if (accountIdentityText) accountIdentityText.textContent = 'Logged in';
+  profileBtn?.classList.remove('logged-in');
+}
+
+function showEmailLinkStep(email) {
+  pendingEmailAddress = email;
+  if (emailLinkBox) emailLinkBox.hidden = false;
+  if (loginForm) loginForm.classList.add('link-sent');
+  if (emailLinkText) {
+    emailLinkText.textContent = `A secure Firebase login link has been sent to ${email}. Open it on this device to continue.`;
+  }
 }
 
 function resetLoginStep() {
-  pendingMobileNumber = '';
-  if (otpBox) otpBox.hidden = true;
-  if (loginForm) loginForm.classList.remove('otp-active');
-  if (otpInput) otpInput.value = '';
-  setLoginMessage('OTP login is safer than password login for food delivery users.');
+  pendingEmailAddress = '';
+  if (emailLinkBox) emailLinkBox.hidden = true;
+  if (loginForm) loginForm.classList.remove('link-sent');
+  setLoginMessage('Email link login is passwordless and avoids SMS OTP cost.');
+  loginEmail?.focus();
 }
 
-function handleLoginSubmit(event) {
+async function sendEmailLoginLink(email) {
+  const auth = getFirebaseAuth();
+  if (!auth) {
+    setLoginMessage('Firebase config missing. Paste config in src/js/firebase-config.js first.', 'error');
+    return;
+  }
+
+  const actionCodeSettings = {
+    url: getAuthRedirectUrl(),
+    handleCodeInApp: true
+  };
+
+  setAuthButtonsDisabled(true);
+  setLoginMessage('Sending Firebase login link...');
+
+  try {
+    await auth.sendSignInLinkToEmail(email, actionCodeSettings);
+    localStorage.setItem(EMAIL_FOR_SIGNIN_KEY, email);
+    showEmailLinkStep(email);
+    setLoginMessage('Login link sent. Check your email.', 'success');
+  } catch (error) {
+    setLoginMessage(error.message || 'Could not send login link. Check Firebase setup.', 'error');
+  } finally {
+    setAuthButtonsDisabled(false);
+  }
+}
+
+async function handleLoginSubmit(event) {
   event.preventDefault();
-  const mobile = getCleanMobileNumber();
+  const email = getCleanEmail();
 
-  if (mobile.length !== 10) {
-    setLoginMessage('Enter a valid 10 digit mobile number.', 'error');
-    loginMobile?.focus();
+  if (!isValidEmail(email)) {
+    setLoginMessage('Enter a valid email address.', 'error');
+    loginEmail?.focus();
     return;
   }
 
-  if (loginMobile) loginMobile.value = mobile;
-  showOtpStep(mobile);
+  if (loginEmail) loginEmail.value = email;
+  await sendEmailLoginLink(email);
 }
 
-function handleOtpVerify() {
-  const otp = (otpInput?.value || '').replace(/\D/g, '').slice(0, 6);
-
-  if (!pendingMobileNumber) {
-    setLoginMessage('Enter mobile number first.', 'error');
+async function handleResendEmailLink() {
+  const email = pendingEmailAddress || localStorage.getItem(EMAIL_FOR_SIGNIN_KEY) || getCleanEmail();
+  if (!isValidEmail(email)) {
+    setLoginMessage('Enter email again to resend the link.', 'error');
+    resetLoginStep();
     return;
   }
 
-  if (otp !== DEMO_OTP) {
-    setLoginMessage('Wrong OTP. Use 123456 in this prototype.', 'error');
-    otpInput?.focus();
+  await sendEmailLoginLink(email);
+}
+
+async function handleGuestLogin() {
+  const auth = getFirebaseAuth();
+  if (!auth) {
+    setLoginMessage('Firebase config missing. Paste config in src/js/firebase-config.js first.', 'error');
     return;
   }
 
-  saveUser({
-    mobile: pendingMobileNumber,
-    loggedInAt: new Date().toISOString()
+  setAuthButtonsDisabled(true);
+  setLoginMessage('Creating guest session...');
+
+  try {
+    await auth.signInAnonymously();
+    setLoginMessage('Guest session created.', 'success');
+  } catch (error) {
+    setLoginMessage(error.message || 'Guest login failed. Enable Anonymous provider in Firebase.', 'error');
+  } finally {
+    setAuthButtonsDisabled(false);
+  }
+}
+
+async function completeEmailLinkSignInIfNeeded() {
+  const auth = getFirebaseAuth();
+  if (!auth || !auth.isSignInWithEmailLink(window.location.href)) return;
+
+  let email = localStorage.getItem(EMAIL_FOR_SIGNIN_KEY);
+  if (!email) {
+    email = window.prompt('Enter the email address you used for login');
+  }
+
+  if (!email || !isValidEmail(email)) {
+    setLoginMessage('Email confirmation required to complete Firebase login.', 'error');
+    return;
+  }
+
+  setLoginMessage('Completing Firebase login...');
+
+  try {
+    await auth.signInWithEmailLink(email, window.location.href);
+    localStorage.removeItem(EMAIL_FOR_SIGNIN_KEY);
+    window.history.replaceState({}, document.title, getAuthRedirectUrl());
+    setLoginMessage('Login successful.', 'success');
+  } catch (error) {
+    setLoginMessage(error.message || 'Firebase login link expired or invalid.', 'error');
+  }
+}
+
+async function handleLogout() {
+  const auth = getFirebaseAuth();
+  setAuthButtonsDisabled(true);
+
+  try {
+    if (auth) await auth.signOut();
+    clearUser();
+    currentFirebaseUser = null;
+    updateLoginView();
+    resetLoginStep();
+    setLoginMessage('Logged out successfully.', 'success');
+  } catch (error) {
+    setLoginMessage(error.message || 'Logout failed.', 'error');
+  } finally {
+    setAuthButtonsDisabled(false);
+  }
+}
+
+function initFirebaseAuth() {
+  const auth = getFirebaseAuth();
+
+  if (!auth) {
+    clearUser();
+    updateLoginView();
+    setLoginMessage('Paste Firebase config and enable Email Link + Anonymous sign-in to activate real login.');
+    return;
+  }
+
+  authInitialized = true;
+  auth.onAuthStateChanged((user) => {
+    currentFirebaseUser = user;
+
+    if (user) {
+      saveUser(getUserSnapshot(user));
+    } else {
+      clearUser();
+    }
+
+    updateLoginView();
   });
 
-  setLoginMessage('Login successful.', 'success');
-  resetLoginStep();
-  updateLoginView();
-}
-
-function handleLogout() {
-  clearUser();
-  updateLoginView();
-  resetLoginStep();
-  setLoginMessage('Logged out successfully.', 'success');
+  completeEmailLinkSignInIfNeeded();
 }
 
 function openPage(pageId) {
@@ -319,7 +482,12 @@ function openPage(pageId) {
     app.classList.add('inner-page');
   }
 
-  if (pageId === 'loginPage') updateLoginView();
+  if (pageId === 'loginPage') {
+    updateLoginView();
+    if (!authInitialized && !getFirebaseAuth()) {
+      setLoginMessage('Firebase config missing. Add config before testing login.', 'error');
+    }
+  }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -344,16 +512,13 @@ function bindEvents() {
   knowMoreBtn?.addEventListener('click', () => openPage('knowMorePage'));
   profileBtn?.addEventListener('click', () => openPage('loginPage'));
   loginForm?.addEventListener('submit', handleLoginSubmit);
-  verifyOtpBtn?.addEventListener('click', handleOtpVerify);
-  editMobileBtn?.addEventListener('click', resetLoginStep);
+  resendEmailLinkBtn?.addEventListener('click', handleResendEmailLink);
+  changeEmailBtn?.addEventListener('click', resetLoginStep);
+  guestLoginBtn?.addEventListener('click', handleGuestLogin);
   logoutBtn?.addEventListener('click', handleLogout);
 
-  loginMobile?.addEventListener('input', () => {
-    loginMobile.value = getCleanMobileNumber();
-  });
-
-  otpInput?.addEventListener('input', () => {
-    otpInput.value = (otpInput.value || '').replace(/\D/g, '').slice(0, 6);
+  loginEmail?.addEventListener('input', () => {
+    loginEmail.value = getCleanEmail();
   });
 
   window.addEventListener('nutritilious:location-changed', renderMeals);
@@ -362,5 +527,5 @@ function bindEvents() {
 renderCategories();
 renderFilters();
 renderMeals();
-updateLoginView();
+initFirebaseAuth();
 bindEvents();
