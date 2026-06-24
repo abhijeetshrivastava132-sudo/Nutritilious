@@ -1,18 +1,18 @@
 # Auth Decision
 
-For the MVP, Nutritilious will use Firebase Authentication without SMS OTP.
+Nutritilious will use Firebase Authentication for the MVP login system.
 
 ## Selected flow
 
-- Email Link sign-in
-- Anonymous guest login
+- Phone OTP login as the primary flow.
+- Google login as the fast secondary flow.
+- Anonymous guest login for browsing and low-friction testing.
 
 ## Not selected right now
 
-- Firebase Phone OTP, because SMS cost is high for MVP usage.
 - Password login, because forgot-password flow adds friction.
-- Google-only login, because users may not prefer provider lock-in.
+- Email link login, because the current app direction is phone-first like food delivery apps.
 
-## Future
+## Product note
 
-When real paid orders increase, add phone collection at checkout first. Add SMS/WhatsApp phone verification only after enough order volume justifies the cost.
+Phone OTP improves trust for orders, but it sends real SMS and may cost money. During testing, prefer Google login or Guest mode when phone verification is not necessary.
