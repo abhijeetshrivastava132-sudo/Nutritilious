@@ -200,20 +200,20 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           </span>
           <span>
-            <strong>Use current location</strong>
-            <small>Allow browser location permission</small>
+            <strong>Use precise current location</strong>
+            <small>Allow GPS permission for better nearby results</small>
           </span>
         </button>
 
-        <div class="location-or"><span></span>or enter manually<span></span></div>
+        <div class="location-or"><span></span>or search manually<span></span></div>
 
         <form class="manual-location-form" id="manualLocationForm">
-          <label for="manualLocationInput">Area, street, city</label>
-          <input id="manualLocationInput" type="text" placeholder="Example: Sun Street, California" autocomplete="street-address" />
-          <button class="save-location-btn" type="submit">Save location</button>
+          <label for="manualLocationInput">Search area manually</label>
+          <input id="manualLocationInput" type="text" placeholder="Search area, street, or city" autocomplete="street-address" />
+          <button class="save-location-btn" type="submit">Confirm location</button>
         </form>
 
-        <p class="location-status" id="locationStatus">Your saved location will be shown in the header.</p>
+        <p class="location-status" id="locationStatus">GPS gives better nearby results. Manual search will be converted into coordinates.</p>
       </section>
     </div>
   </div>
