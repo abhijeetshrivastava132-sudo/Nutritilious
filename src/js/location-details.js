@@ -185,9 +185,21 @@
     r.form.dataset.fullAddressFlow = 'true';
   }
 
+  function loadVegFilter() {
+    if (document.querySelector('script[src="src/js/veg-filter.js"]')) return;
+    const script = document.createElement('script');
+    script.src = 'src/js/veg-filter.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bind);
+    document.addEventListener('DOMContentLoaded', () => {
+      bind();
+      loadVegFilter();
+    });
   } else {
     bind();
+    loadVegFilter();
   }
 })();
