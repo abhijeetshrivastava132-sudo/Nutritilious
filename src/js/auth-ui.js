@@ -8,6 +8,21 @@
     </svg>
   `;
 
+  const BELL_ICON = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 17H9"/>
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+      <path d="M13.7 21a2 2 0 0 1-3.4 0"/>
+    </svg>
+  `;
+
+  const PROFILE_ICON = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12c2.6 0 4.6-2 4.6-4.6S14.6 2.8 12 2.8 7.4 4.8 7.4 7.4 9.4 12 12 12z"/>
+      <path d="M4.6 20.2V19c0-3.1 4.2-4.8 7.4-4.8s7.4 1.7 7.4 4.8v1.2"/>
+    </svg>
+  `;
+
   function injectUiAssets() {
     if (!document.querySelector('link[href="src/css/ui-fixes.css"]')) {
       const styleLink = document.createElement('link');
@@ -22,6 +37,105 @@
       detailsScript.defer = true;
       document.head.appendChild(detailsScript);
     }
+
+    if (!document.getElementById('headerNavFixStyle')) {
+      const style = document.createElement('style');
+      style.id = 'headerNavFixStyle';
+      style.textContent = `
+        body .app .top-header .top-row::after {
+          content: none !important;
+          display: none !important;
+        }
+
+        body .app .notification-btn {
+          position: relative;
+          z-index: 4;
+          display: grid;
+          place-items: center;
+          width: 42px;
+          height: 42px;
+          flex: 0 0 42px;
+          margin-left: 8px;
+          border: 0;
+          border-radius: 50%;
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.16);
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        body .app .notification-btn svg {
+          width: 23px;
+          height: 23px;
+          stroke: currentColor;
+          stroke-width: 2.2;
+          fill: none;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        body .app .bottom-nav {
+          grid-template-columns: repeat(5, 1fr) !important;
+        }
+
+        body .app .bottom-nav .nav-profile-cta {
+          color: #777777;
+          background: transparent;
+        }
+
+        body .app .bottom-nav .nav-profile-cta.active {
+          color: var(--brand);
+          background: var(--brand-soft);
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  function replaceHeaderProfileWithNotification() {
+    const oldProfileButton = document.querySelector('.top-header .profile-btn');
+    if (!oldProfileButton || document.getElementById('notificationBtn')) return;
+
+    const notificationButton = document.createElement('button');
+    notificationButton.className = 'notification-btn';
+    notificationButton.id = 'notificationBtn';
+    notificationButton.type = 'button';
+    notificationButton.setAttribute('aria-label', 'Notifications');
+    notificationButton.innerHTML = BELL_ICON;
+
+    oldProfileButton.replaceWith(notificationButton);
+  }
+
+  function addProfileBottomCta() {
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (!bottomNav || document.getElementById('profileCtaBtn')) return;
+
+    const profileCta = document.createElement('button');
+    profileCta.className = 'nav-item nav-profile-cta';
+    profileCta.id = 'profileCtaBtn';
+    profileCta.type = 'button';
+    profileCta.dataset.page = 'loginPage';
+    profileCta.innerHTML = `${PROFILE_ICON}<span>Profile</span>`;
+
+    profileCta.addEventListener('click', () => {
+      if (typeof openPage === 'function') openPage('loginPage');
+      window.requestAnimationFrame(() => {
+        document.querySelectorAll('.nav-item').forEach((item) => item.classList.remove('active'));
+        profileCta.classList.add('active');
+      });
+    });
+
+    bottomNav.appendChild(profileCta);
+
+    bottomNav.addEventListener('click', (event) => {
+      const navButton = event.target.closest('.nav-item');
+      if (navButton && navButton !== profileCta) profileCta.classList.remove('active');
+    });
+  }
+
+  function setupHeaderAndNavButtons() {
+    replaceHeaderProfileWithNotification();
+    addProfileBottomCta();
   }
 
   function setupAuthUi() {
@@ -36,6 +150,8 @@
     const divider = loginCard?.querySelector('.auth-divider, .guest-divider');
     const loginTitle = loginCard?.querySelector('h1');
     const loginDesc = loginTitle?.nextElementSibling;
+
+    setupHeaderAndNavButtons();
 
     if (loginCard) loginCard.classList.add('auth-swiggy-card');
     if (loginTitle) loginTitle.textContent = 'LOGIN';
@@ -81,7 +197,11 @@
     syncAuthScreenClass();
 
     if (loginPage && !loginPage.dataset.authObserverAttached) {
-      const observer = new MutationObserver(syncAuthScreenClass);
+      const observer = new MutationObserver(() => {
+        syncAuthScreenClass();
+        const profileCta = document.getElementById('profileCtaBtn');
+        profileCta?.classList.toggle('active', loginPage.classList.contains('active-page'));
+      });
       observer.observe(loginPage, { attributes: true, attributeFilter: ['class'] });
       loginPage.dataset.authObserverAttached = 'true';
     }
