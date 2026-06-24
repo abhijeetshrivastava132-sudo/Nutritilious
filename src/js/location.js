@@ -6,8 +6,8 @@
   const ACCURACY_WAIT_MS = 8000;
 
   const defaultLocation = {
-    title: 'Lajpat Nagar Metro Station',
-    sub: 'Lajpat Nagar, Ring Road, New Delhi',
+    title: 'Choose location',
+    sub: 'Tap to select delivery address',
     source: 'default'
   };
 
@@ -48,6 +48,12 @@
       .trim();
   }
 
+  function isOldDefaultLocation(location) {
+    if (!location) return false;
+    return String(location.title || '').toLowerCase().includes('lajpat nagar') ||
+      String(location.sub || '').toLowerCase().includes('lajpat nagar');
+  }
+
   function notifyLocationChange(location) {
     window.dispatchEvent(new CustomEvent('nutritilious:location-changed', {
       detail: location
@@ -57,7 +63,14 @@
   function getSavedLocation() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : null;
+      const location = saved ? JSON.parse(saved) : null;
+
+      if (isOldDefaultLocation(location)) {
+        localStorage.removeItem(STORAGE_KEY);
+        return null;
+      }
+
+      return location;
     } catch (error) {
       return null;
     }
