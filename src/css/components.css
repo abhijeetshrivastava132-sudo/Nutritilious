@@ -16,6 +16,7 @@
   height: 240px;
   border-radius: 42px;
   background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
 }
 
 .top-header::before {
@@ -41,6 +42,8 @@
 }
 
 .location-btn {
+  position: relative;
+  z-index: 3;
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr);
   align-items: center;
@@ -51,6 +54,8 @@
   color: inherit;
   background: transparent;
   text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .location-pin,
