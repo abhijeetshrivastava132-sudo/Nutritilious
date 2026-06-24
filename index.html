@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="src/css/pages.css" />
   <link rel="stylesheet" href="src/css/auth.css" />
   <link rel="stylesheet" href="src/css/auth-swiggy.css" />
+  <link rel="stylesheet" href="src/css/ui-fixes.css" />
   <script src="src/data/app-data.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js" defer></script>
@@ -17,6 +18,8 @@
   <script src="src/js/app.js" defer></script>
   <script src="src/js/auth-ui.js" defer></script>
   <script src="src/js/location.js" defer></script>
+  <script src="src/js/location-details.js" defer></script>
+  <script src="src/js/veg-filter.js" defer></script>
 </head>
 <body>
   <div class="app" id="app">
@@ -28,12 +31,12 @@
           </span>
           <span class="location-text">
             <span class="location-title-row">
-              <span class="location-title" id="locationTitle">Lajpat Nagar Metro Station</span>
+              <span class="location-title" id="locationTitle">Choose location</span>
               <span class="location-down">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </span>
             </span>
-            <span class="location-sub" id="locationSub">Lajpat Nagar, Ring Road, New Delhi</span>
+            <span class="location-sub" id="locationSub">Tap to select delivery address</span>
           </span>
         </button>
 
@@ -50,9 +53,9 @@
           <svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14c1.7 0 3-1.3 3-3V5c0-1.7-1.3-3-3-3S9 3.3 9 5v6c0 1.7 1.3 3 3 3z" fill="currentColor"/><path d="M18.2 10.5c0 3.4-2.4 6.1-6.2 6.1s-6.2-2.7-6.2-6.1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M12 16.8V21M8.5 21h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </label>
 
-        <button class="veg-card" type="button" aria-label="Toggle vegetarian meals">
-          <span class="veg-text">VEG</span>
-          <span class="veg-toggle" id="vegToggle"><span class="veg-dot"></span></span>
+        <button class="veg-card" id="foodTypeToggle" type="button" aria-label="Toggle veg-only filter">
+          <span class="veg-text" id="foodTypeText">VEG</span>
+          <span class="veg-toggle off" id="vegToggle"><span class="veg-dot"></span></span>
         </button>
       </div>
     </header>
@@ -148,95 +151,29 @@
             <p>Nutritilious connects users with nearby home cooks and tiffin providers. Users can compare rating, distance, price, menu, food photos, and timing before choosing a provider.</p>
           </article>
           <div class="info-grid">
-            <article class="info-card">
-              <h3>Daily tiffin plans</h3>
-              <p>Lunch and dinner subscriptions for students, bachelors, and working professionals.</p>
-            </article>
-            <article class="info-card">
-              <h3>Custom food needs</h3>
-              <p>Future support for gym meals, balanced nutrition, and home-style food preferences.</p>
-            </article>
-            <article class="info-card">
-              <h3>Nearby providers</h3>
-              <p>Provider ranking can use rating, distance, price, and delivery timing.</p>
-            </article>
-            <article class="info-card">
-              <h3>Simple discovery</h3>
-              <p>Clear menu, food photos, pricing, and timing before the user orders.</p>
-            </article>
+            <article class="info-card"><h3>Daily tiffin plans</h3><p>Lunch and dinner subscriptions for students, bachelors, and working professionals.</p></article>
+            <article class="info-card"><h3>Custom food needs</h3><p>Future support for gym meals, balanced nutrition, and home-style food preferences.</p></article>
+            <article class="info-card"><h3>Nearby providers</h3><p>Provider ranking can use rating, distance, price, and delivery timing.</p></article>
+            <article class="info-card"><h3>Simple discovery</h3><p>Clear menu, food photos, pricing, and timing before the user orders.</p></article>
           </div>
           <button class="primary-btn" type="button" data-page-btn="homePage">Explore Healthy Meals</button>
         </div>
       </section>
 
       <section class="page" id="loginPage">
-        <div class="inner-header">
-          <button class="back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-          <div class="inner-title">Login</div>
-        </div>
-
         <div class="login-wrap">
-          <article class="login-card" id="loginCard">
-            <div class="login-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.4 0 4.2-1.8 4.2-4.2S14.4 3.6 12 3.6 7.8 5.4 7.8 7.8 9.6 12 12 12z"/><path d="M4.8 20.4c0-3.2 3.2-5.6 7.2-5.6s7.2 2.4 7.2 5.6"/></svg>
-            </div>
-            <h1>Login to Nutritilious</h1>
-            <p>Use Firebase email link login. No SMS cost, no password, and no forgot-password flow.</p>
-
-            <form class="login-form" id="loginForm">
-              <label for="loginEmail">Email address</label>
-              <div class="email-field">
-                <input id="loginEmail" type="email" placeholder="Enter your email" autocomplete="email" />
-              </div>
-              <button class="login-submit" id="sendLoginLinkBtn" type="submit">Send login link</button>
-            </form>
-
-            <div class="email-link-box" id="emailLinkBox" hidden>
-              <h3>Check your email</h3>
-              <p id="emailLinkText">We sent a secure Firebase login link. Open it on this device to continue.</p>
-              <button class="login-submit" id="resendEmailLinkBtn" type="button">Resend login link</button>
-              <button class="text-btn" id="changeEmailBtn" type="button">Change email</button>
-            </div>
-
-            <div class="guest-divider">or</div>
-            <button class="guest-btn" id="guestLoginBtn" type="button">Continue as Guest</button>
-
-            <p class="auth-setup-note">Firebase setup required: paste your config in src/js/firebase-config.js and enable Email Link + Anonymous sign-in.</p>
-            <p class="login-message" id="loginMessage">Email link login is passwordless and avoids SMS OTP cost.</p>
-          </article>
-
-          <article class="account-card" id="accountCard" hidden>
-            <div class="account-avatar">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.4 0 4.2-1.8 4.2-4.2S14.4 3.6 12 3.6 7.8 5.4 7.8 7.8 9.6 12 12 12z"/><path d="M4.8 20.4c0-3.2 3.2-5.6 7.2-5.6s7.2 2.4 7.2 5.6"/></svg>
-            </div>
-            <h1>Account</h1>
-            <p id="accountIdentityText">Logged in</p>
-            <div class="account-actions">
-              <button class="login-submit" type="button" data-page-btn="homePage">Continue ordering</button>
-              <button class="logout-btn" id="logoutBtn" type="button">Log out</button>
-            </div>
-          </article>
+          <button class="login-back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <article class="login-card auth-card" id="loginCard"></article>
+          <article class="account-card auth-account-card" id="accountCard" hidden></article>
         </div>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="Main navigation">
-      <button class="nav-item active" type="button" data-page="homePage">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.5z"/></svg>
-        <span>Home</span>
-      </button>
-      <button class="nav-item" type="button" data-page="cartPage">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-2 8H8L6 6z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
-        <span>Cart</span>
-      </button>
-      <button class="nav-item" type="button" data-page="trackPage">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <span>Track</span>
-      </button>
-      <button class="nav-item" type="button" data-page="subscriptionPage">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-4-7 4V5a2 2 0 0 1 2-2z"/><path d="M9 8h6"/><path d="M9 12h4"/></svg>
-        <span>Subscription</span>
-      </button>
+      <button class="nav-item active" type="button" data-page="homePage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.5z"/></svg><span>Home</span></button>
+      <button class="nav-item" type="button" data-page="cartPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-2 8H8L6 6z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span>Cart</span></button>
+      <button class="nav-item" type="button" data-page="trackPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Track</span></button>
+      <button class="nav-item" type="button" data-page="subscriptionPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-4-7 4V5a2 2 0 0 1 2-2z"/><path d="M9 8h6"/><path d="M9 12h4"/></svg><span>Subscription</span></button>
     </nav>
 
     <div class="location-sheet" id="locationSheet" aria-hidden="true">
@@ -252,13 +189,8 @@
         </div>
 
         <button class="detect-location-btn" id="detectLocationBtn" type="button">
-          <span class="detect-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          </span>
-          <span>
-            <strong>Use precise current location</strong>
-            <small>Allow GPS permission for better nearby results</small>
-          </span>
+          <span class="detect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <span><strong>Use precise current location</strong><small>Allow GPS permission for better nearby results</small></span>
         </button>
 
         <div class="location-or"><span></span>or search manually<span></span></div>
