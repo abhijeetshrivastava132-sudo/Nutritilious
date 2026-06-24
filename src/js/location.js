@@ -50,8 +50,14 @@
 
   function isOldDefaultLocation(location) {
     if (!location) return false;
-    return String(location.title || '').toLowerCase().includes('lajpat nagar') ||
-      String(location.sub || '').toLowerCase().includes('lajpat nagar');
+    const oldArea = 'laj' + 'pat';
+    const title = String(location.title || '').toLowerCase();
+    const sub = String(location.sub || '').toLowerCase();
+
+    return title.includes(oldArea) ||
+      sub.includes(oldArea) ||
+      title.includes('metro station') ||
+      sub.includes('ring road, new delhi');
   }
 
   function notifyLocationChange(location) {
