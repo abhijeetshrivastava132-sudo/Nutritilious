@@ -31,7 +31,7 @@
           </span>
         </button>
 
-        <button class="profile-btn" type="button" aria-label="Open profile">
+        <button class="profile-btn" id="profileBtn" type="button" aria-label="Open login or account">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.6 0 4.6-2 4.6-4.6S14.6 2.8 12 2.8 7.4 4.8 7.4 7.4 9.4 12 12 12zm0 2.2c-3.2 0-7.4 1.7-7.4 4.8v1.2h14.8V19c0-3.1-4.2-4.8-7.4-4.8z"/></svg>
         </button>
       </div>
@@ -160,6 +160,54 @@
             </article>
           </div>
           <button class="primary-btn" type="button" data-page-btn="homePage">Explore Healthy Meals</button>
+        </div>
+      </section>
+
+      <section class="page" id="loginPage">
+        <div class="inner-header">
+          <button class="back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="inner-title">Login</div>
+        </div>
+
+        <div class="login-wrap">
+          <article class="login-card" id="loginCard">
+            <div class="login-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.4 0 4.2-1.8 4.2-4.2S14.4 3.6 12 3.6 7.8 5.4 7.8 7.8 9.6 12 12 12z"/><path d="M4.8 20.4c0-3.2 3.2-5.6 7.2-5.6s7.2 2.4 7.2 5.6"/></svg>
+            </div>
+            <h1>Login to Nutritilious</h1>
+            <p>Save your location, track orders, manage subscriptions, and keep your tiffin preferences in one place.</p>
+
+            <form class="login-form" id="loginForm">
+              <label for="loginMobile">Mobile number</label>
+              <div class="phone-field">
+                <span>+91</span>
+                <input id="loginMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter 10 digit number" autocomplete="tel" />
+              </div>
+              <button class="login-submit" type="submit">Continue</button>
+            </form>
+
+            <div class="otp-box" id="otpBox" hidden>
+              <label for="otpInput">Enter OTP</label>
+              <input id="otpInput" type="tel" inputmode="numeric" maxlength="6" placeholder="Enter 6 digit OTP" />
+              <button class="login-submit" id="verifyOtpBtn" type="button">Verify OTP</button>
+              <button class="text-btn" id="editMobileBtn" type="button">Change mobile number</button>
+              <small>Prototype OTP: 123456</small>
+            </div>
+
+            <p class="login-message" id="loginMessage">OTP login is safer than password login for food delivery users.</p>
+          </article>
+
+          <article class="account-card" id="accountCard" hidden>
+            <div class="account-avatar">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.4 0 4.2-1.8 4.2-4.2S14.4 3.6 12 3.6 7.8 5.4 7.8 7.8 9.6 12 12 12z"/><path d="M4.8 20.4c0-3.2 3.2-5.6 7.2-5.6s7.2 2.4 7.2 5.6"/></svg>
+            </div>
+            <h1>Account</h1>
+            <p id="accountMobileText">Logged in</p>
+            <div class="account-actions">
+              <button class="login-submit" type="button" data-page-btn="homePage">Continue ordering</button>
+              <button class="logout-btn" id="logoutBtn" type="button">Log out</button>
+            </div>
+          </article>
         </div>
       </section>
     </main>
