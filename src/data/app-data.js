@@ -39,7 +39,7 @@ window.NUTRITILIOUS_DATA = {
       time: '10 mins',
       latitude: 28.5681,
       longitude: 77.2436,
-      area: 'Lajpat Nagar',
+      area: 'Central Delhi',
       image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=900&q=80'
     },
     {
