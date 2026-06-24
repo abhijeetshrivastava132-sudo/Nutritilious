@@ -297,20 +297,31 @@ body:has(.app.inner-page) {
 }
 
 .app.inner-page #subscriptionPage .subscription-wrap {
-  padding-top: 18px !important;
+  padding-top: 30px !important;
   padding-bottom: 14px !important;
 }
 
 .app.inner-page #knowMorePage .know-more-page {
   padding-top: 14px !important;
   padding-bottom: 14px !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.app.inner-page #knowMorePage .subscription-full-banner {
+  margin-bottom: 16px !important;
 }
 
 /* Subscription decorative fixes */
 #subscriptionPage .sub-star.right {
-  top: 185px !important;
+  top: 215px !important;
+}
+
+#subscriptionPage .outline-btn .interest-text {
+  transform: translateX(6px) !important;
 }
 
 #subscriptionPage .heart-icon {
-  right: 30px !important;
+  right: 38px !important;
 }
