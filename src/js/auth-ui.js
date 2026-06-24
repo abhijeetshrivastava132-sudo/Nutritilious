@@ -1,4 +1,20 @@
 (() => {
+  function injectUiAssets() {
+    if (!document.querySelector('link[href="src/css/ui-fixes.css"]')) {
+      const styleLink = document.createElement('link');
+      styleLink.rel = 'stylesheet';
+      styleLink.href = 'src/css/ui-fixes.css';
+      document.head.appendChild(styleLink);
+    }
+
+    if (!document.querySelector('script[src="src/js/location-details.js"]')) {
+      const detailsScript = document.createElement('script');
+      detailsScript.src = 'src/js/location-details.js';
+      detailsScript.defer = true;
+      document.head.appendChild(detailsScript);
+    }
+  }
+
   function setupAuthUi() {
     const app = document.getElementById('app');
     const loginPage = document.getElementById('loginPage');
@@ -55,6 +71,8 @@
       window.requestAnimationFrame(syncAuthScreenClass);
     });
   }
+
+  injectUiAssets();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupAuthUi);
