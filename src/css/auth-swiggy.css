@@ -329,8 +329,9 @@ body.auth-screen-open {
 }
 
 body .app .top-header {
-  min-height: 176px !important;
-  padding-bottom: 34px !important;
+  min-height: 192px !important;
+  padding-top: 23px !important;
+  padding-bottom: 40px !important;
   border-radius: 0 !important;
   background-size: 100% 100% !important;
   background-position: center center !important;
@@ -340,9 +341,80 @@ body .app .top-header {
 }
 
 body .app .top-header .top-row {
-  margin-bottom: 30px !important;
+  margin-bottom: 36px !important;
+  transform: translateY(5px);
+}
+
+body .app .top-header .top-row::after {
+  content: "";
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.16);
+  background-image: url("https://api.iconify.design/tabler/bell.svg?color=%23ffffff");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 23px 23px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
 }
 
 body .app .top-header .search-row {
-  transform: translateY(6px);
+  transform: translateY(13px);
+}
+
+body .app .bottom-nav {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+body .app .bottom-nav .nav-item {
+  font-size: 9.5px !important;
+}
+
+body .app .bottom-nav .nav-item svg {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+body .app .profile-btn {
+  position: fixed !important;
+  left: auto !important;
+  right: calc(max(0px, (100vw - 430px) / 2) + 8px) !important;
+  bottom: 7px !important;
+  z-index: 70 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  width: 74px !important;
+  height: 62px !important;
+  margin: 0 !important;
+  border-radius: 20px !important;
+  color: #777777 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .app .profile-btn svg {
+  width: 22px !important;
+  height: 22px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2.3 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+body .app .profile-btn::after {
+  content: "Profile";
+  font-size: 9.5px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+body .app .profile-btn:active {
+  transform: scale(0.96);
 }
