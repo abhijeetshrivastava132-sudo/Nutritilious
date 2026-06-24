@@ -1,4 +1,8 @@
 body .app .top-header {
+  min-height: 176px !important;
+  padding-top: 15px !important;
+  padding-bottom: 30px !important;
+  border-radius: 0 !important;
   background-image: url("../assets/header-bg-red.svg") !important;
   background-size: 100% 100% !important;
   background-position: center center !important;
@@ -8,6 +12,22 @@ body .app .top-header {
 }
 
 body .app .top-header::before,
-body .app .top-header::after {
+body .app .top-header::after,
+body .app .top-header .top-row::after {
+  content: none !important;
   display: none !important;
+}
+
+body .app .top-header .top-row {
+  margin-bottom: 28px !important;
+  transform: translateY(0) !important;
+}
+
+body .app .top-header .location-btn,
+body .app .top-header .notification-btn {
+  transform: translateY(-4px) !important;
+}
+
+body .app .top-header .search-row {
+  transform: translateY(5px) !important;
 }
