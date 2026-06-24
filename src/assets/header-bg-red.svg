@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="576" viewBox="0 0 1290 576" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b90023"/>
+      <stop offset="0.45" stop-color="#98001d"/>
+      <stop offset="1" stop-color="#520913"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d8002f" stop-opacity="0.24"/>
+      <stop offset="0.55" stop-color="#6e0716" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#21040a" stop-opacity="0.3"/>
+    </linearGradient>
+    <style>
+      .line{fill:none;stroke:#e4163e;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;opacity:.48}
+      .thin{fill:none;stroke:#ff2b50;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.38}
+      .dot{fill:#ff2b50;opacity:.35}
+      .soft{fill:#6b0615;opacity:.18}
+    </style>
+  </defs>
+
+  <rect width="1290" height="576" fill="url(#g)"/>
+  <path class="soft" d="M0 365C150 300 257 371 392 429c168 72 330 86 503 36 121-35 164-121 223-179 56-56 112-54 172-28v318H0Z"/>
+  <path fill="url(#wave)" d="M0 448C149 365 281 415 428 478c151 65 313 82 487 15 110-43 162-143 235-186 44-26 91-29 140-20v289H0Z"/>
+
+  <!-- top-left leaves -->
+  <path class="thin" d="M23 120C67 66 125 42 205 34M49 91c5-21 22-40 44-50 0 25-17 44-44 50ZM86 66c6-24 25-42 51-50-3 27-22 45-51 50ZM130 48c8-21 30-36 58-40-8 25-29 39-58 40ZM79 124c16-23 44-33 76-25-19 23-47 31-76 25ZM18 158c20-25 56-32 92-17-26 22-62 28-92 17Z"/>
+
+  <!-- burger left -->
+  <path class="line" d="M18 310c12-35 128-39 152 0M20 317h150M28 336c32 12 101 12 133 0M38 356c20 18 89 20 111 0M22 326c18 7 26-8 43-1 16 7 25 17 43 8 17-8 31-12 55-3"/>
+  <path class="thin" d="M44 293c8-6 16-7 25-2M83 288c9-4 18-4 29 1M125 292c8-5 16-4 25 1"/>
+
+  <!-- soup bowl bottom-left -->
+  <path class="line" d="M28 465h142c-7 38-35 62-71 62s-64-24-71-62ZM18 464h165"/>
+  <path class="thin" d="M54 430c-14-25 10-31 1-58M91 430c-14-25 10-31 1-58M130 430c-14-25 10-31 1-58"/>
+  <path class="thin" d="M190 482c35-2 44 24 14 37"/>
+
+  <!-- bowl top-center -->
+  <path class="line" d="M825 90h160c-7 54-38 87-80 87s-73-33-80-87ZM815 90h180"/>
+  <path class="thin" d="M850 118c26 17 87 19 115 1M870 143c22 10 50 11 74 0M888 65c-12-27 13-35 4-63M924 65c-12-27 13-35 4-63"/>
+  <path class="thin" d="M802 80c29-24 70-24 101 0M952 78c28-19 58-16 82 6"/>
+
+  <!-- plate right -->
+  <ellipse class="line" cx="1192" cy="185" rx="126" ry="72" transform="rotate(-12 1192 185)"/>
+  <path class="thin" d="M1112 192c42-52 116-69 182-35M1122 215c58 19 125 14 178-13"/>
+  <path class="thin" d="M1160 152c43-10 79 6 99 36M1154 190c48-28 93-19 120 19M1206 134c26 16 37 39 33 69"/>
+
+  <!-- scattered leaves and spices -->
+  <path class="thin" d="M1070 101c34-22 74-19 102 7-39 9-72 5-102-7ZM1035 236c45-26 99-24 139 7-53 13-99 9-139-7ZM225 162c38-24 82-26 121-7-37 23-84 27-121 7ZM1044 358c30-18 66-19 99-5-31 20-69 21-99 5ZM216 496c34-25 78-28 116-8-37 24-82 27-116 8Z"/>
+  <path class="thin" d="M987 38c14 26 40 38 76 35-19-28-45-40-76-35ZM1074 68c18-19 43-27 73-22-16 22-41 31-73 22ZM1166 22c24-17 54-18 86-3-25 21-56 24-86 3Z"/>
+  <path class="thin" d="M742 118c28-22 59-23 93-4-25 21-58 25-93 4ZM756 80c19-20 43-26 74-18-18 22-43 30-74 18ZM106 206c27-20 57-22 92-7-25 22-58 25-92 7Z"/>
+
+  <!-- small chili -->
+  <path class="line" d="M1037 37c35 25 83 28 112 4-31-8-73-23-112-4Z"/>
+  <path class="thin" d="M1039 37c-14-13-28-14-42-2"/>
+  <path class="line" d="M986 122c-27 22-52 25-80 13 28-20 52-23 80-13Z"/>
+  <path class="thin" d="M986 122c11-13 23-17 38-13"/>
+
+  <!-- floating dots -->
+  <circle class="dot" cx="128" cy="254" r="4"/><circle class="dot" cx="205" cy="325" r="6"/><circle class="dot" cx="247" cy="435" r="3"/>
+  <circle class="dot" cx="783" cy="78" r="3"/><circle class="dot" cx="1018" cy="184" r="5"/><circle class="dot" cx="1167" cy="326" r="6"/>
+  <circle class="dot" cx="1234" cy="408" r="4"/><circle class="dot" cx="1072" cy="316" r="5"/><circle class="dot" cx="846" cy="190" r="3"/>
+  <circle class="dot" cx="405" cy="470" r="4"/><circle class="dot" cx="357" cy="514" r="3"/><circle class="dot" cx="948" cy="116" r="4"/>
+</svg>
