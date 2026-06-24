@@ -329,10 +329,20 @@ body.auth-screen-open {
 }
 
 body .app .top-header {
+  min-height: 176px !important;
+  padding-bottom: 34px !important;
   border-radius: 0 !important;
   background-size: 100% 100% !important;
   background-position: center center !important;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   transform: translateZ(0);
+}
+
+body .app .top-header .top-row {
+  margin-bottom: 30px !important;
+}
+
+body .app .top-header .search-row {
+  transform: translateY(6px);
 }
