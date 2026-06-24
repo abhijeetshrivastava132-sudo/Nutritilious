@@ -94,6 +94,35 @@ img {
   font-weight: 900;
 }
 
+.nearby-empty h3 {
+  font-size: 0 !important;
+}
+
+.nearby-empty h3::before {
+  content: "We're not there yet!";
+  display: block;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 950;
+  line-height: 1.16;
+  letter-spacing: -0.45px;
+}
+
+.nearby-empty p {
+  font-size: 0 !important;
+}
+
+.nearby-empty p::before {
+  content: "Sorry, our services are currently unavailable at this location. We hope to serve you in the future.";
+  display: block;
+  max-width: 320px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
 @media (max-width: 370px) {
   .section {
     padding-left: 13px;
