@@ -259,10 +259,10 @@ function renderFilters() {
     .join('');
 }
 
-function renderEmptyNearbyState() {
+function renderEmptyNearbyState(showIcon = true) {
   mealList.innerHTML = `
-    <div class="nearby-empty">
-      <div class="nearby-empty-icon">${icon('pin')}</div>
+    <div class="nearby-empty${showIcon ? '' : ' no-icon'}">
+      ${showIcon ? `<div class="nearby-empty-icon">${icon('pin')}</div>` : ''}
       <h3>No nearby homemade food providers yet</h3>
       <p>We could not find providers within ${deliveryRadiusKm} km of your selected location. Try manual location or check again later.</p>
     </div>
@@ -639,7 +639,7 @@ function bindEvents() {
   categoryGrid?.addEventListener('click', (event) => {
     const categoryButton = event.target.closest('.cat-item');
     if (!categoryButton) return;
-    renderEmptyNearbyState();
+    renderEmptyNearbyState(false);
     mealList?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
