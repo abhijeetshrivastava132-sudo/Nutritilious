@@ -31,6 +31,13 @@
       document.head.appendChild(styleLink);
     }
 
+    if (!document.querySelector('link[href^="src/css/header-bg.css"]')) {
+      const headerBgLink = document.createElement('link');
+      headerBgLink.rel = 'stylesheet';
+      headerBgLink.href = 'src/css/header-bg.css?v=2';
+      document.head.appendChild(headerBgLink);
+    }
+
     if (!document.querySelector('script[src="src/js/location-details.js"]')) {
       const detailsScript = document.createElement('script');
       detailsScript.src = 'src/js/location-details.js';
