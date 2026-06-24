@@ -1,6 +1,9 @@
 (() => {
   const STORAGE_KEY = 'nutritiliousLocation';
   const REVERSE_GEOCODE_URL = 'https://nominatim.openstreetmap.org/reverse';
+  const SEARCH_GEOCODE_URL = 'https://nominatim.openstreetmap.org/search';
+  const TARGET_ACCURACY_METERS = 35;
+  const ACCURACY_WAIT_MS = 8000;
 
   const defaultLocation = {
     title: 'Lajpat Nagar Metro Station',
@@ -30,6 +33,12 @@
     if (!refs.locationStatus) return;
     refs.locationStatus.textContent = message;
     refs.locationStatus.className = `location-status ${type}`.trim();
+  }
+
+  function formatAccuracy(accuracy) {
+    const value = Number(accuracy);
+    if (!Number.isFinite(value)) return '';
+    return `Accuracy around ${Math.round(value)} m`;
   }
 
   function notifyLocationChange(location) {
@@ -69,7 +78,7 @@
 
     refs.locationSheet.classList.add('active');
     refs.locationSheet.setAttribute('aria-hidden', 'false');
-    setStatus('Choose current location or enter your area manually.');
+    setStatus('Use GPS for best accuracy or search your area manually.');
 
     setTimeout(() => {
       if (refs.manualLocationInput) refs.manualLocationInput.focus();
@@ -139,94 +148,191 @@
     };
   }
 
-  function createGpsFallbackLocation(latitude, longitude) {
+  async function geocodeManualLocation(query) {
+    const params = new URLSearchParams({
+      format: 'jsonv2',
+      q: query,
+      limit: '1',
+      addressdetails: '1',
+      'accept-language': 'en'
+    });
+
+    const response = await fetch(`${SEARCH_GEOCODE_URL}?${params.toString()}`);
+    if (!response.ok) {
+      throw new Error('Manual location search failed');
+    }
+
+    const results = await response.json();
+    const result = Array.isArray(results) ? results[0] : null;
+    if (!result || !result.lat || !result.lon) {
+      throw new Error('No matching location found');
+    }
+
+    const readable = getReadableAddressParts(result.address || {});
+
     return {
-      title: 'Current Location',
-      sub: `Lat ${latitude}, Long ${longitude}`,
-      source: 'gps',
-      latitude,
-      longitude
+      title: readable.title || query,
+      sub: readable.sub || result.display_name || 'Manual location selected',
+      fullAddress: result.display_name || query,
+      latitude: Number(result.lat).toFixed(6),
+      longitude: Number(result.lon).toFixed(6),
+      source: 'manual-geocoded'
     };
   }
 
-  function applyManualLocation(event) {
+  function createGpsFallbackLocation(latitude, longitude, accuracy = null) {
+    return {
+      title: 'Current Location',
+      sub: accuracy ? `Lat ${latitude}, Long ${longitude} • ${formatAccuracy(accuracy)}` : `Lat ${latitude}, Long ${longitude}`,
+      source: 'gps',
+      latitude,
+      longitude,
+      accuracy
+    };
+  }
+
+  async function applyManualLocation(event) {
     event.preventDefault();
     cacheRefs();
 
     const value = refs.manualLocationInput ? refs.manualLocationInput.value.trim() : '';
     if (value.length < 3) {
-      setStatus('Enter a proper area or street name.', 'error');
+      setStatus('Enter a proper area, street, or city name.', 'error');
       return;
     }
 
-    const parts = value.split(',').map((part) => part.trim()).filter(Boolean);
-    const location = {
-      title: parts[0] || value,
-      sub: parts.slice(1).join(', ') || 'Manual location selected',
-      source: 'manual'
-    };
+    const submitButton = refs.manualLocationForm?.querySelector('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+    setStatus('Searching this area and converting it into coordinates...');
 
-    updateHeaderLocation(location);
-    saveLocation(location);
-    setStatus('Location saved successfully.', 'success');
-    setTimeout(closeLocationSheet, 450);
+    try {
+      const location = await geocodeManualLocation(value);
+      updateHeaderLocation(location);
+      saveLocation(location);
+      setStatus('Location confirmed with coordinates.', 'success');
+      setTimeout(closeLocationSheet, 550);
+    } catch (error) {
+      const parts = value.split(',').map((part) => part.trim()).filter(Boolean);
+      const fallbackLocation = {
+        title: parts[0] || value,
+        sub: parts.slice(1).join(', ') || 'Manual location selected. GPS is more accurate.',
+        source: 'manual'
+      };
+
+      updateHeaderLocation(fallbackLocation);
+      saveLocation(fallbackLocation);
+      setStatus('Could not find exact coordinates. Manual text saved, but GPS will be more accurate.', 'error');
+      setTimeout(closeLocationSheet, 900);
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  }
+
+  function getPreciseCurrentPosition() {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error('Geolocation unsupported'));
+        return;
+      }
+
+      let bestPosition = null;
+      let watchId = null;
+      let settled = false;
+
+      const stop = () => {
+        if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+      };
+
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        stop();
+
+        if (bestPosition) {
+          resolve(bestPosition);
+        } else {
+          reject(new Error('Location unavailable'));
+        }
+      };
+
+      const handlePosition = (position) => {
+        const currentAccuracy = position.coords.accuracy || Number.POSITIVE_INFINITY;
+        const bestAccuracy = bestPosition?.coords?.accuracy || Number.POSITIVE_INFINITY;
+
+        if (!bestPosition || currentAccuracy < bestAccuracy) {
+          bestPosition = position;
+          setStatus(`Improving GPS accuracy... ${formatAccuracy(currentAccuracy)}`);
+        }
+
+        if (currentAccuracy <= TARGET_ACCURACY_METERS) {
+          finish();
+        }
+      };
+
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 0
+      };
+
+      navigator.geolocation.getCurrentPosition(handlePosition, reject, options);
+      watchId = navigator.geolocation.watchPosition(handlePosition, () => {
+        if (!bestPosition) reject(new Error('Location permission denied'));
+      }, options);
+
+      setTimeout(finish, ACCURACY_WAIT_MS);
+    });
   }
 
   async function applyDetectedLocation(position) {
     const latitude = position.coords.latitude.toFixed(6);
     const longitude = position.coords.longitude.toFixed(6);
-    const fallbackLocation = createGpsFallbackLocation(latitude, longitude);
+    const accuracy = position.coords.accuracy ? Math.round(position.coords.accuracy) : null;
+    const fallbackLocation = createGpsFallbackLocation(latitude, longitude, accuracy);
 
     updateHeaderLocation(fallbackLocation);
-    setStatus('Converting GPS into readable address...');
+    setStatus(`Converting GPS into readable address... ${formatAccuracy(accuracy)}`);
 
     try {
       const readableAddress = await reverseGeocode(latitude, longitude);
       const location = {
         ...fallbackLocation,
         title: readableAddress.title,
-        sub: readableAddress.sub,
+        sub: accuracy ? `${readableAddress.sub} • ${formatAccuracy(accuracy)}` : readableAddress.sub,
         fullAddress: readableAddress.fullAddress,
         source: 'gps-reverse-geocoded'
       };
 
       updateHeaderLocation(location);
       saveLocation(location);
-      setStatus('Current location saved with readable address.', 'success');
+      setStatus(accuracy ? `Current location saved. ${formatAccuracy(accuracy)}.` : 'Current location saved with readable address.', 'success');
     } catch (error) {
       saveLocation(fallbackLocation);
-      setStatus('Address conversion failed. GPS coordinates saved instead.', 'error');
+      setStatus('Address conversion failed. Best GPS coordinates saved instead.', 'error');
     }
 
-    setTimeout(closeLocationSheet, 700);
+    setTimeout(closeLocationSheet, 850);
   }
 
-  function detectCurrentLocation() {
+  async function detectCurrentLocation() {
     cacheRefs();
 
     if (!navigator.geolocation) {
-      setStatus('Your browser does not support location detection. Enter location manually.', 'error');
+      setStatus('Your browser does not support location detection. Search area manually.', 'error');
       return;
     }
 
-    setStatus('Detecting your current location...');
+    setStatus('Getting fresh GPS reading... keep location permission on.');
     if (refs.detectLocationBtn) refs.detectLocationBtn.disabled = true;
 
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        await applyDetectedLocation(position);
-        if (refs.detectLocationBtn) refs.detectLocationBtn.disabled = false;
-      },
-      () => {
-        if (refs.detectLocationBtn) refs.detectLocationBtn.disabled = false;
-        setStatus('Location permission denied or unavailable. Enter location manually.', 'error');
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 9000,
-        maximumAge: 60000
-      }
-    );
+    try {
+      const position = await getPreciseCurrentPosition();
+      await applyDetectedLocation(position);
+    } catch (error) {
+      setStatus('Location permission denied or unavailable. Search area manually.', 'error');
+    } finally {
+      if (refs.detectLocationBtn) refs.detectLocationBtn.disabled = false;
+    }
   }
 
   function handleDocumentClick(event) {
