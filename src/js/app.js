@@ -231,10 +231,18 @@ function getMealsForLocation() {
     .sort((firstMeal, secondMeal) => firstMeal.computedDistance - secondMeal.computedDistance);
 }
 
+function updateHomeLabels() {
+  document.querySelectorAll('.section-title').forEach((title) => {
+    if (title.textContent.trim() === 'Menu of the Day') {
+      title.textContent = 'Suggested for you';
+    }
+  });
+}
+
 function renderCategories() {
   categoryGrid.innerHTML = data.categories
     .map((category) => `
-      <button class="cat-item" type="button">
+      <button class="cat-item" type="button" data-category-name="${category.name}">
         <div class="cat-img-wrap">
           <img class="cat-img" src="${category.image}" alt="${category.name}">
         </div>
@@ -628,6 +636,13 @@ function bindEvents() {
     item.addEventListener('click', () => openPage(item.dataset.page));
   });
 
+  categoryGrid?.addEventListener('click', (event) => {
+    const categoryButton = event.target.closest('.cat-item');
+    if (!categoryButton) return;
+    renderEmptyNearbyState();
+    mealList?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   document.addEventListener('click', (event) => {
     const pageButton = event.target.closest('[data-page-btn]');
     if (pageButton) openPage(pageButton.dataset.pageBtn);
@@ -660,6 +675,7 @@ function bindEvents() {
 }
 
 mountLoginMarkup();
+updateHomeLabels();
 renderCategories();
 renderFilters();
 renderMeals();
