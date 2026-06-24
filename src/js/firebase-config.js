@@ -1,15 +1,14 @@
 // Firebase config for Nutritilious.
-// This Firebase Web App config is public by design.
-// Keep Authentication authorized domains and database/security rules strict.
+// Firebase Web App config is public by design.
+// Keep Authentication authorized domains and security rules strict.
 
 window.NUTRITILIOUS_FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyB5YDMTZKcJJ_lukhhLNBDHZuHOlwi2kBE',
-  authDomain: 'nutrilicious-82877.firebaseapp.com',
-  projectId: 'nutrilicious-82877',
-  storageBucket: 'nutrilicious-82877.firebasestorage.app',
-  messagingSenderId: '981834035729',
-  appId: '1:981834035729:web:4e49b224ec4fe1ac1e77b0',
-  measurementId: 'G-D137QWKEEK'
+  apiKey: "AIzaSyCzD-QcA0K-rSXM5VZYsGB2bE3FEfhkyX0",
+  authDomain: "nutrilious-ceebd.firebaseapp.com",
+  projectId: "nutrilious-ceebd",
+  storageBucket: "nutrilious-ceebd.firebasestorage.app",
+  messagingSenderId: "904909524137",
+  appId: "1:904909524137:web:e20913ddbd9aa3d3856db8"
 };
 
 window.NUTRITILIOUS_FIREBASE_AUTH_REDIRECT_URL = `${window.location.origin}${window.location.pathname}`;
