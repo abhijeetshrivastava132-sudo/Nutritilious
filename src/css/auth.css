@@ -351,6 +351,134 @@
   transform: none;
 }
 
+/* Header search + veg toggle refinements */
+.search-row {
+  gap: 10px;
+}
+
+.search-box {
+  height: 50px;
+  padding: 0 11px 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+}
+
+.search-box:focus-within {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.17), 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+.search-icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 9px;
+  color: #666666;
+}
+
+.search-box input {
+  height: 100%;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.search-box input::placeholder {
+  color: #8b8b8b;
+  font-weight: 750;
+}
+
+.search-divider {
+  height: 24px;
+  margin: 0 8px;
+  background: #ededed;
+}
+
+.mic-icon {
+  width: 17px;
+  height: 17px;
+  color: #9b001c;
+}
+
+.veg-card {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.veg-text {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  z-index: 2;
+  margin: 0;
+  color: #0d8d52;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.22s;
+}
+
+.veg-toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border-radius: inherit;
+  background: #ecfff5;
+  transition: 0.22s;
+}
+
+.veg-dot {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border-radius: 50%;
+  background: #0aa35f;
+  box-shadow: 0 7px 14px rgba(10, 163, 95, 0.28);
+  transition: 0.22s;
+}
+
+.veg-toggle.off {
+  background: #fff1f1;
+}
+
+.veg-toggle.off + .veg-dot {
+  background: var(--danger);
+}
+
+.veg-toggle.off .veg-dot {
+  right: 45px;
+  background: var(--danger);
+  box-shadow: 0 7px 14px rgba(224, 45, 45, 0.24);
+}
+
+.veg-toggle.off ~ .veg-text,
+.veg-card:has(.veg-toggle.off) .veg-text {
+  left: 38px;
+  color: var(--danger);
+}
+
+.veg-card:active,
+.search-box:active {
+  transform: scale(0.985);
+}
+
 @media (max-width: 370px) {
   .login-card.auth-card h1,
   .account-card.auth-account-card h1 {
@@ -359,5 +487,24 @@
 
   .auth-card {
     padding: 17px 14px 15px;
+  }
+
+  .search-row {
+    gap: 8px;
+  }
+
+  .search-box {
+    height: 48px;
+    padding-left: 12px;
+  }
+
+  .veg-card {
+    width: 74px;
+    height: 38px;
+  }
+
+  .veg-dot {
+    width: 28px;
+    height: 28px;
   }
 }
