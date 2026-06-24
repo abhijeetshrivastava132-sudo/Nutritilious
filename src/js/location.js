@@ -41,6 +41,13 @@
     return `Accuracy around ${Math.round(value)} m`;
   }
 
+  function getCleanHeaderSub(sub = '') {
+    return String(sub)
+      .replace(/\s*•\s*Accuracy around\s*\d+\s*m/gi, '')
+      .replace(/\s*Accuracy around\s*\d+\s*m/gi, '')
+      .trim();
+  }
+
   function notifyLocationChange(location) {
     window.dispatchEvent(new CustomEvent('nutritilious:location-changed', {
       detail: location
@@ -69,7 +76,7 @@
   function updateHeaderLocation(location) {
     const selectedLocation = location || defaultLocation;
     if (refs.locationTitle) refs.locationTitle.textContent = selectedLocation.title;
-    if (refs.locationSub) refs.locationSub.textContent = selectedLocation.sub;
+    if (refs.locationSub) refs.locationSub.textContent = getCleanHeaderSub(selectedLocation.sub);
   }
 
   function openLocationSheet() {
@@ -183,7 +190,7 @@
   function createGpsFallbackLocation(latitude, longitude, accuracy = null) {
     return {
       title: 'Current Location',
-      sub: accuracy ? `Lat ${latitude}, Long ${longitude} • ${formatAccuracy(accuracy)}` : `Lat ${latitude}, Long ${longitude}`,
+      sub: `Lat ${latitude}, Long ${longitude}`,
       source: 'gps',
       latitude,
       longitude,
@@ -298,7 +305,7 @@
       const location = {
         ...fallbackLocation,
         title: readableAddress.title,
-        sub: accuracy ? `${readableAddress.sub} • ${formatAccuracy(accuracy)}` : readableAddress.sub,
+        sub: readableAddress.sub,
         fullAddress: readableAddress.fullAddress,
         source: 'gps-reverse-geocoded'
       };
