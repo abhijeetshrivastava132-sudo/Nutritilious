@@ -329,6 +329,7 @@ body.auth-screen-open {
 }
 
 body .app .top-header {
+  border-radius: 0 !important;
   background-size: 100% 100% !important;
   background-position: center center !important;
   image-rendering: -webkit-optimize-contrast;
