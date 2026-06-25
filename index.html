@@ -1466,7 +1466,18 @@
     });
 
     profileHelpBtn.onclick = () => showToast('Help and support page coming soon');
-    profileLogoutBtn.onclick = () => showToast('Logged out');
+    profileLogoutBtn.onclick = () => {
+      localStorage.removeItem('nutritiliousProfileName');
+      localStorage.removeItem('nutritiliousProfilePhone');
+      localStorage.removeItem('nutritiliousProfileEmail');
+      profileNameInput.value = '';
+      profilePhoneInput.value = '';
+      profileEmailInput.value = '';
+      setProfileDetailsLocked(false);
+      profilePage.classList.remove('show');
+      setActiveNav(homeBtn);
+      showToast('Logged out');
+    };
 
     applyFilters();
 
