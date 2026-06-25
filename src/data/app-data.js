@@ -23,27 +23,84 @@ window.NUTRITILIOUS_DATA = {
 };
 
 (() => {
-  function setReferenceHeader() {
+  function injectHardHeaderOverride() {
+    let style = document.getElementById('hard-header-cleanup');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'hard-header-cleanup';
+      document.head.appendChild(style);
+    }
+
+    style.textContent = `
+      .top-header,
+      header.top-header {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+      }
+
+      .top-header::before,
+      .top-header::after,
+      header.top-header::before,
+      header.top-header::after {
+        content: none !important;
+        display: none !important;
+        background: none !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        opacity: 0 !important;
+      }
+
+      .search-row,
+      .search-box,
+      .veg-card,
+      #foodTypeToggle,
+      #vegToggle {
+        display: none !important;
+      }
+    `;
+  }
+
+  function applyHeaderCleanup() {
+    injectHardHeaderOverride();
+
+    const header = document.querySelector('.top-header');
     const title = document.getElementById('locationTitle');
     const sub = document.getElementById('locationSub');
-    const vegText = document.getElementById('foodTypeText');
+    const searchRow = document.querySelector('.search-row');
+    const foodTypeToggle = document.getElementById('foodTypeToggle');
+
+    if (header) {
+      header.style.setProperty('background', '#ffffff', 'important');
+      header.style.setProperty('background-color', '#ffffff', 'important');
+      header.style.setProperty('background-image', 'none', 'important');
+      header.style.setProperty('box-shadow', 'none', 'important');
+      header.style.setProperty('border-radius', '0', 'important');
+    }
 
     if (title) title.textContent = 'Kausa';
     if (sub) sub.textContent = 'Mumbra, Navi Mumbai';
-    if (vegText) vegText.textContent = 'Only Veg';
+    if (searchRow) searchRow.style.setProperty('display', 'none', 'important');
+    if (foodTypeToggle) foodTypeToggle.style.setProperty('display', 'none', 'important');
   }
 
   if (document.readyState === 'loading') {
+    injectHardHeaderOverride();
     document.addEventListener('DOMContentLoaded', () => {
-      setReferenceHeader();
-      setTimeout(setReferenceHeader, 80);
-      setTimeout(setReferenceHeader, 300);
-      setTimeout(setReferenceHeader, 800);
+      applyHeaderCleanup();
+      setTimeout(applyHeaderCleanup, 80);
+      setTimeout(applyHeaderCleanup, 300);
+      setTimeout(applyHeaderCleanup, 800);
+      setTimeout(applyHeaderCleanup, 1500);
     });
   } else {
-    setReferenceHeader();
-    setTimeout(setReferenceHeader, 80);
-    setTimeout(setReferenceHeader, 300);
-    setTimeout(setReferenceHeader, 800);
+    applyHeaderCleanup();
+    setTimeout(applyHeaderCleanup, 80);
+    setTimeout(applyHeaderCleanup, 300);
+    setTimeout(applyHeaderCleanup, 800);
+    setTimeout(applyHeaderCleanup, 1500);
   }
 })();
