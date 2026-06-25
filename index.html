@@ -1,1 +1,842 @@
-<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Nutritilious</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;-webkit-tap-highlight-color:transparent}:root{--red:#ef4f5f;--green:#267e3e;--text:#1c1c1c;--muted:#696969}body{background:#f3f3f3;color:var(--text)}button,input{font:inherit}button{border:0;background:none;cursor:pointer}.app{width:100%;max-width:430px;min-height:100vh;margin:0 auto;background:#fff;padding-bottom:88px;overflow-x:hidden}.header{position:sticky;top:0;z-index:50;padding:14px 15px 13px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.05)}.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.location-btn{display:flex;align-items:center;gap:4px;min-width:0;text-align:left}.pin{width:34px;height:34px;display:grid;place-items:center;color:var(--red);flex-shrink:0}.pin svg{width:30px;height:30px;fill:currentColor}.location-copy{min-width:0}.location-title{display:flex;align-items:center;gap:4px;color:var(--text);font-size:16px;font-weight:800;line-height:1;letter-spacing:-.25px}.location-title svg{width:13px;height:13px;stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.location-sub{display:block;max-width:245px;margin-top:4px;overflow:hidden;color:var(--muted);font-size:11.5px;font-weight:500;white-space:nowrap;text-overflow:ellipsis}.notification-btn{position:relative;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:#f5f5f5;color:#202020;flex-shrink:0}.notification-btn svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.35;fill:none;stroke-linecap:round;stroke-linejoin:round}.notification-dot{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%;background:#ef4f5f;border:2px solid #fff}.search-wrap{margin-top:14px;display:flex;align-items:center;gap:10px}.search-box{height:52px;flex:1;display:flex;align-items:center;padding:0 14px;border:1px solid #eee;border-radius:13px;background:#fff;box-shadow:0 2px 12px rgba(28,28,28,.08)}.search-box svg{width:20px;height:20px;color:var(--red);flex-shrink:0}.search-box input{width:100%;min-width:0;margin-left:10px;border:0;outline:0;background:transparent;color:#333;font-size:14px;font-weight:500}.search-box input::placeholder{color:#8b8b8b;opacity:1}.veg-input{display:none}.veg-toggle{width:64px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #eee;border-radius:13px;background:#fff;box-shadow:0 2px 12px rgba(28,28,28,.06)}.veg-toggle span:first-child{color:#1c1c1c;font-size:9.5px;font-weight:800;line-height:1}.switch{position:relative;width:35px;height:20px;margin-top:6px;border-radius:999px;background:#ef4f5f;transition:.2s}.dot{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.22);transition:.2s}.veg-input:checked+.veg-toggle .switch{background:#26a65b}.veg-input:checked+.veg-toggle .dot{left:17px}.section{margin-top:28px}.section:first-of-type{margin-top:22px}.section-head{display:flex;align-items:center;justify-content:space-between;padding:0 15px;margin-bottom:15px}.section-title{color:#1c1c1c;font-size:22px;font-weight:800;letter-spacing:-.45px;line-height:1.1}.see-all{color:var(--red);font-size:12px;font-weight:700}.category-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 12px;padding:0 15px}.cat{width:100%;text-align:center}.cat-img{width:72px;height:72px;margin:0 auto;overflow:hidden;border-radius:50%;background:#f6f6f6;box-shadow:0 8px 18px rgba(0,0,0,.08)}.cat-img img{width:100%;height:100%;object-fit:cover}.cat-name{margin-top:9px;color:#333;font-size:12.5px;font-weight:700;line-height:1.1}.filter-row{display:flex;gap:9px;padding:0 15px;overflow-x:auto;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.filter{height:36px;display:inline-flex;align-items:center;gap:6px;padding:0 13px;border:1px solid #e8e8e8;border-radius:999px;background:#fff;color:#3d3d3d;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.035)}.filter svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}.restaurant-list{display:grid;gap:22px;padding:0 15px}.restaurant-card{overflow:hidden;border-radius:22px;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.08)}.food-img-wrap{position:relative;height:180px;overflow:hidden;background:#f4f4f4}.food-img{width:100%;height:100%;object-fit:cover;display:block}.discount{position:absolute;left:0;bottom:14px;padding:7px 12px 7px 15px;border-radius:0 8px 8px 0;background:#256fef;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.2px}.time{position:absolute;right:10px;bottom:12px;padding:6px 9px;border-radius:8px;background:rgba(255,255,255,.95);color:#252525;font-size:11px;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.14)}.food-type{position:absolute;left:10px;top:10px;padding:5px 8px;border-radius:999px;background:#267e3e;color:#fff;font-size:9px;font-weight:900;letter-spacing:.45px}.food-type.nonveg{background:#d0342c}.card-body{padding:13px 13px 14px}.name-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.name{color:#1c1c1c;font-size:18px;font-weight:800;letter-spacing:-.35px;line-height:1.16}.rating{display:inline-flex;align-items:center;gap:3px;padding:4px 7px;border-radius:6px;background:#267e3e;color:#fff;font-size:12px;font-weight:800;flex-shrink:0}.rating svg{width:10px;height:10px;fill:currentColor}.meta{margin-top:6px;color:#696969;font-size:13px;font-weight:500;line-height:1.35}.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px;padding-top:11px;border-top:1px solid #f0f0f0}.price{color:#363636;font-size:13px;font-weight:700}.distance{color:#777;font-size:12px;font-weight:600}.bottom-nav{position:fixed;left:50%;bottom:0;z-index:100;width:100%;max-width:430px;height:78px;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px 6px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.98);border:1px solid rgba(0,0,0,.07);border-bottom:0;box-shadow:0 -8px 24px rgba(0,0,0,.09);transform:translateX(-50%);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px;gap:4px;color:#777;font-size:10px;font-weight:700}.nav-item.active{color:var(--red);background:#fff1f3}.nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.3;fill:none;stroke-linecap:round;stroke-linejoin:round}@media(max-width:370px){.category-row{gap:16px 8px}.cat-img{width:64px;height:64px}.cat-name{font-size:11.5px}.restaurant-card{border-radius:20px}.food-img-wrap{height:165px}.location-title{font-size:15px}.location-sub{max-width:215px}.pin{width:31px;height:31px}.pin svg{width:28px;height:28px}.notification-btn svg{width:22px;height:22px}.bottom-nav{height:76px}.nav-item{font-size:9.5px}.nav-item svg{width:21px;height:21px}}</style></head><body><div class=app><header class=header><div class=top-row><button class=location-btn type=button><span class=pin><svg viewBox="0 0 24 24"><path d="M12 2.2c-3.8 0-6.9 3.1-6.9 6.9 0 5.2 6.9 12.7 6.9 12.7s6.9-7.5 6.9-12.7c0-3.8-3.1-6.9-6.9-6.9zm0 9.4a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class=location-copy><span class=location-title>Deliver to <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span><span class=location-sub>Select your area</span></span></button><button class=notification-btn type=button><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span class=notification-dot></span></button></div><div class=search-wrap><label class=search-box><svg viewBox="0 0 24 24"><circle cx=11 cy=11 r=7 stroke=currentColor stroke-width=2.4 fill=none /><path d="M16.5 16.5 21 21" stroke=currentColor stroke-width=2.4 stroke-linecap=round /></svg><input placeholder="Search, order and enjoy"></label><input class=veg-input id=vegToggle type=checkbox><label class=veg-toggle for=vegToggle><span>Only Veg</span><span class=switch><span class=dot></span></span></label></div></header><main><section class=section><div class=section-head><h2 class=section-title>What are you craving?</h2></div><div class=category-row><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Breakfast</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Lunch</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Dinner</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Biryani</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Pizza</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Burger</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Momos</div></button><button class=cat type=button><div class=cat-img><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=300&q=80"></div><div class=cat-name>Dessert</div></button></div></section><section class=section><div class=section-head><h2 class=section-title>Suggested for you</h2><button class=see-all type=button>View all</button></div><div class=filter-row><button class=filter type=button><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M7 12h10"/><path d="M10 18h4"/></svg>Filters</button><button class=filter type=button>Rating 4.0+</button><button class=filter type=button>Fast Delivery</button><button class=filter type=button>Pure Veg</button><button class=filter type=button>Under ₹120</button></div></section><section class=section><div class=restaurant-list><article class=restaurant-card><div class=food-img-wrap><img class=food-img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=900&q=80"><span class=food-type>VEG</span><span class=discount>₹80 OFF</span><span class=time>10 mins</span></div><div class=card-body><div class=name-row><h3 class=name>Maa Kitchen Homemade</h3><span class=rating>4.8 ★</span></div><p class=meta>North Indian, Thali, Roti Sabji</p><div class=card-foot><span class=price>₹99 for one</span><span class=distance>0.7 km</span></div></div></article><article class=restaurant-card><div class=food-img-wrap><img class=food-img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=900&q=80"><span class=food-type>VEG</span><span class=discount>₹60 OFF</span><span class=time>18 mins</span></div><div class=card-body><div class=name-row><h3 class=name>Healthy Home Plate</h3><span class=rating>4.6 ★</span></div><p class=meta>Paneer Rice, Salad, Homemade Pickle</p><div class=card-foot><span class=price>₹129 for one</span><span class=distance>1.4 km</span></div></div></article><article class=restaurant-card><div class=food-img-wrap><img class=food-img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80"><span class="food-type nonveg">NON-VEG</span><span class=discount>₹70 OFF</span><span class=time>16 mins</span></div><div class=card-body><div class=name-row><h3 class=name>Home Chicken Tiffin</h3><span class=rating>4.7 ★</span></div><p class=meta>Chicken Curry, Rice, Salad</p><div class=card-foot><span class=price>₹149 for one</span><span class=distance>1.0 km</span></div></div></article></div></section></main><nav class=bottom-nav><button class="nav-item active" type=button><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button><button class=nav-item type=button><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg><span>Orders</span></button><button class=nav-item type=button><svg viewBox="0 0 24 24"><path d="M6 6h15l-2 8H8L6 6z"/><path d="M6 6 5 3H2"/><circle cx=9 cy=20 r=1.5 /><circle cx=18 cy=20 r=1.5 /></svg><span>Cart</span></button><button class=nav-item type=button><svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-3-6 3V4z"/></svg><span>Subscription</span></button><button class=nav-item type=button><svg viewBox="0 0 24 24"><path d="M12 12c2.6 0 4.6-2 4.6-4.6S14.6 2.8 12 2.8 7.4 4.8 7.4 7.4 9.4 12 12 12z"/><path d="M4.6 20.2V19c0-3.1 4.2-4.8 7.4-4.8s7.4 1.7 7.4 4.8v1.2"/></svg><span>Profile</span></button></nav></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutritilious</title>
+  <link rel="stylesheet" href="src/css/base.css" />
+  <link rel="stylesheet" href="src/css/components.css" />
+  <link rel="stylesheet" href="src/css/location.css" />
+  <link rel="stylesheet" href="src/css/pages.css" />
+  <link rel="stylesheet" href="src/css/auth.css" />
+  <link rel="stylesheet" href="src/css/auth-swiggy.css" />
+  <link rel="stylesheet" href="src/css/ui-fixes.css" />
+  <style>
+    #subscriptionPage .subscription-wrap {
+      min-height: calc(100vh - 72px);
+      padding: 14px 12px 92px;
+      background: #fbf7ed;
+    }
+
+    #subscriptionPage .subscription-card {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 18px 22px;
+      border: 1.4px solid rgba(123, 17, 29, 0.12);
+      border-radius: 27px;
+      background:
+        radial-gradient(circle at top left, rgba(176, 132, 50, 0.09), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(123, 17, 29, 0.06), transparent 34%),
+        #fffaf0;
+      box-shadow: 0 18px 42px rgba(60, 36, 20, 0.12);
+      text-align: center;
+    }
+
+    #subscriptionPage .subscription-card::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 40px;
+      right: 40px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(176, 132, 50, 0.86), transparent);
+    }
+
+    .sub-decor-heart {
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 30px;
+      transform: translateX(-50%);
+      color: #a57d36;
+      background: #fffaf0;
+    }
+
+    .sub-decor-heart svg {
+      width: 25px;
+      height: 25px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sub-star {
+      position: absolute;
+      z-index: 1;
+      width: 22px;
+      height: 22px;
+      background: #c09a3c;
+      clip-path: polygon(50% 0, 61% 37%, 100% 50%, 61% 63%, 50% 100%, 39% 63%, 0 50%, 39% 37%);
+      opacity: 0.95;
+    }
+
+    .sub-star.left {
+      top: 146px;
+      left: 42px;
+    }
+
+    .sub-star.right {
+      top: 150px;
+      right: 42px;
+    }
+
+    #subscriptionPage .sub-title {
+      margin-top: 18px;
+      color: #7b111d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: 0.5px;
+    }
+
+    #subscriptionPage .sub-coming {
+      margin-top: 7px;
+      color: #8d7040;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: 0.4px;
+    }
+
+    #subscriptionPage .sub-desc {
+      max-width: 330px;
+      margin: 27px auto 0;
+      color: #242424;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.58;
+    }
+
+    #subscriptionPage .sub-line {
+      height: 1px;
+      margin: 30px 18px 18px;
+      background: rgba(141, 112, 64, 0.16);
+    }
+
+    #subscriptionPage .primary-btn,
+    #subscriptionPage .outline-btn {
+      position: relative;
+      min-height: 62px;
+      border-radius: 17px;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    #subscriptionPage .primary-btn {
+      gap: 18px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #9c0718, #710511);
+      box-shadow: 0 14px 28px rgba(114, 5, 17, 0.26);
+    }
+
+    .btn-arrow svg {
+      display: block;
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #subscriptionPage .outline-btn {
+      justify-content: center;
+      margin-top: 14px;
+      padding: 0 70px 0 24px;
+      border: 1.6px solid rgba(123, 17, 29, 0.68);
+      color: #7b111d;
+      background: rgba(255, 250, 240, 0.82);
+    }
+
+    #subscriptionPage .outline-btn .interest-text {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    #subscriptionPage .outline-btn.interested .interest-text {
+      font-size: 0;
+    }
+
+    #subscriptionPage .outline-btn.interested .interest-text::after {
+      content: "I’m Interested";
+      font-size: 17px;
+    }
+
+    #subscriptionPage .heart-icon {
+      position: absolute;
+      right: 22px;
+      display: grid;
+      place-items: center;
+      width: 37px;
+      height: 37px;
+      border-radius: 999px;
+      background: rgba(123, 17, 29, 0.07);
+    }
+
+    #subscriptionPage .heart-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #7b111d;
+      stroke-width: 1.9;
+      fill: none;
+    }
+
+    #subscriptionPage .outline-btn.interested .heart-icon svg {
+      fill: #7b111d;
+    }
+
+    #knowMorePage .know-more-page {
+      min-height: calc(100vh - 70px);
+      padding: 14px 12px 96px;
+      background: #fbf7ed;
+    }
+
+    .subscription-full-banner {
+      overflow: hidden;
+      border: 1px solid rgba(123, 17, 29, 0.08);
+      border-radius: 26px;
+      background: #fffdf5;
+      box-shadow: 0 18px 44px rgba(60, 36, 20, 0.11);
+    }
+
+    .banner-hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 150px;
+      gap: 8px;
+      min-height: 320px;
+      padding: 25px 18px 16px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(100, 138, 77, 0.12), transparent 28%),
+        linear-gradient(180deg, #fffaf0, #fffdf5);
+    }
+
+    .banner-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #7b111d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .banner-logo svg {
+      width: 22px;
+      height: 22px;
+      fill: #5f8c45;
+    }
+
+    .banner-tagline {
+      margin-top: 4px;
+      color: #41342a;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1.25px;
+      text-transform: uppercase;
+    }
+
+    .banner-hero h1 {
+      margin-top: 30px;
+      color: #242424;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: 0.3px;
+    }
+
+    .banner-hero h1 span {
+      display: block;
+      color: #7b111d;
+      font-size: 38px;
+      font-weight: 700;
+    }
+
+    .banner-hero h2 {
+      margin-top: 10px;
+      color: #2d3428;
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .banner-hero p {
+      max-width: 210px;
+      margin-top: 14px;
+      color: #2f2f2f;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .hero-plate {
+      align-self: center;
+      width: 168px;
+      height: 168px;
+      margin: 48px -24px 0 0;
+      overflow: hidden;
+      border: 10px solid #fff8e8;
+      border-radius: 999px;
+      box-shadow: 0 18px 40px rgba(42, 30, 18, 0.16);
+    }
+
+    .hero-plate img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.12);
+    }
+
+    .trust-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .trust-item {
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      color: #3d3d3d;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .trust-item svg,
+    .lifestyle-chip svg,
+    .meal-stat svg,
+    .schedule-step svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .lifestyle-section {
+      padding: 18px 15px 15px;
+      background: #f7f5e9;
+      text-align: center;
+    }
+
+    .lifestyle-section h3 {
+      color: #332c24;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+    .lifestyle-section p {
+      max-width: 330px;
+      margin: 8px auto 0;
+      color: #333333;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .lifestyle-chip {
+      display: grid;
+      gap: 7px;
+      justify-items: center;
+      color: #6b1f2a;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .lifestyle-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: #fffdf5;
+      box-shadow: 0 9px 20px rgba(60, 36, 20, 0.08);
+    }
+
+    .mini-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .mini-info-card {
+      min-height: 150px;
+      padding: 17px 15px;
+      border-radius: 20px;
+      background: #fff4cf;
+    }
+
+    .mini-info-card:nth-child(2) {
+      background: #fff0ed;
+    }
+
+    .mini-info-card h3 {
+      color: #7b111d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.18;
+    }
+
+    .mini-info-card p {
+      margin-top: 12px;
+      color: #333333;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .balance-card {
+      margin: 0 14px 14px;
+      padding: 18px 14px;
+      border: 1px solid rgba(80, 70, 40, 0.1);
+      border-radius: 22px;
+      background: #fffdf7;
+    }
+
+    .balance-card h3 {
+      color: #1f1f1f;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .balance-card p {
+      margin-top: 8px;
+      color: #333333;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .meal-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .meal-stat {
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      color: #3d3d3d;
+      font-size: 11px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .schedule-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 14px;
+      color: #352820;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-align: center;
+    }
+
+    .schedule-title::before,
+    .schedule-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(60, 36, 20, 0.22);
+    }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .schedule-step {
+      display: grid;
+      gap: 5px;
+      justify-items: center;
+      color: #3b3b3b;
+      font-size: 9px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .schedule-step small {
+      display: block;
+      color: #6f6f6f;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .interest-strip {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      align-items: center;
+      margin: 0 14px 14px;
+      padding: 14px;
+      border-radius: 20px;
+      background: #fff0ed;
+    }
+
+    .interest-badge {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      color: #9b001c;
+      background: #fffdf7;
+    }
+
+    .interest-badge svg {
+      width: 23px;
+      height: 23px;
+      fill: currentColor;
+    }
+
+    .interest-strip h3 {
+      color: #7b111d;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .interest-strip p {
+      margin-top: 5px;
+      color: #242424;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    #knowMorePage .primary-btn {
+      min-height: 58px;
+      margin: 0 14px 16px;
+      width: calc(100% - 28px);
+      border-radius: 18px;
+      gap: 16px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #9c0718, #710511);
+      box-shadow: 0 14px 28px rgba(114, 5, 17, 0.24);
+    }
+
+    @media (max-width: 370px) {
+      #subscriptionPage .sub-title {
+        font-size: 29px;
+      }
+
+      #subscriptionPage .sub-coming {
+        font-size: 26px;
+      }
+
+      .banner-hero {
+        grid-template-columns: 1fr 128px;
+      }
+
+      .banner-hero h1 {
+        font-size: 31px;
+      }
+
+      .banner-hero h1 span {
+        font-size: 33px;
+      }
+
+      .hero-plate {
+        width: 145px;
+        height: 145px;
+      }
+
+      .lifestyle-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+  <script src="src/data/app-data.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js" defer></script>
+  <script src="src/js/firebase-config.js" defer></script>
+  <script src="src/js/app.js" defer></script>
+  <script src="src/js/auth-ui.js" defer></script>
+  <script src="src/js/location.js" defer></script>
+  <script src="src/js/location-details.js" defer></script>
+  <script src="src/js/veg-filter.js" defer></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="top-header">
+      <div class="top-row">
+        <button class="location-btn" id="locationBtn" type="button" aria-label="Choose delivery location" aria-haspopup="dialog">
+          <span class="location-pin">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c-3.8 0-6.9 3.1-6.9 6.9 0 5.2 6.9 12.7 6.9 12.7s6.9-7.5 6.9-12.7c0-3.8-3.1-6.9-6.9-6.9zm0 9.4a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          </span>
+          <span class="location-text">
+            <span class="location-title-row">
+              <span class="location-title" id="locationTitle">Choose location</span>
+              <span class="location-down">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </span>
+            </span>
+            <span class="location-sub" id="locationSub">Tap to select delivery address</span>
+          </span>
+        </button>
+
+        <button class="profile-btn" id="profileBtn" type="button" aria-label="Open login or account">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.6 0 4.6-2 4.6-4.6S14.6 2.8 12 2.8 7.4 4.8 7.4 7.4 9.4 12 12 12zm0 2.2c-3.2 0-7.4 1.7-7.4 4.8v1.2h14.8V19c0-3.1-4.2-4.8-7.4-4.8z"/></svg>
+        </button>
+      </div>
+
+      <div class="search-row">
+        <label class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search, order and enjoy" />
+          <span class="search-divider"></span>
+          <svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14c1.7 0 3-1.3 3-3V5c0-1.7-1.3-3-3-3S9 3.3 9 5v6c0 1.7 1.3 3 3 3z" fill="currentColor"/><path d="M18.2 10.5c0 3.4-2.4 6.1-6.2 6.1s-6.2-2.7-6.2-6.1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M12 16.8V21M8.5 21h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </label>
+
+        <button class="veg-card" id="foodTypeToggle" type="button" aria-label="Toggle veg-only filter">
+          <span class="veg-text" id="foodTypeText">VEG</span>
+          <span class="veg-toggle off" id="vegToggle"><span class="veg-dot"></span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page active-page" id="homePage">
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">What's on your mind?</h2>
+            <button class="see-all" type="button">See all</button>
+          </div>
+          <div class="category-grid" id="categoryGrid"></div>
+        </section>
+
+        <div class="offer-strip">
+          <article class="offer-card">
+            <div class="offer-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z"/></svg></div>
+            <div class="offer-title">10 mins delivery</div>
+            <div class="offer-sub">Fast cooks nearby</div>
+          </article>
+          <article class="offer-card">
+            <div class="offer-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-9-9V4h7l10 8z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></div>
+            <div class="offer-title">Min ₹100 off</div>
+            <div class="offer-sub">On selected meals</div>
+          </article>
+        </div>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">Menu of the Day</h2>
+            <button class="see-all" type="button">View all</button>
+          </div>
+        </section>
+
+        <div class="filters" id="filterList"></div>
+        <section class="restaurant-list" id="mealList"></section>
+      </section>
+
+      <section class="page" id="cartPage">
+        <div class="inner-header">
+          <button class="back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="inner-title">Cart</div>
+        </div>
+        <div class="empty-page">
+          <div class="empty-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v15l-3-2-2 2-2-2-2 2-2-2-3 2V6a2 2 0 0 1 2-2z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg></div>
+          <h2 class="empty-title">Your cart is empty</h2>
+          <p class="empty-text">Choose a homemade meal or tiffin option. Selected items will appear here.</p>
+          <button class="empty-btn" type="button" data-page-btn="homePage">Explore food</button>
+        </div>
+      </section>
+
+      <section class="page" id="trackPage">
+        <div class="inner-header">
+          <button class="back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="inner-title">Track</div>
+        </div>
+        <div class="empty-page">
+          <div class="empty-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+          <h2 class="empty-title">No active order</h2>
+          <p class="empty-text">Tracking will be available after you place an order.</p>
+          <button class="empty-btn" type="button" data-page-btn="homePage">Go to home</button>
+        </div>
+      </section>
+
+      <section class="page" id="subscriptionPage">
+        <div class="inner-header">
+          <button class="back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="inner-title">Subscription</div>
+        </div>
+        <div class="subscription-wrap">
+          <article class="subscription-card">
+            <span class="sub-decor-heart" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 4.6c-1.8-1.7-4.6-1.6-6.3.2L12 7.4 9.5 4.8C7.8 3 5 2.9 3.2 4.6c-1.9 1.8-2 4.9-.1 6.8L12 20l8.9-8.6c1.9-1.9 1.8-5-.1-6.8z"/></svg></span>
+            <span class="sub-star left" aria-hidden="true"></span>
+            <span class="sub-star right" aria-hidden="true"></span>
+            <h1 class="sub-title">Subscription Plans</h1>
+            <div class="sub-coming">Coming Soon!</div>
+            <p class="sub-desc">We’re working on something exciting to make healthy eating even more convenient for you.</p>
+            <div class="sub-line"></div>
+            <button class="primary-btn" type="button" id="knowMoreBtn">
+              <span>Know More</span>
+              <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+            </button>
+            <button class="outline-btn" type="button" id="interestBtn">
+              <span class="interest-text">I’m Interested</span>
+              <span class="heart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.8-1.7-4.6-1.6-6.3.2L12 7.4 9.5 4.8C7.8 3 5 2.9 3.2 4.6c-1.9 1.8-2 4.9-.1 6.8L12 20l8.9-8.6c1.9-1.9 1.8-5-.1-6.8z"/></svg></span>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" id="knowMorePage">
+        <div class="inner-header">
+          <button class="back-btn" type="button" data-page-btn="subscriptionPage" aria-label="Back to subscription"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="inner-title">Know More</div>
+        </div>
+        <div class="know-more-page">
+          <article class="subscription-full-banner">
+            <section class="banner-hero">
+              <div>
+                <div class="banner-logo">
+                  Nutritilious
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 11-9 2 7-1 13-7 13H5z"/></svg>
+                </div>
+                <div class="banner-tagline">Home-made. Healthy. Delivered.</div>
+                <h1>Healthy <span>Home-Made Meals,</span></h1>
+                <h2>Delivered with Care</h2>
+                <p>Experience fresh, home-cooked food prepared by trusted local cooks and home chefs, delivered to your doorstep.</p>
+              </div>
+              <div class="hero-plate">
+                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80" alt="Healthy homemade meal plate">
+              </div>
+              <div class="trust-row">
+                <div class="trust-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v15l-3-2-2 2-2-2-2 2-2-2-3 2V6a2 2 0 0 1 2-2z"/><path d="M9 9h6"/></svg><span>100%<br>Home-Made</span></div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 11-9 2 7-1 13-7 13H5z"/><path d="M5 21c1-5 5-8 10-10"/></svg><span>Freshly<br>Cooked Daily</span></div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-5"/></svg><span>Hygienic<br>& Safe</span></div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12a7 7 0 0 1 14 0v5a2 2 0 0 1-2 2h-2"/><path d="M9 19h6"/><path d="M5 13h3v5H5z"/><path d="M16 13h3v5h-3z"/></svg><span>Support on<br>WhatsApp</span></div>
+              </div>
+            </section>
+
+            <section class="lifestyle-section">
+              <h3>Customized for Every Lifestyle</h3>
+              <p>Whether you're following a specific diet or working towards a goal, we have meal options designed just for you.</p>
+              <div class="lifestyle-grid">
+                <div class="lifestyle-chip"><span class="lifestyle-icon"><svg viewBox="0 0 24 24"><path d="M12 21c4-3 7-7 7-11a7 7 0 0 0-14 0c0 4 3 8 7 11z"/></svg></span>Keto Diet</div>
+                <div class="lifestyle-chip"><span class="lifestyle-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.8-4 5-6 8-6s6.2 2 8 6"/></svg></span>PCOD Friendly</div>
+                <div class="lifestyle-chip"><span class="lifestyle-icon"><svg viewBox="0 0 24 24"><path d="M6 12h12"/><path d="M4 9v6"/><path d="M20 9v6"/><path d="M9 7v10"/><path d="M15 7v10"/></svg></span>Gym & Protein</div>
+                <div class="lifestyle-chip"><span class="lifestyle-icon"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="12" height="15" rx="2"/><path d="M9 5a3 3 0 0 1 6 0"/></svg></span>Weight Loss</div>
+                <div class="lifestyle-chip"><span class="lifestyle-icon"><svg viewBox="0 0 24 24"><path d="M20.8 4.6c-1.8-1.7-4.6-1.6-6.3.2L12 7.4 9.5 4.8C7.8 3 5 2.9 3.2 4.6c-1.9 1.8-2 4.9-.1 6.8L12 20l8.9-8.6c1.9-1.9 1.8-5-.1-6.8z"/></svg></span>Heart Healthy</div>
+                <div class="lifestyle-chip"><span class="lifestyle-icon"><svg viewBox="0 0 24 24"><path d="M5 12c0-5 4-8 11-9 2 7-1 13-7 13H5z"/><path d="M5 21c1-5 5-8 10-10"/></svg></span>Balanced Nutrition</div>
+              </div>
+            </section>
+
+            <section class="mini-info-grid">
+              <div class="mini-info-card"><h3>Have a Favorite Family Recipe?</h3><p>Users can submit their own recipes and meal preferences. Our home chefs may prepare custom recipes based on feasibility and ingredients.</p></div>
+              <div class="mini-info-card"><h3>Subscription Plans Coming Soon</h3><p>We’re working on launching our subscription model to make healthy eating simpler and more convenient than ever.</p></div>
+            </section>
+
+            <section class="balance-card">
+              <h3>Every Meal. Every Day. Perfectly Balanced.</h3>
+              <p>Our meals are thoughtfully planned to provide 2000 calories per day through a balanced diet.</p>
+              <div class="meal-stats">
+                <div class="meal-stat"><svg viewBox="0 0 24 24"><path d="M12 3s5 5 5 10a5 5 0 0 1-10 0c0-5 5-10 5-10z"/></svg><span>2000<br>Calories per day</span></div>
+                <div class="meal-stat"><svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M20 3v18"/><circle cx="12" cy="12" r="6"/></svg><span>Balanced<br>Nutrition</span></div>
+                <div class="meal-stat"><svg viewBox="0 0 24 24"><path d="M8 4h8l1 3h3v14H4V7h3l1-3z"/><path d="M9 12l2 2 4-4"/></svg><span>Planned by<br>Nutrition Experts</span></div>
+              </div>
+              <div class="schedule-title">Daily Meal Schedule</div>
+              <div class="schedule-row">
+                <div class="schedule-step"><svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M6 12a6 6 0 0 0 12 0"/></svg>Breakfast<small>8:00 AM</small></div>
+                <div class="schedule-step"><svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M6 12a6 6 0 0 0 12 0"/></svg>Mid-Morning<small>11:00 AM</small></div>
+                <div class="schedule-step"><svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M6 12a6 6 0 0 0 12 0"/></svg>Lunch<small>1:30 PM</small></div>
+                <div class="schedule-step"><svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M6 12a6 6 0 0 0 12 0"/></svg>Evening Snack<small>4:30 PM</small></div>
+                <div class="schedule-step"><svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M6 12a6 6 0 0 0 12 0"/></svg>Dinner<small>8:00 PM</small></div>
+              </div>
+            </section>
+
+            <section class="interest-strip">
+              <div class="interest-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.8-1.7-4.6-1.6-6.3.2L12 7.4 9.5 4.8C7.8 3 5 2.9 3.2 4.6c-1.9 1.8-2 4.9-.1 6.8L12 20l8.9-8.6c1.9-1.9 1.8-5-.1-6.8z"/></svg></div>
+              <div><h3>Interested?</h3><p>Click the “I’m Interested” button and we will notify you when this offer starts operating in your area.</p></div>
+            </section>
+
+            <button class="primary-btn" type="button" data-page-btn="homePage">
+              <span>Explore Healthy Meals</span>
+              <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" id="loginPage">
+        <div class="login-wrap">
+          <button class="login-back-btn" type="button" data-page-btn="homePage" aria-label="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <article class="login-card auth-card" id="loginCard"></article>
+          <article class="account-card auth-account-card" id="accountCard" hidden></article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" type="button" data-page="homePage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.5z"/></svg><span>Home</span></button>
+      <button class="nav-item" type="button" data-page="cartPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-2 8H8L6 6z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span>Cart</span></button>
+      <button class="nav-item" type="button" data-page="trackPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Track</span></button>
+      <button class="nav-item" type="button" data-page="subscriptionPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-4-7 4V5a2 2 0 0 1 2-2z"/><path d="M9 8h6"/><path d="M9 12h4"/></svg><span>Subscription</span></button>
+    </nav>
+
+    <div class="location-sheet" id="locationSheet" aria-hidden="true">
+      <button class="location-backdrop" id="locationBackdrop" type="button" aria-label="Close location selector"></button>
+      <section class="location-panel" role="dialog" aria-modal="true" aria-labelledby="locationSheetTitle">
+        <div class="location-drag"></div>
+        <div class="location-panel-head">
+          <div>
+            <p class="location-kicker">Delivery location</p>
+            <h2 id="locationSheetTitle">Choose your location</h2>
+          </div>
+          <button class="location-close" id="locationCloseBtn" type="button" aria-label="Close location selector">×</button>
+        </div>
+
+        <button class="detect-location-btn" id="detectLocationBtn" type="button">
+          <span class="detect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <span><strong>Use precise current location</strong><small>Allow GPS permission for better nearby results</small></span>
+        </button>
+
+        <div class="location-or"><span></span>or search manually<span></span></div>
+
+        <form class="manual-location-form" id="manualLocationForm">
+          <label for="manualLocationInput">Search area manually</label>
+          <input id="manualLocationInput" type="text" placeholder="Search area, street, or city" autocomplete="street-address" />
+          <button class="save-location-btn" type="submit">Confirm location</button>
+        </form>
+
+        <p class="location-status" id="locationStatus">GPS gives better nearby results. Manual search will be converted into coordinates.</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
