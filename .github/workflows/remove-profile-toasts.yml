@@ -20,18 +20,19 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
           index_path = Path('index.html')
           text = index_path.read_text(encoding='utf-8')
 
-          text = text.replace("        showToast('Edit details');\n", "")
-          text = text.replace("      showToast('Details saved');\n", "")
-          text = text.replace(
-              "      showToast('Logged out');\n"
-              "      setTimeout(() => {\n"
-              "        window.location.href = 'login.html';\n"
-              "      }, 500);\n",
-              "      window.location.href = 'login.html';\n"
+          text = re.sub(r"^\s*showToast\('Edit details'\);\n", "", text, flags=re.MULTILINE)
+          text = re.sub(r"^\s*showToast\('Details saved'\);\n", "", text, flags=re.MULTILINE)
+          text = re.sub(r"^\s*showToast\('Logged out'\);\n", "", text, flags=re.MULTILINE)
+          text = re.sub(
+              r"\s*setTimeout\(\(\) => \{\n\s*window\.location\.href = 'login\.html';\n\s*\}, 500\);",
+              "\n      window.location.href = 'login.html';",
+              text,
+              flags=re.MULTILINE
           )
 
           index_path.write_text(text, encoding='utf-8')
