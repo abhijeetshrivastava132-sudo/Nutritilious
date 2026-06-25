@@ -1,1 +1,1 @@
-<script>alert('x')</script>
+temporary file removed
