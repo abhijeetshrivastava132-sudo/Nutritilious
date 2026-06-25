@@ -64,19 +64,14 @@
     .name-row,
     .card-foot,
     .section-head,
-    .notify-head,
-    .profile-row,
-    .profile-user,
-    .profile-stat-row {
+    .notify-head {
       display: flex;
       align-items: center;
     }
 
     .top-row,
     .section-head,
-    .card-foot,
-    .profile-row,
-    .profile-stat-row {
+    .card-foot {
       justify-content: space-between;
     }
 
@@ -143,7 +138,9 @@
     .filter svg,
     .notify-back svg,
     .empty-icon svg,
-    .profile-icon svg {
+    .profile-v2-back svg,
+    .profile-v2-field svg,
+    .profile-v2-menu-icon svg {
       stroke: currentColor;
       fill: none;
       stroke-linecap: round;
@@ -493,21 +490,24 @@
       stroke-width: 2.3;
     }
 
-    .location-sheet {
+    .location-sheet,
+    .profile-language-sheet {
       position: fixed;
       inset: 0;
-      z-index: 200;
+      z-index: 300;
       display: none;
       align-items: flex-end;
       justify-content: center;
       background: rgba(0, 0, 0, 0.34);
     }
 
-    .location-sheet.show {
+    .location-sheet.show,
+    .profile-language-sheet.show {
       display: flex;
     }
 
-    .location-panel {
+    .location-panel,
+    .profile-language-panel {
       width: 100%;
       max-width: 430px;
       padding: 18px 16px 22px;
@@ -515,19 +515,22 @@
       background: #fff;
     }
 
-    .location-panel-head {
+    .location-panel-head,
+    .profile-language-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 14px;
     }
 
-    .location-panel-title {
+    .location-panel-title,
+    .profile-language-head h2 {
       font-size: 20px;
       font-weight: 900;
     }
 
-    .location-close {
+    .location-close,
+    .profile-language-close {
       width: 34px;
       height: 34px;
       border-radius: 50%;
@@ -655,150 +658,266 @@
       font-weight: 850;
     }
 
-    .profile-card {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 22px;
+    .profile-v2-screen {
+      max-width: 430px;
+      height: 100vh;
+      margin: auto;
+      overflow: hidden;
+      background: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-v2-head {
+      height: 56px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
       background: #fff;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid #eee;
     }
 
-    .profile-user {
-      gap: 13px;
-    }
-
-    .profile-avatar {
-      width: 64px;
-      height: 64px;
+    .profile-v2-back {
+      width: 39px;
+      height: 39px;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: #fff1f3;
-      color: #ef4f5f;
-      font-size: 25px;
-      font-weight: 950;
+      background: #f3f3f3;
     }
 
-    .profile-user h2 {
-      font-size: 21px;
-      font-weight: 900;
+    .profile-v2-back svg {
+      width: 22px;
+      height: 22px;
+      stroke: #111;
+      stroke-width: 2.7;
+    }
+
+    .profile-v2-head h1 {
+      font-size: 22px;
+      font-weight: 950;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-v2-content {
+      flex: 1;
+      min-height: 0;
+      padding: 12px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .profile-v2-form-card,
+    .profile-v2-menu-card {
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    }
+
+    .profile-v2-form-card {
+      padding: 13px;
+    }
+
+    .profile-v2-form-card h2 {
+      margin-bottom: 10px;
+      font-size: 17px;
+      font-weight: 950;
       letter-spacing: -0.3px;
     }
 
-    .profile-user p {
-      margin-top: 4px;
-      color: #696969;
-      font-size: 12.5px;
-      font-weight: 600;
+    .profile-v2-group {
+      margin-bottom: 9px;
     }
 
-    .profile-stat-row {
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .profile-stat {
-      flex: 1;
-      padding: 13px 8px;
-      border-radius: 16px;
-      background: #f8f8f8;
-      text-align: center;
-    }
-
-    .profile-stat strong {
+    .profile-v2-group label {
       display: block;
-      font-size: 17px;
-      font-weight: 900;
-    }
-
-    .profile-stat span {
-      display: block;
-      margin-top: 3px;
-      color: #696969;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .profile-section-title {
-      margin: 22px 2px 10px;
-      font-size: 13px;
-      font-weight: 900;
+      margin-bottom: 5px;
       color: #555;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
+      font-size: 11px;
+      font-weight: 850;
     }
 
-    .profile-menu {
-      overflow: hidden;
-      border-radius: 20px;
-      background: #fff;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    .profile-v2-field {
+      height: 43px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      background: #fafafa;
     }
 
-    .profile-row {
+    .profile-v2-field svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      stroke: #ef4f5f;
+      stroke-width: 2.3;
+    }
+
+    .profile-v2-field input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #171717;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .profile-v2-field input::placeholder {
+      color: #999;
+      font-weight: 650;
+    }
+
+    .profile-v2-save {
+      width: 100%;
+      height: 43px;
+      margin-top: 10px;
+      border-radius: 15px;
+      background: #ef4f5f;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 950;
+      box-shadow: 0 8px 16px rgba(239, 79, 95, 0.22);
+    }
+
+    .profile-v2-menu-row {
       width: 100%;
       min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       padding: 0 14px;
       border-bottom: 1px solid #f0f0f0;
       text-align: left;
     }
 
-    .profile-row:last-child {
+    .profile-v2-menu-row:last-child {
       border-bottom: 0;
     }
 
-    .profile-row-left {
+    .profile-v2-menu-left {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
+      min-width: 0;
     }
 
-    .profile-icon {
-      width: 34px;
-      height: 34px;
+    .profile-v2-menu-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
       display: grid;
       place-items: center;
-      border-radius: 12px;
-      background: #fff1f3;
+      border-radius: 14px;
+      background: #fff0f2;
       color: #ef4f5f;
     }
 
-    .profile-icon svg {
-      width: 19px;
-      height: 19px;
-      stroke-width: 2.2;
+    .profile-v2-menu-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.3;
     }
 
-    .profile-row-text strong {
+    .profile-v2-menu-row strong {
       display: block;
+      color: #171717;
       font-size: 14px;
-      font-weight: 850;
-      color: #1c1c1c;
+      font-weight: 950;
     }
 
-    .profile-row-text span {
+    .profile-v2-menu-row small {
       display: block;
-      margin-top: 2px;
+      margin-top: 3px;
       color: #777;
-      font-size: 11.5px;
-      font-weight: 600;
-    }
-
-    .profile-arrow {
-      color: #b0b0b0;
-      font-size: 20px;
+      font-size: 11px;
       font-weight: 700;
     }
 
-    .logout-btn {
-      width: 100%;
-      height: 50px;
-      margin-top: 18px;
-      border-radius: 16px;
-      background: #1c1c1c;
-      color: #fff;
-      font-size: 14px;
+    .profile-v2-arrow {
+      color: #bbb;
+      font-size: 23px;
       font-weight: 900;
+    }
+
+    .profile-v2-logout {
+      height: 48px;
+      margin-top: auto;
+      flex-shrink: 0;
+      border-radius: 17px;
+      background: #171717;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 950;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .profile-language-choice {
+      width: 100%;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      margin-top: 10px;
+      border-radius: 17px;
+      background: #f7f7f7;
+      color: #171717;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .profile-language-choice.active {
+      background: #fff0f2;
+      color: #ef4f5f;
+      border: 1px solid #ffd6dc;
+    }
+
+    .profile-language-check {
+      width: 22px;
+      height: 22px;
+      display: none;
+      place-items: center;
+      border-radius: 50%;
+      background: #ef4f5f;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .profile-language-choice.active .profile-language-check {
+      display: grid;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 92px;
+      z-index: 400;
+      width: calc(100% - 32px);
+      max-width: 398px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #171717;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 850;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 10px);
+      transition: 0.25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
   </style>
 </head>
@@ -998,80 +1117,92 @@
   </section>
 
   <section class="notification-page" id="profilePage">
-    <div class="notification-screen">
-      <div class="notify-head">
-        <button class="notify-back" id="profileBack"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg></button>
-        <h1 class="notify-title">Profile</h1>
+    <div class="profile-v2-screen">
+      <div class="profile-v2-head">
+        <button class="profile-v2-back" id="profileBack" type="button" aria-label="Back">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <h1>Profile</h1>
       </div>
 
-      <div class="profile-card">
-        <div class="profile-user">
-          <div class="profile-avatar">A</div>
-          <div>
-            <h2>Abhi</h2>
-            <p>Nutritilious user</p>
+      <div class="profile-v2-content">
+        <section class="profile-v2-form-card">
+          <h2>Personal Details</h2>
+
+          <div class="profile-v2-group">
+            <label for="profileNameInput">Full Name</label>
+            <div class="profile-v2-field">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+              <input id="profileNameInput" type="text" placeholder="Enter your name" />
+            </div>
           </div>
-        </div>
 
-        <div class="profile-stat-row">
-          <div class="profile-stat"><strong>0</strong><span>Orders</span></div>
-          <div class="profile-stat"><strong>0</strong><span>Saved</span></div>
-          <div class="profile-stat"><strong>New</strong><span>Status</span></div>
-        </div>
+          <div class="profile-v2-group">
+            <label for="profilePhoneInput">Phone Number</label>
+            <div class="profile-v2-field">
+              <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z" /></svg>
+              <input id="profilePhoneInput" type="tel" placeholder="Add phone number" />
+            </div>
+          </div>
+
+          <div class="profile-v2-group">
+            <label for="profileEmailInput">Email</label>
+            <div class="profile-v2-field">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /><path d="M4 7l8 6 8-6" /></svg>
+              <input id="profileEmailInput" type="email" placeholder="Add email address" />
+            </div>
+          </div>
+
+          <button class="profile-v2-save" id="profileSaveBtn" type="button">Save Details</button>
+        </section>
+
+        <section class="profile-v2-menu-card">
+          <button class="profile-v2-menu-row" id="profileLanguageBtn" type="button">
+            <span class="profile-v2-menu-left">
+              <span class="profile-v2-menu-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 0 20" /><path d="M12 2a15.3 15.3 0 0 0 0 20" /></svg>
+              </span>
+              <span><strong>Language</strong><small id="profileLanguageText">English</small></span>
+            </span>
+            <span class="profile-v2-arrow">›</span>
+          </button>
+
+          <button class="profile-v2-menu-row" id="profileHelpBtn" type="button">
+            <span class="profile-v2-menu-left">
+              <span class="profile-v2-menu-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M9.1 9a3 3 0 1 1 5.8 1c-.7 1.2-2.1 1.7-2.6 2.7" /><path d="M12 17h.01" /></svg>
+              </span>
+              <span><strong>Help & Support</strong><small>Report issue or contact Nutritilious</small></span>
+            </span>
+            <span class="profile-v2-arrow">›</span>
+          </button>
+        </section>
+
+        <button class="profile-v2-logout" id="profileLogoutBtn" type="button">Logout</button>
       </div>
-
-      <h3 class="profile-section-title">Account</h3>
-      <div class="profile-menu">
-        <button class="profile-row">
-          <span class="profile-row-left">
-            <span class="profile-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z" /><circle cx="12" cy="9" r="2.4" /></svg></span>
-            <span class="profile-row-text"><strong>Saved Address</strong><span id="profileLocationText">Select your area</span></span>
-          </span>
-          <span class="profile-arrow">›</span>
-        </button>
-
-        <button class="profile-row">
-          <span class="profile-row-left">
-            <span class="profile-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg></span>
-            <span class="profile-row-text"><strong>Personal Details</strong><span>Name, phone number and email</span></span>
-          </span>
-          <span class="profile-arrow">›</span>
-        </button>
-      </div>
-
-      <h3 class="profile-section-title">Food Activity</h3>
-      <div class="profile-menu">
-        <button class="profile-row">
-          <span class="profile-row-left">
-            <span class="profile-icon"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6z" /></svg></span>
-            <span class="profile-row-text"><strong>Saved Cooks</strong><span>Favourite tiffin providers</span></span>
-          </span>
-          <span class="profile-arrow">›</span>
-        </button>
-
-        <button class="profile-row">
-          <span class="profile-row-left">
-            <span class="profile-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-3-6 3V3z" /></svg></span>
-            <span class="profile-row-text"><strong>Subscriptions</strong><span>Lunch, dinner and monthly plans</span></span>
-          </span>
-          <span class="profile-arrow">›</span>
-        </button>
-      </div>
-
-      <h3 class="profile-section-title">Support</h3>
-      <div class="profile-menu">
-        <button class="profile-row">
-          <span class="profile-row-left">
-            <span class="profile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M9.1 9a3 3 0 1 1 5.8 1c-.7 1.2-2.1 1.7-2.6 2.7" /><path d="M12 17h.01" /></svg></span>
-            <span class="profile-row-text"><strong>Help & Support</strong><span>Report issue or contact Nutritilious</span></span>
-          </span>
-          <span class="profile-arrow">›</span>
-        </button>
-      </div>
-
-      <button class="logout-btn">Logout</button>
     </div>
   </section>
+
+  <section class="profile-language-sheet" id="profileLanguageSheet">
+    <div class="profile-language-panel">
+      <div class="profile-language-head">
+        <h2>Choose your language</h2>
+        <button class="profile-language-close" id="profileLanguageClose" type="button">×</button>
+      </div>
+
+      <button class="profile-language-choice active" type="button" data-language="English">
+        <span>English</span>
+        <span class="profile-language-check">✓</span>
+      </button>
+
+      <button class="profile-language-choice" type="button" data-language="Hindi">
+        <span>Hindi</span>
+        <span class="profile-language-check">✓</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="toast" id="toast">Saved</div>
 
   <script>
     const sheet = document.getElementById('locationSheet');
@@ -1079,7 +1210,6 @@
     const closeBtn = document.getElementById('closeLocation');
     const statusBox = document.getElementById('locationStatus');
     const homeLocationText = document.getElementById('homeLocationText');
-    const profileLocationText = document.getElementById('profileLocationText');
     const notificationBtn = document.getElementById('notificationBtn');
     const notificationPage = document.getElementById('notificationPage');
     const notificationBack = document.getElementById('notificationBack');
@@ -1103,6 +1233,19 @@
     const houseInput = document.getElementById('houseInput');
     const streetInput = document.getElementById('streetInput');
     const saveAddress = document.getElementById('saveAddress');
+    const toast = document.getElementById('toast');
+
+    const profileNameInput = document.getElementById('profileNameInput');
+    const profilePhoneInput = document.getElementById('profilePhoneInput');
+    const profileEmailInput = document.getElementById('profileEmailInput');
+    const profileSaveBtn = document.getElementById('profileSaveBtn');
+    const profileLanguageBtn = document.getElementById('profileLanguageBtn');
+    const profileLanguageSheet = document.getElementById('profileLanguageSheet');
+    const profileLanguageClose = document.getElementById('profileLanguageClose');
+    const profileLanguageText = document.getElementById('profileLanguageText');
+    const profileLanguageChoices = document.querySelectorAll('.profile-language-choice');
+    const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    const profileHelpBtn = document.getElementById('profileHelpBtn');
 
     const serviceAreas = ['patna', 'siwan', 'alipurduar'];
     const overlayPages = [notificationPage, ordersPage, cartPage, subscriptionPage, profilePage];
@@ -1111,6 +1254,14 @@
     let locationUnavailable = false;
     let baseLocation = '';
     let isDetecting = false;
+    let profileSelectedLanguage = 'English';
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.classList.remove('show'), 1300);
+    }
 
     function setActiveNav(activeBtn) {
       navItems.forEach(item => item.classList.remove('active'));
@@ -1151,7 +1302,6 @@
 
     function setLocationName(name) {
       homeLocationText.textContent = name;
-      profileLocationText.textContent = name;
       localStorage.setItem('nutritiliousLiveLocation', name);
       locationUnavailable = !serviceAreas.some(area => name.toLowerCase().includes(area));
       applyFilters();
@@ -1252,6 +1402,15 @@
       );
     }
 
+    function setProfileLanguage(language) {
+      profileSelectedLanguage = language;
+      profileLanguageText.textContent = language;
+      profileLanguageChoices.forEach(choice => {
+        choice.classList.toggle('active', choice.dataset.language === language);
+      });
+      localStorage.setItem('nutritiliousProfileLanguage', language);
+    }
+
     btn.onclick = () => {
       sheet.classList.add('show');
       startLiveLocation();
@@ -1278,18 +1437,50 @@
     vegToggle.onchange = applyFilters;
     searchInput.oninput = applyFilters;
 
+    profileSaveBtn.onclick = () => {
+      localStorage.setItem('nutritiliousProfileName', profileNameInput.value.trim());
+      localStorage.setItem('nutritiliousProfilePhone', profilePhoneInput.value.trim());
+      localStorage.setItem('nutritiliousProfileEmail', profileEmailInput.value.trim());
+      localStorage.setItem('nutritiliousProfileLanguage', profileSelectedLanguage);
+      showToast('Details saved');
+    };
+
+    profileLanguageBtn.onclick = () => profileLanguageSheet.classList.add('show');
+    profileLanguageClose.onclick = () => profileLanguageSheet.classList.remove('show');
+    profileLanguageSheet.onclick = event => {
+      if (event.target === profileLanguageSheet) profileLanguageSheet.classList.remove('show');
+    };
+
+    profileLanguageChoices.forEach(choice => {
+      choice.onclick = () => {
+        setProfileLanguage(choice.dataset.language);
+        profileLanguageSheet.classList.remove('show');
+        showToast(`${choice.dataset.language} selected`);
+      };
+    });
+
+    profileHelpBtn.onclick = () => showToast('Help and support page coming soon');
+    profileLogoutBtn.onclick = () => showToast('Logged out');
+
     applyFilters();
 
     const saved = localStorage.getItem('nutritiliousLiveLocation');
     const savedHouse = localStorage.getItem('nutritiliousHouse');
     const savedStreet = localStorage.getItem('nutritiliousStreet');
+    const savedProfileName = localStorage.getItem('nutritiliousProfileName');
+    const savedProfilePhone = localStorage.getItem('nutritiliousProfilePhone');
+    const savedProfileEmail = localStorage.getItem('nutritiliousProfileEmail');
+    const savedProfileLanguage = localStorage.getItem('nutritiliousProfileLanguage');
 
     if (savedHouse) houseInput.value = savedHouse;
     if (savedStreet) streetInput.value = savedStreet;
+    if (savedProfileName) profileNameInput.value = savedProfileName;
+    if (savedProfilePhone) profilePhoneInput.value = savedProfilePhone;
+    if (savedProfileEmail) profileEmailInput.value = savedProfileEmail;
+    if (savedProfileLanguage) setProfileLanguage(savedProfileLanguage);
 
     if (saved) {
       homeLocationText.textContent = saved;
-      profileLocationText.textContent = saved;
       baseLocation = saved;
       locationUnavailable = !serviceAreas.some(area => saved.toLowerCase().includes(area));
       applyFilters();
