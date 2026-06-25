@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Remove edit and logout toast popups
+      - name: Remove profile toast popups
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -25,6 +25,7 @@ jobs:
           text = index_path.read_text(encoding='utf-8')
 
           text = text.replace("        showToast('Edit details');\n", "")
+          text = text.replace("      showToast('Details saved');\n", "")
           text = text.replace(
               "      showToast('Logged out');\n"
               "      setTimeout(() => {\n"
