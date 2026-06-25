@@ -12,19 +12,15 @@
     button,input{font:inherit}button{border:0;background:none;cursor:pointer}
     .app{width:100%;max-width:430px;min-height:100vh;margin:0 auto;background:#fff;padding-bottom:88px;overflow-x:hidden}
     .header{position:sticky;top:0;z-index:50;padding:14px 15px 13px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.05)}
-    .top-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .location-btn{display:flex;align-items:center;gap:4px;min-width:0;text-align:left}
-    .pin{width:34px;height:34px;display:grid;place-items:center;color:var(--red);flex-shrink:0}.pin svg{width:30px;height:30px;fill:currentColor}
-    .location-copy{min-width:0}.location-title{display:flex;align-items:center;gap:4px;color:var(--text);font-size:16px;font-weight:800;line-height:1;letter-spacing:-.25px}.location-title svg{width:13px;height:13px;stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.location-sub{display:block;max-width:245px;margin-top:4px;overflow:hidden;color:var(--muted);font-size:11.5px;font-weight:500;white-space:nowrap;text-overflow:ellipsis}
+    .top-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.location-btn{display:flex;align-items:center;gap:4px;min-width:0;text-align:left}.pin{width:34px;height:34px;display:grid;place-items:center;color:var(--red);flex-shrink:0}.pin svg{width:30px;height:30px;fill:currentColor}.location-copy{min-width:0}.location-title{display:flex;align-items:center;gap:4px;color:var(--text);font-size:16px;font-weight:800;line-height:1;letter-spacing:-.25px}.location-title svg{width:13px;height:13px;stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.location-sub{display:block;max-width:245px;margin-top:4px;overflow:hidden;color:var(--muted);font-size:11.5px;font-weight:500;white-space:nowrap;text-overflow:ellipsis}
     .notification-btn{position:relative;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:#f5f5f5;color:#202020;flex-shrink:0}.notification-btn svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.35;fill:none;stroke-linecap:round;stroke-linejoin:round}.notification-dot{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%;background:#ef4f5f;border:2px solid #fff}
     .search-wrap{margin-top:14px;display:flex;align-items:center;gap:10px}.search-box{height:52px;flex:1;display:flex;align-items:center;padding:0 14px;border:1px solid #eee;border-radius:13px;background:#fff;box-shadow:0 2px 12px rgba(28,28,28,.08)}.search-box svg{width:20px;height:20px;color:var(--red);flex-shrink:0}.search-box input{width:100%;min-width:0;margin-left:10px;border:0;outline:0;background:transparent;color:#333;font-size:14px;font-weight:500}.search-box input::placeholder{color:#8b8b8b;opacity:1}
     .veg-input{display:none}.veg-toggle{width:64px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #eee;border-radius:13px;background:#fff;box-shadow:0 2px 12px rgba(28,28,28,.06)}.veg-toggle span:first-child{color:#1c1c1c;font-size:9.5px;font-weight:800;line-height:1}.switch{position:relative;width:35px;height:20px;margin-top:6px;border-radius:999px;background:#ef4f5f;transition:.2s}.dot{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.22);transition:.2s}.veg-input:checked+.veg-toggle .switch{background:#26a65b}.veg-input:checked+.veg-toggle .dot{left:17px}
-    .section{margin-top:28px}.section:first-of-type{margin-top:22px}.section-head{display:flex;align-items:center;justify-content:space-between;padding:0 15px;margin-bottom:15px}.section-title{color:#1c1c1c;font-size:22px;font-weight:800;letter-spacing:-.45px;line-height:1.1}.see-all{color:var(--red);font-size:12px;font-weight:700}
-    .category-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 12px;padding:0 15px}.cat{width:100%;text-align:center}.cat-img{width:78px;height:78px;margin:0 auto;overflow:hidden;border-radius:50%;background:#f6f6f6;box-shadow:0 8px 18px rgba(0,0,0,.08)}.cat-img img{width:100%;height:100%;object-fit:cover}.cat-name{margin-top:9px;color:#333;font-size:12.5px;font-weight:700;line-height:1.1}
+    .section{margin-top:28px}.section:first-of-type{margin-top:22px}.section-head{display:flex;align-items:center;justify-content:space-between;padding:0 15px;margin-bottom:15px}.section-title{color:#1c1c1c;font-size:22px;font-weight:800;letter-spacing:-.45px;line-height:1.1}.see-all{color:var(--red);font-size:12px;font-weight:700}.category-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 12px;padding:0 15px}.cat{width:100%;text-align:center}.cat-img{width:78px;height:78px;margin:0 auto;overflow:hidden;border-radius:50%;background:#f6f6f6;box-shadow:0 8px 18px rgba(0,0,0,.08)}.cat-img img{width:100%;height:100%;object-fit:cover}.cat-name{margin-top:9px;color:#333;font-size:12.5px;font-weight:700;line-height:1.1}
     .filter-row{display:flex;gap:9px;padding:0 15px;overflow-x:auto;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.filter{height:36px;display:inline-flex;align-items:center;gap:6px;padding:0 13px;border:1px solid #e8e8e8;border-radius:999px;background:#fff;color:#3d3d3d;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.035)}.filter svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
     .restaurant-list{display:grid;gap:22px;padding:0 15px}.restaurant-card{overflow:hidden;border-radius:22px;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.08)}.food-img-wrap{position:relative;height:180px;overflow:hidden;background:#f4f4f4}.food-img{width:100%;height:100%;object-fit:cover;display:block}.discount{position:absolute;left:0;bottom:14px;padding:7px 12px 7px 15px;border-radius:0 8px 8px 0;background:#256fef;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.2px}.time{position:absolute;right:10px;bottom:12px;padding:6px 9px;border-radius:8px;background:rgba(255,255,255,.95);color:#252525;font-size:11px;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.14)}.food-type{position:absolute;left:10px;top:10px;padding:5px 8px;border-radius:999px;background:#267e3e;color:#fff;font-size:9px;font-weight:900;letter-spacing:.45px}.food-type.nonveg{background:#d0342c}.card-body{padding:13px 13px 14px}.name-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.name{color:#1c1c1c;font-size:18px;font-weight:800;letter-spacing:-.35px;line-height:1.16}.rating{display:inline-flex;align-items:center;gap:3px;padding:4px 7px;border-radius:6px;background:#267e3e;color:#fff;font-size:12px;font-weight:800;flex-shrink:0}.meta{margin-top:6px;color:#696969;font-size:13px;font-weight:500;line-height:1.35}.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px;padding-top:11px;border-top:1px solid #f0f0f0}.price{color:#363636;font-size:13px;font-weight:700}.distance{color:#777;font-size:12px;font-weight:600}
     .bottom-nav{position:fixed;left:50%;bottom:0;z-index:100;width:100%;max-width:430px;height:78px;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px 6px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.98);border:1px solid rgba(0,0,0,.07);border-bottom:0;box-shadow:0 -8px 24px rgba(0,0,0,.09);transform:translateX(-50%);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px;gap:4px;color:#777;font-size:10px;font-weight:700}.nav-item.active{color:var(--red);background:#fff1f3}.nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .location-page{position:fixed;inset:0;z-index:200;display:none;background:#fff}.location-page.show{display:block}.location-screen{width:100%;max-width:430px;min-height:100vh;margin:0 auto;background:#fff;padding:16px}.page-head{display:flex;align-items:center;justify-content:space-between}.back-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#f6f6f6;color:#1c1c1c}.back-btn svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}.page-tag{padding:9px 13px;border-radius:999px;background:#fff1f3;color:#ef4f5f;font-size:12px;font-weight:900}.hero{margin-top:34px}.hero-icon{width:82px;height:82px;display:grid;place-items:center;border-radius:26px;background:#fff1f3;color:#ef4f5f}.hero-icon svg{width:44px;height:44px;fill:currentColor}.hero h1{margin-top:22px;color:#1c1c1c;font-size:32px;font-weight:950;line-height:1.05;letter-spacing:-1.2px}.hero p{margin-top:12px;max-width:330px;color:#696969;font-size:14px;font-weight:600;line-height:1.55}.location-card{margin-top:30px;padding:16px;border:1px solid #eee;border-radius:24px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.07)}.card-row{display:flex;align-items:center;gap:12px}.live-dot{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#edf9f2;color:#267e3e;flex-shrink:0}.live-dot svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}.card-title{font-size:16px;font-weight:900;letter-spacing:-.3px}.card-sub{margin-top:3px;color:#777;font-size:12px;font-weight:600;line-height:1.35}.detect-btn{width:100%;height:54px;margin-top:18px;border-radius:16px;background:#ef4f5f;color:#fff;font-size:15px;font-weight:950;box-shadow:0 10px 22px rgba(239,79,95,.25)}.status-box{min-height:54px;margin-top:16px;padding:13px 14px;border-radius:16px;background:#f8f8f8;color:#555;font-size:12px;font-weight:700;line-height:1.5}.permission-note{margin-top:22px;padding:14px;border-radius:18px;background:#fffaf0;color:#7a5600;font-size:12px;font-weight:700;line-height:1.55}.saved-location{margin-top:18px;display:none;padding:15px;border-radius:18px;background:#f3fff7;border:1px solid #d8f2df}.saved-location.show{display:block}.saved-label{color:#267e3e;font-size:11px;font-weight:950;letter-spacing:.4px;text-transform:uppercase}.saved-text{margin-top:6px;color:#1c1c1c;font-size:14px;font-weight:800;line-height:1.35}
+    .location-sheet{position:fixed;inset:0;z-index:200;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.34)}.location-sheet.show{display:flex}.location-panel{width:100%;max-width:430px;padding:18px 16px 22px;border-radius:24px 24px 0 0;background:#fff;box-shadow:0 -18px 40px rgba(0,0,0,.18)}.location-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.location-panel-title{font-size:20px;font-weight:900;letter-spacing:-.35px}.location-close{width:34px;height:34px;border-radius:50%;background:#f5f5f5;color:#222;font-size:22px;line-height:1}.detect-btn{width:100%;height:52px;margin-top:14px;border-radius:14px;background:#ef4f5f;color:#fff;font-size:15px;font-weight:900;box-shadow:0 10px 22px rgba(239,79,95,.23)}.location-status{min-height:18px;margin-top:12px;color:#696969;font-size:12px;font-weight:600;line-height:1.4}.sheet-note{margin-top:12px;padding:12px;border-radius:15px;background:#fffaf0;color:#7a5600;font-size:11.5px;font-weight:700;line-height:1.45}
     @media(max-width:370px){.category-row{gap:16px 8px}.cat-img{width:70px;height:70px}.cat-name{font-size:11.5px}.restaurant-card{border-radius:20px}.food-img-wrap{height:165px}.location-title{font-size:15px}.location-sub{max-width:215px}.pin{width:31px;height:31px}.pin svg{width:28px;height:28px}.notification-btn svg{width:22px;height:22px}.bottom-nav{height:76px}.nav-item{font-size:9.5px}.nav-item svg{width:21px;height:21px}}
   </style>
 </head>
@@ -56,69 +52,26 @@
     <nav class="bottom-nav"><button class="nav-item active" type="button"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button><button class="nav-item" type="button"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg><span>Orders</span></button><button class="nav-item" type="button"><svg viewBox="0 0 24 24"><path d="M6 6h15l-2 8H8L6 6z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span>Cart</span></button><button class="nav-item" type="button"><svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-3-6 3V4z"/></svg><span>Subscription</span></button><button class="nav-item" type="button"><svg viewBox="0 0 24 24"><path d="M12 12c2.6 0 4.6-2 4.6-4.6S14.6 2.8 12 2.8 7.4 4.8 7.4 7.4 9.4 12 12 12z"/><path d="M4.6 20.2V19c0-3.1 4.2-4.8 7.4-4.8s7.4 1.7 7.4 4.8v1.2"/></svg><span>Profile</span></button></nav>
   </div>
 
-  <section class="location-page" id="locationPage"><div class="location-screen"><div class="page-head"><button class="back-btn" id="closeLocation" type="button"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><span class="page-tag">Live location</span></div><div class="hero"><div class="hero-icon"><svg viewBox="0 0 24 24"><path d="M12 2.2c-3.8 0-6.9 3.1-6.9 6.9 0 5.2 6.9 12.7 6.9 12.7s6.9-7.5 6.9-12.7c0-3.8-3.1-6.9-6.9-6.9zm0 9.4a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></div><h1>Find food near your location</h1><p>Allow location access so Nutritilious can show nearby homemade meals, cooks, tiffin services and faster delivery options.</p></div><div class="location-card"><div class="card-row"><div class="live-dot"><svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M2 12h4"/><path d="M18 12h4"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><div><div class="card-title">Use current location</div><div class="card-sub">We will detect your live location from browser permission.</div></div></div><button class="detect-btn" id="detectBtn" type="button">Use live location</button><div class="status-box" id="statusBox">Tap the button and allow location permission.</div><div class="saved-location" id="savedLocation"><div class="saved-label">Location detected</div><div class="saved-text" id="savedText"></div></div></div><div class="permission-note">Location permission browser ke through aayega. Agar permission deny kar doge to app live location detect nahi kar paayega.</div></div></section>
+  <div class="location-sheet" id="locationSheet"><div class="location-panel"><div class="location-panel-head"><h3 class="location-panel-title">Select location</h3><button class="location-close" id="closeLocation" type="button">×</button></div><button class="detect-btn" id="detectLocation" type="button">Use live location</button><p class="location-status" id="locationStatus">Tap to allow location permission.</p><div class="sheet-note">Location permission browser se aayega. Permission allow karne ke baad app area/city show karega, latitude-longitude nahi.</div></div></div>
 
   <script>
-    const openLocation=document.getElementById('locationBtn');
-    const closeLocation=document.getElementById('closeLocation');
-    const locationPage=document.getElementById('locationPage');
-    const detectBtn=document.getElementById('detectBtn');
-    const statusBox=document.getElementById('statusBox');
-    const savedLocation=document.getElementById('savedLocation');
-    const savedText=document.getElementById('savedText');
+    const sheet=document.getElementById('locationSheet');
+    const btn=document.getElementById('locationBtn');
+    const closeBtn=document.getElementById('closeLocation');
+    const detect=document.getElementById('detectLocation');
+    const statusBox=document.getElementById('locationStatus');
     const homeLocationText=document.getElementById('homeLocationText');
-
-    openLocation.addEventListener('click',()=>locationPage.classList.add('show'));
-    closeLocation.addEventListener('click',()=>locationPage.classList.remove('show'));
-
+    function setLocationName(name){homeLocationText.textContent=name;localStorage.setItem('nutritiliousLiveLocation',name)}
     async function reverseGeocode(lat,lon){
-      try{
-        const url=`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
-        const res=await fetch(url);
-        const data=await res.json();
-        const locality=data.locality||data.city||data.principalSubdivision||'';
-        const city=data.city&&data.city!==locality?data.city:'';
-        const state=data.principalSubdivision&&data.principalSubdivision!==locality?data.principalSubdivision:'';
-        const country=data.countryName||'';
-        const name=[locality,city,state,country].filter(Boolean).slice(0,3).join(', ');
-        if(name) return name;
-      }catch(e){}
-      try{
-        const res=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
-        const data=await res.json();
-        const a=data.address||{};
-        const area=a.suburb||a.neighbourhood||a.village||a.town||a.city||a.county||'';
-        const state=a.state||'';
-        const country=a.country||'';
-        const name=[area,state,country].filter(Boolean).slice(0,3).join(', ');
-        if(name) return name;
-      }catch(e){}
+      try{const res=await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);const data=await res.json();const locality=data.locality||data.city||data.principalSubdivision||'';const city=data.city&&data.city!==locality?data.city:'';const state=data.principalSubdivision&&data.principalSubdivision!==locality?data.principalSubdivision:'';const country=data.countryName||'';const name=[locality,city,state,country].filter(Boolean).slice(0,3).join(', ');if(name)return name}catch(e){}
+      try{const res=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);const data=await res.json();const a=data.address||{};const area=a.suburb||a.neighbourhood||a.village||a.town||a.city||a.county||'';const state=a.state||'';const country=a.country||'';const name=[area,state,country].filter(Boolean).slice(0,3).join(', ');if(name)return name}catch(e){}
       return 'Live location detected';
     }
-
-    detectBtn.addEventListener('click',()=>{
-      if(!navigator.geolocation){statusBox.textContent='Location is not supported on this device.';return;}
-      statusBox.textContent='Detecting your live location...';
-      detectBtn.textContent='Detecting...';
-      navigator.geolocation.getCurrentPosition(async(pos)=>{
-        const lat=pos.coords.latitude;
-        const lon=pos.coords.longitude;
-        const locationName=await reverseGeocode(lat,lon);
-        localStorage.setItem('nutritiliousLiveLocation',locationName);
-        savedText.textContent=locationName;
-        homeLocationText.textContent=locationName;
-        savedLocation.classList.add('show');
-        statusBox.textContent='Location detected successfully.';
-        detectBtn.textContent='Use live location';
-        setTimeout(()=>locationPage.classList.remove('show'),900);
-      },()=>{
-        statusBox.textContent='Location permission denied. Please allow location permission from browser settings.';
-        detectBtn.textContent='Use live location';
-      },{enableHighAccuracy:true,timeout:10000,maximumAge:0});
-    });
-
-    const saved=localStorage.getItem('nutritiliousLiveLocation');
-    if(saved){homeLocationText.textContent=saved;savedText.textContent=saved;savedLocation.classList.add('show');}
+    btn.addEventListener('click',()=>{sheet.classList.add('show');statusBox.textContent='Tap to allow location permission.'});
+    closeBtn.addEventListener('click',()=>sheet.classList.remove('show'));
+    sheet.addEventListener('click',(e)=>{if(e.target===sheet)sheet.classList.remove('show')});
+    detect.addEventListener('click',()=>{if(!navigator.geolocation){statusBox.textContent='Location is not supported on this device.';return}statusBox.textContent='Detecting your location...';detect.textContent='Detecting...';navigator.geolocation.getCurrentPosition(async(pos)=>{const name=await reverseGeocode(pos.coords.latitude,pos.coords.longitude);setLocationName(name);statusBox.textContent='Location detected successfully.';detect.textContent='Use live location';setTimeout(()=>sheet.classList.remove('show'),700)},()=>{statusBox.textContent='Permission denied. Allow location permission from browser settings.';detect.textContent='Use live location'},{enableHighAccuracy:true,timeout:10000,maximumAge:0})});
+    const saved=localStorage.getItem('nutritiliousLiveLocation');if(saved)homeLocationText.textContent=saved;
   </script>
 </body>
 </html>
