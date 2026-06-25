@@ -123,7 +123,9 @@
       if(!type){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please select issue type.';return}
       if(details.length<15){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue.';return}
       if(!initFirebase()){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Firebase failed to load. Please try again.';return}
+      let ticketSubmitted=false;
       submitTicketBtn.disabled=true;
+      submitTicketBtn.textContent='Submitting Ticket...';
       ticketMsg.style.color='#267e3e';
       ticketMsg.textContent='Submitting ticket...';
       try{
@@ -136,15 +138,19 @@
         const oldTickets=JSON.parse(localStorage.getItem('nutritiliousSupportTickets')||'[]');
         oldTickets.unshift({...ticket,createdAt:ticket.localCreatedAt});
         localStorage.setItem('nutritiliousSupportTickets',JSON.stringify(oldTickets));
+        ticketSubmitted=true;
+        submitTicketBtn.textContent='Submitted';
         ticketMsg.style.color='#267e3e';
         ticketMsg.textContent=`Ticket submitted successfully. Your Ticket ID is ${ticketId}.`;
         supportForm.reset();
         setIssue('');
       }catch(error){
+        submitTicketBtn.textContent='Submit Ticket';
         ticketMsg.style.color='#d0342c';
         ticketMsg.textContent='Ticket not submitted. Please try again.';
       }finally{
-        submitTicketBtn.disabled=false;
+        if(ticketSubmitted){setTimeout(()=>{submitTicketBtn.disabled=false;submitTicketBtn.textContent='Submit Ticket'},1400)}
+        else submitTicketBtn.disabled=false;
       }
     };
 
