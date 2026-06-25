@@ -1246,6 +1246,32 @@
     let profileSelectedLanguage = 'English';
     let profileDetailsLocked = false;
 
+    function getCurrentUser() {
+      try {
+        return JSON.parse(localStorage.getItem('nutritiliousUser') || '{}') || {};
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function getProfileAccountId() {
+      const user = getCurrentUser();
+      const id = user.uid || user.email || user.phone || user.provider || localStorage.getItem('nutritiliousAuthType') || 'guest';
+      return String(id).replace(/[^a-zA-Z0-9_-]/g, '_');
+    }
+
+    function profileStorageKey(field) {
+      return `nutritiliousProfile_${getProfileAccountId()}_${field}`;
+    }
+
+    function getProfileValue(field) {
+      return localStorage.getItem(profileStorageKey(field)) || '';
+    }
+
+    function setProfileValue(field, value) {
+      localStorage.setItem(profileStorageKey(field), value);
+    }
+
     function showToast(message) {
       toast.textContent = message;
       toast.classList.add('show');
@@ -1398,7 +1424,7 @@
       profileLanguageChoices.forEach(choice => {
         choice.classList.toggle('active', choice.dataset.language === language);
       });
-      localStorage.setItem('nutritiliousProfileLanguage', language);
+      setProfileValue('Language', language);
     }
 
     function setProfileDetailsLocked(isLocked) {
@@ -1440,13 +1466,14 @@
     profileSaveBtn.onclick = () => {
       if (profileDetailsLocked) {
         setProfileDetailsLocked(false);
+        showToast('Edit details');
         return;
       }
 
-      localStorage.setItem('nutritiliousProfileName', profileNameInput.value.trim());
-      localStorage.setItem('nutritiliousProfilePhone', profilePhoneInput.value.trim());
-      localStorage.setItem('nutritiliousProfileEmail', profileEmailInput.value.trim());
-      localStorage.setItem('nutritiliousProfileLanguage', profileSelectedLanguage);
+      setProfileValue('Name', profileNameInput.value.trim());
+      setProfileValue('Phone', profilePhoneInput.value.trim());
+      setProfileValue('Email', profileEmailInput.value.trim());
+      setProfileValue('Language', profileSelectedLanguage);
       setProfileDetailsLocked(true);
       showToast('Details saved');
     };
@@ -1471,7 +1498,10 @@
       localStorage.removeItem('nutritiliousUser');
       localStorage.setItem('nutritiliousLoggedOut', 'true');
       sessionStorage.clear();
-      window.location.href = 'login.html';
+      showToast('Logged out');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 500);
     };
 
     applyFilters();
@@ -1479,16 +1509,16 @@
     const saved = localStorage.getItem('nutritiliousLiveLocation');
     const savedHouse = localStorage.getItem('nutritiliousHouse');
     const savedStreet = localStorage.getItem('nutritiliousStreet');
-    const savedProfileName = localStorage.getItem('nutritiliousProfileName');
-    const savedProfilePhone = localStorage.getItem('nutritiliousProfilePhone');
-    const savedProfileEmail = localStorage.getItem('nutritiliousProfileEmail');
-    const savedProfileLanguage = localStorage.getItem('nutritiliousProfileLanguage');
+    const savedProfileName = getProfileValue('Name');
+    const savedProfilePhone = getProfileValue('Phone');
+    const savedProfileEmail = getProfileValue('Email');
+    const savedProfileLanguage = getProfileValue('Language');
 
     if (savedHouse) houseInput.value = savedHouse;
     if (savedStreet) streetInput.value = savedStreet;
-    if (savedProfileName) profileNameInput.value = savedProfileName;
-    if (savedProfilePhone) profilePhoneInput.value = savedProfilePhone;
-    if (savedProfileEmail) profileEmailInput.value = savedProfileEmail;
+    profileNameInput.value = savedProfileName;
+    profilePhoneInput.value = savedProfilePhone;
+    profileEmailInput.value = savedProfileEmail;
     if (savedProfileLanguage) setProfileLanguage(savedProfileLanguage);
 
     setProfileDetailsLocked(Boolean(savedProfileName || savedProfilePhone || savedProfileEmail));
