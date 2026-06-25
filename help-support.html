@@ -121,7 +121,7 @@
       const details=issueDetails.value.trim();
       const orderValue=orderId.value.trim();
       if(!type){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please select issue type.';return}
-      if(details.length<15){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue in at least 15 characters.';return}
+      if(details.length<15){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue.';return}
       if(!initFirebase()){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Firebase failed to load. Please try again.';return}
       submitTicketBtn.disabled=true;
       ticketMsg.style.color='#267e3e';
@@ -130,7 +130,9 @@
         const ticketId='NUT-'+Date.now().toString().slice(-6);
         const localUser=getLocalUser();
         const ticket={ticketId,issueType:type,orderId:orderValue,details,status:'pending',source:'help-support-page',userId:localUser.uid||'',userPhone:localUser.phone||'',userEmail:localUser.email||'',createdAt:firebase.firestore.FieldValue.serverTimestamp(),localCreatedAt:new Date().toISOString()};
-        await db.collection('supportTickets').doc(ticketId).set(ticket);
+        const saveTicket=db.collection('supportTickets').doc(ticketId).set(ticket);
+        const timeout=new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),8000));
+        await Promise.race([saveTicket,timeout]);
         const oldTickets=JSON.parse(localStorage.getItem('nutritiliousSupportTickets')||'[]');
         oldTickets.unshift({...ticket,createdAt:ticket.localCreatedAt});
         localStorage.setItem('nutritiliousSupportTickets',JSON.stringify(oldTickets));
@@ -140,7 +142,7 @@
         setIssue('');
       }catch(error){
         ticketMsg.style.color='#d0342c';
-        ticketMsg.textContent='Ticket not submitted. Check Firebase Firestore rules.';
+        ticketMsg.textContent='Ticket not submitted. Please try again.';
       }finally{
         submitTicketBtn.disabled=false;
       }
