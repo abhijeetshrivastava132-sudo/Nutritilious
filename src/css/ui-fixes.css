@@ -1,4 +1,4 @@
-/* Final home header replica overrides */
+/* Header cleanup: white header, no search bar, no veg toggle */
 html,
 body,
 .app {
@@ -9,7 +9,7 @@ body,
   position: sticky !important;
   top: 0 !important;
   z-index: 20 !important;
-  padding: 22px 15px 19px !important;
+  padding: 22px 15px 24px !important;
   overflow: visible !important;
   border-radius: 0 !important;
   background: #ffffff !important;
@@ -25,6 +25,14 @@ body,
   background-image: none !important;
 }
 
+.search-row,
+.search-box,
+.veg-card,
+#foodTypeToggle,
+#vegToggle {
+  display: none !important;
+}
+
 .top-row {
   position: relative !important;
   z-index: 3 !important;
@@ -32,7 +40,7 @@ body,
   align-items: flex-start !important;
   justify-content: space-between !important;
   gap: 12px !important;
-  margin-bottom: 33px !important;
+  margin-bottom: 0 !important;
 }
 
 .location-btn {
@@ -151,146 +159,6 @@ body,
   line-height: 1 !important;
 }
 
-.search-row {
-  position: relative !important;
-  z-index: 3 !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 82px !important;
-  align-items: center !important;
-  gap: 15px !important;
-}
-
-.search-box {
-  display: flex !important;
-  align-items: center !important;
-  flex: 1 !important;
-  min-width: 0 !important;
-  height: 70px !important;
-  padding: 0 17px !important;
-  border: 1px solid #eeeeee !important;
-  border-radius: 22px !important;
-  background: #ffffff !important;
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12) !important;
-}
-
-.search-icon {
-  width: 34px !important;
-  height: 34px !important;
-  margin-right: 14px !important;
-  color: #f01835 !important;
-  flex-shrink: 0 !important;
-}
-
-.search-box input {
-  flex: 1 !important;
-  min-width: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  color: #4b4b4b !important;
-  font-family: Inter, Arial, Helvetica, sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.7px !important;
-}
-
-.search-box input::placeholder {
-  color: #4f4f4f !important;
-  font-weight: 600 !important;
-  opacity: 1 !important;
-}
-
-.search-divider {
-  display: none !important;
-}
-
-.mic-icon {
-  width: 32px !important;
-  height: 32px !important;
-  color: #f01835 !important;
-  flex-shrink: 0 !important;
-}
-
-.veg-card {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 82px !important;
-  min-width: 82px !important;
-  height: 70px !important;
-  gap: 9px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.veg-text {
-  width: max-content !important;
-  margin: 0 !important;
-  color: #202020 !important;
-  font-size: 0 !important;
-  font-family: Inter, Arial, Helvetica, sans-serif !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  letter-spacing: -0.3px !important;
-}
-
-.veg-text::before {
-  content: "Only Veg" !important;
-  font-size: 17px !important;
-  font-weight: 900 !important;
-}
-
-.veg-toggle {
-  position: relative !important;
-  width: 48px !important;
-  height: 29px !important;
-  padding: 0 !important;
-  border-radius: 999px !important;
-  background: #dddddd !important;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-  transition: 0.2s !important;
-}
-
-.veg-toggle::before {
-  display: none !important;
-}
-
-.veg-dot {
-  position: absolute !important;
-  left: 2px !important;
-  top: 2px !important;
-  width: 25px !important;
-  height: 25px !important;
-  margin: 0 !important;
-  border: 0 !important;
-  border-radius: 50% !important;
-  background: #ffffff !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16) !important;
-  transition: 0.2s !important;
-}
-
-.veg-toggle.off {
-  background: #dddddd !important;
-}
-
-.veg-toggle.off .veg-dot {
-  left: 2px !important;
-  border: 0 !important;
-  background: #ffffff !important;
-}
-
-.veg-card.veg-only .veg-toggle {
-  background: #1bb45e !important;
-}
-
-.veg-card.veg-only .veg-dot {
-  left: 21px !important;
-}
-
 #homePage > .section:first-child {
   margin-top: 27px !important;
 }
@@ -309,7 +177,8 @@ body,
   letter-spacing: -0.75px !important;
 }
 
-.see-all {
+.see-all,
+.offer-strip {
   display: none !important;
 }
 
@@ -363,10 +232,6 @@ body,
   letter-spacing: -0.65px !important;
 }
 
-.offer-strip {
-  display: none !important;
-}
-
 .food-type-badge {
   position: absolute;
   top: 12px;
@@ -406,7 +271,7 @@ body,
 
 @media (max-width: 370px) {
   .top-header {
-    padding: 18px 14px 17px !important;
+    padding: 18px 14px 22px !important;
   }
 
   .location-btn {
@@ -426,29 +291,6 @@ body,
 
   .location-sub {
     font-size: 17px !important;
-  }
-
-  .search-row {
-    grid-template-columns: minmax(0, 1fr) 74px !important;
-    gap: 11px !important;
-  }
-
-  .search-box {
-    height: 64px !important;
-  }
-
-  .search-box input {
-    font-size: 17px !important;
-  }
-
-  .veg-card {
-    width: 74px !important;
-    min-width: 74px !important;
-    height: 64px !important;
-  }
-
-  .veg-text::before {
-    font-size: 15px !important;
   }
 
   .cat-img-wrap {
