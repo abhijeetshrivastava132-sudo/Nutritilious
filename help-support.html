@@ -112,17 +112,18 @@
       event.preventDefault();
       const type=issueType.value.trim();
       const details=issueDetails.value.trim();
+      const orderValue=orderId.value.trim();
       if(!type){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please select issue type.';return}
       if(details.length<10){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue properly.';return}
       const ticketId='NUT-'+Date.now().toString().slice(-6);
-      const ticket={ticketId,issueType:type,orderId:orderId.value.trim(),details,createdAt:new Date().toISOString()};
+      const ticket={ticketId,issueType:type,orderId:orderValue,details,createdAt:new Date().toISOString()};
       const oldTickets=JSON.parse(localStorage.getItem('nutritiliousSupportTickets')||'[]');
       oldTickets.unshift(ticket);
       localStorage.setItem('nutritiliousSupportTickets',JSON.stringify(oldTickets));
+      const message=encodeURIComponent(`Nutritilious Support Ticket\n\nTicket ID: ${ticketId}\nIssue Type: ${type}\nOrder ID: ${orderValue||'Not provided'}\nIssue Details: ${details}`);
       ticketMsg.style.color='#267e3e';
-      ticketMsg.textContent=`Ticket submitted successfully. Your Ticket ID is ${ticketId}.`;
-      supportForm.reset();
-      setIssue('');
+      ticketMsg.textContent='Opening WhatsApp with ticket details...';
+      setTimeout(()=>{window.location.href=`https://wa.me/${SUPPORT_PHONE_INTERNATIONAL}?text=${message}`},450);
     };
 
     callSupport.onclick=()=>{window.location.href=`tel:+91${SUPPORT_PHONE}`};
