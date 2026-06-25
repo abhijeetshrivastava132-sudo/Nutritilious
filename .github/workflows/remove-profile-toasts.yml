@@ -1,0 +1,54 @@
+name: Remove profile toast popups
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  remove-toasts:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Remove edit and logout toast popups
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index_path = Path('index.html')
+          text = index_path.read_text(encoding='utf-8')
+
+          text = text.replace("        showToast('Edit details');\n", "")
+          text = text.replace(
+              "      showToast('Logged out');\n"
+              "      setTimeout(() => {\n"
+              "        window.location.href = 'login.html';\n"
+              "      }, 500);\n",
+              "      window.location.href = 'login.html';\n"
+          )
+
+          index_path.write_text(text, encoding='utf-8')
+
+          workflow_path = Path('.github/workflows/remove-profile-toasts.yml')
+          if workflow_path.exists():
+              workflow_path.unlink()
+          PY
+
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Remove profile toast popups"
+            git push
+          fi
