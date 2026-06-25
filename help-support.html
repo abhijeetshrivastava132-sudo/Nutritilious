@@ -126,8 +126,7 @@
       let ticketSubmitted=false;
       submitTicketBtn.disabled=true;
       submitTicketBtn.textContent='Submitting Ticket...';
-      ticketMsg.style.color='#267e3e';
-      ticketMsg.textContent='Submitting ticket...';
+      ticketMsg.textContent='';
       try{
         const ticketId='NUT-'+Date.now().toString().slice(-6);
         const localUser=getLocalUser();
