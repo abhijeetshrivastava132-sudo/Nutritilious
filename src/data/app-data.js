@@ -61,6 +61,20 @@ window.NUTRITILIOUS_DATA = {
       #vegToggle {
         display: none !important;
       }
+
+      .location-title {
+        font-size: 19px !important;
+        font-weight: 850 !important;
+        letter-spacing: -0.35px !important;
+        line-height: 1 !important;
+      }
+
+      .location-sub {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.2px !important;
+        line-height: 1.05 !important;
+      }
     `;
   }
 
@@ -81,8 +95,8 @@ window.NUTRITILIOUS_DATA = {
       header.style.setProperty('border-radius', '0', 'important');
     }
 
-    if (title) title.textContent = 'Kausa';
-    if (sub) sub.textContent = 'Mumbra, Navi Mumbai';
+    if (title) title.textContent = 'Deliver to';
+    if (sub) sub.textContent = 'Select your area';
     if (searchRow) searchRow.style.setProperty('display', 'none', 'important');
     if (foodTypeToggle) foodTypeToggle.style.setProperty('display', 'none', 'important');
   }
