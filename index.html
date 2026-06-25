@@ -1466,7 +1466,6 @@
     profileSaveBtn.onclick = () => {
       if (profileDetailsLocked) {
         setProfileDetailsLocked(false);
-        showToast('Edit details');
         return;
       }
 
@@ -1475,7 +1474,6 @@
       setProfileValue('Email', profileEmailInput.value.trim());
       setProfileValue('Language', profileSelectedLanguage);
       setProfileDetailsLocked(true);
-      showToast('Details saved');
     };
 
     profileLanguageBtn.onclick = () => profileLanguageSheet.classList.add('show');
@@ -1498,10 +1496,7 @@
       localStorage.removeItem('nutritiliousUser');
       localStorage.setItem('nutritiliousLoggedOut', 'true');
       sessionStorage.clear();
-      showToast('Logged out');
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 500);
+      window.location.href = 'login.html';
     };
 
     applyFilters();
