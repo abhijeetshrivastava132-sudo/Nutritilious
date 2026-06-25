@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-          <div class="input-group"><label for="orderId">Order ID</label><input id="orderId" type="text" placeholder="Example: Order #1023" /></div>
+          <div class="input-group"><label for="orderId">Order ID</label><input id="orderId" type="text" placeholder="Order ID (if applicable)" /></div>
           <div class="input-group"><label for="issueDetails">Describe Your Issue</label><textarea id="issueDetails" placeholder="Write what happened..." required></textarea></div>
           <button class="submit-btn" id="submitTicketBtn" type="submit">Submit Ticket</button><p class="ticket-msg" id="ticketMsg"></p>
         </form>
@@ -121,7 +121,7 @@
       const details=issueDetails.value.trim();
       const orderValue=orderId.value.trim();
       if(!type){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please select issue type.';return}
-      if(details.length<10){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue properly.';return}
+      if(details.length<15){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue in at least 15 characters.';return}
       if(!initFirebase()){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Firebase failed to load. Please try again.';return}
       submitTicketBtn.disabled=true;
       ticketMsg.style.color='#267e3e';
