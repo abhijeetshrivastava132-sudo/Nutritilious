@@ -63,14 +63,13 @@
     </main>
   </div>
 
-  <script src="firebase-config.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 
   <script>
     const SUPPORT_PHONE='7300748429';
     const SUPPORT_PHONE_INTERNATIONAL='917300748429';
+    const FIREBASE_FALLBACK_CONFIG={projectId:'nutrilious-ceebd'};
     const backBtn=document.getElementById('backBtn');
     const supportForm=document.getElementById('supportForm');
     const submitTicketBtn=document.getElementById('submitTicketBtn');
@@ -85,14 +84,14 @@
     const callSupport=document.getElementById('callSupport');
     const whatsappSupport=document.getElementById('whatsappSupport');
     const emailSupport=document.getElementById('emailSupport');
-    let db=null,auth=null;
+    let db=null;
 
     function initFirebase(){
       if(db)return true;
-      if(!window.firebase||!window.NUTRITILIOUS_FIREBASE_CONFIG)return false;
-      if(!firebase.apps.length)firebase.initializeApp(window.NUTRITILIOUS_FIREBASE_CONFIG);
+      if(!window.firebase)return false;
+      const config=window.NUTRITILIOUS_FIREBASE_CONFIG||FIREBASE_FALLBACK_CONFIG;
+      if(!firebase.apps.length)firebase.initializeApp(config);
       db=firebase.firestore();
-      auth=firebase.auth();
       return true;
     }
 
@@ -123,15 +122,14 @@
       const orderValue=orderId.value.trim();
       if(!type){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please select issue type.';return}
       if(details.length<10){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Please describe the issue properly.';return}
-      if(!initFirebase()){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Firebase config missing. Add firebase-config.js.';return}
+      if(!initFirebase()){ticketMsg.style.color='#d0342c';ticketMsg.textContent='Firebase failed to load. Please try again.';return}
       submitTicketBtn.disabled=true;
       ticketMsg.style.color='#267e3e';
       ticketMsg.textContent='Submitting ticket...';
       try{
         const ticketId='NUT-'+Date.now().toString().slice(-6);
         const localUser=getLocalUser();
-        const currentUser=auth&&auth.currentUser?auth.currentUser:null;
-        const ticket={ticketId,issueType:type,orderId:orderValue,details,status:'pending',source:'help-support-page',userId:currentUser&&currentUser.uid?currentUser.uid:(localUser.uid||''),userPhone:currentUser&&currentUser.phoneNumber?currentUser.phoneNumber:(localUser.phone||''),userEmail:currentUser&&currentUser.email?currentUser.email:(localUser.email||''),createdAt:firebase.firestore.FieldValue.serverTimestamp(),localCreatedAt:new Date().toISOString()};
+        const ticket={ticketId,issueType:type,orderId:orderValue,details,status:'pending',source:'help-support-page',userId:localUser.uid||'',userPhone:localUser.phone||'',userEmail:localUser.email||'',createdAt:firebase.firestore.FieldValue.serverTimestamp(),localCreatedAt:new Date().toISOString()};
         await db.collection('supportTickets').doc(ticketId).set(ticket);
         const oldTickets=JSON.parse(localStorage.getItem('nutritiliousSupportTickets')||'[]');
         oldTickets.unshift({...ticket,createdAt:ticket.localCreatedAt});
