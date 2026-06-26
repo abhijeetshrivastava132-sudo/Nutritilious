@@ -1,1 +1,1 @@
-run location card availability patch
+run detected location display patch
